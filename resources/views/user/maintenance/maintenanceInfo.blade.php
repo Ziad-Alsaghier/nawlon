@@ -136,7 +136,7 @@ $user = 'Minue';
                                     <span class="fw-semibold">{{ $maintanences->created_at->format('d-m-Y') }}</span>
                                 </div>
                                 <div>
-                                    <span class="me-1">انتهائ الصيانة:</span>
+                                    <span class="me-1">انتهاء الصيانة:</span>
                                     <span class="fw-semibold">{{ $maintanences->updated_at->format('d-m-Y')
                                         }}</span>
                                 </div>
@@ -235,15 +235,11 @@ $user = 'Minue';
             <div class="col-xl-3 col-md-4 col-12 invoice-actions">
                 <div class="card">
                     <div class="card-body">
-                        <button class="btn btn-primary d-grid w-100 mb-3" data-bs-toggle="offcanvas"
-                            data-bs-target="#sendInvoiceOffcanvas">
-                            <span class="d-flex align-items-center justify-content-center text-nowrap"><i
-                                    class="bx bx-paper-plane bx-xs me-1"></i>Send Invoice</span>
-                        </button>
-                        <button class="btn btn-label-secondary d-grid w-100 mb-3">Download</button>
+
+                        <button class="btn btn-label-secondary d-grid w-100 mb-3">تحميل</button>
                         <a class="btn btn-label-secondary d-grid w-100 mb-3" onclick="window.print()" target="print"
                             href="print">
-                            Print
+                            طباعة
                         </a>
                         <a href="./app-invoice-edit.html" class="btn btn-label-secondary d-grid w-100 mb-3">
                             نهاية

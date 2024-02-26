@@ -4,6 +4,7 @@ namespace App\Http\Controllers\downLocation;
 
 use App\Http\Controllers\Controller;
 use App\Models\DownLocation;
+use App\Models\Nawlone;
 use Illuminate\Http\Request;
 
 class downLocationController extends Controller
@@ -11,7 +12,7 @@ class downLocationController extends Controller
 
     protected $newLocation=['name','user_id'];
     // This First Controller With Dwonload Location V1
-    public function index(){
+    public function index(){c
         $locations = DownLocation::where('user_id',auth()->user()->id)->get();
         return view('user.downLocation.downLocation',compact('locations'));
     }
@@ -50,9 +51,14 @@ $createNewLocation =$request->only($this->newLocation);
         }
       
         public function deleteLocation($id){
-        
+        $checkNawlon = Nawlone::where('down_location_id',$id)->first();
+            if($checkNawlon){
+            session()->flash('faild','لا يمكن حذف هذا المكان');
+            return redirect()->back();
+            }
 
         $deleteNewLocation = DownLocation::where('id',$id)->delete( );
+
                     if($deleteNewLocation ){
             session()->flash('success', 'تم الغاء المكان');
                         return redirect()->back();

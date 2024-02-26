@@ -9,6 +9,7 @@ class Nawlone extends Model
 {
     use HasFactory;
     protected $fillable = [
+    'driver_id',
     'car_id',
     'down_location_id',
     'tatek_location',
@@ -24,9 +25,9 @@ class Nawlone extends Model
 
 
     public function car(){
-    return $this->belongsTo(Car::class);
+    return $this->belongsTo(Car::class)->withTrashed();
     }
-    public function drivers(){
+    public function driver(){
     return $this->belongsTo(Driver::class);
     }
     public function down_location(){

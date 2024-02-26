@@ -126,6 +126,7 @@ $user = 'Minue';
                 <tr>
                     <th> ID</th>
                     <th> السياره</th>
+                    <th> السائق</th>
                     <th>مكان التحميل</th>
                     <th> مكان التعتيق</th>
                     <th> سعر النقلة</th>
@@ -140,12 +141,16 @@ $user = 'Minue';
             </thead>
             <tbody class="table-border-bottom-0">
                 @foreach ($nawlones as $nawlone)
+                @if($nawlone->car->deleted_at == null)
+
+                @endif
                 <tr>
                     <td>
 
 
                         <strong>
-                            {{ $nawlone->id }}
+
+                            {{ $loop->iteration }}
 
                         </strong>
                     </td>
@@ -155,6 +160,13 @@ $user = 'Minue';
                         <span class="badge bg-label-primary me-1">
 
                             {{ $nawlone->car->cars_name }}
+                        </span>
+                    </td>
+                    <td>
+
+                        <span class="badge bg-label-primary me-1">
+
+                            {{ $nawlone->driver->driv_name }}
                         </span>
                     </td>
                     <td>
@@ -440,6 +452,24 @@ $user = 'Minue';
                                 <form class="browser-default-validation" action="{{ route('addNawlone') }}"
                                     method="POST" enctype="multipart/form-data">
                                     @csrf
+
+                                    {{-- اختيار الساائق --}}
+                                    <div class="mb-3">
+
+                                        <label class="form-label" for="basic-default-country"> اختيار الساائق </label>
+                                        <select class="form-select" id="basic-default-country" name="driver_id">
+                                            <option value="">اختار الساائق</option>
+                                            @foreach($driveres as $driver)
+                                            <option value="{{ $driver->id }}">{{ $driver->driv_name }}</option>
+
+                                            @endforeach
+
+                                        </select>
+                                        @error('driver_id')
+                                        <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    {{-- اختيار الساائق --}}
 
                                     {{-- اختيار فئة السيارة --}}
                                     <div class="mb-3">

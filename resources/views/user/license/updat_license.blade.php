@@ -122,11 +122,12 @@ $user='Minue';
         <table class="table">
             <thead class="table-dark">
                 <tr>
-                    <th>اسم السيارة</th>
-                    <th> الرخصة الجديدة </th>
+                    <th>رقم السيارة</th>
+                    <th> اسم السيارة </th>
+                    <th> الفئة</th>
                     <th> تاريخ التجديد</th>
-                    <th> تاريخ الانتهاء</th>
-                    <th> صورة الرخصة القديمة </th>
+                    <th> تاريخ الانتهاء </th>
+                    <th> صورة الرخصة الجديدة </th>
                     <th>تعديلات</th>
                 </tr>
             </thead>
@@ -225,7 +226,7 @@ $user='Minue';
                                                     <div class="mb-3">
                                                         <label class="form-label" for="basic-default-country">اختيار فئة
                                                             السيارة</label>
-                                                        <select class="form-select" id="basic-default-country"
+                                                        <select class="form-select" id="basic-default-country categoty"
                                                             name="category_id">
                                                             <option value="{{ $licenseUpdate->category->id }}">
                                                                 اختيار فئة السيارة</option>
@@ -419,6 +420,7 @@ $user='Minue';
            $('#category').change(function(){
                 category = $('#category').val();
                 car = $('#car').val();
+                console.log(category);
             $.ajax({
             type: 'GET',
             url: '{{ route('filterCar') }}',
@@ -429,8 +431,7 @@ $user='Minue';
             },
             success: function(response) {
             console.log(response);
-                    car = response.car;
-                    console.log(car);
+                    car = response.car_data;
                     
                     var carDataDf = "<option value=''>اختيار السيارة</option>";
                     $(".name-car option").hide();

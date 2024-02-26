@@ -124,7 +124,7 @@ $user='Minue';
                 <tr>
                     <th>اسم السيارة</th>
 
-                    <th> الرخصة</th>
+                    <th> رقم الرخصة</th>
                     <th> صورة الرخصة</th>
                     <th> تاريخ الأنتهاء</th>
                     <th>تعديلات</th>
@@ -310,7 +310,7 @@ $user='Minue';
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label" for="cars_name"> رقم الرخصة </label>
-                                        <input type="text" name="license_number" class="form-control" id="cars_name"
+                                        <input type="number" name="license_number" class="form-control" id="cars_name"
                                             placeholder=" اكتب رقم الرخصة " />
                                         @error('license_number')
                                         <span class="error">{{ $message }}</span>

@@ -135,18 +135,18 @@ $user='Minue';
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="car_type">نوع السيار</label>
+                    <label class="form-label" for="car_type">موديل السيار</label>
                     <input type="text" name="car_type" id="car_type" class="form-control"
-                        placeholder="اكتب نوع السيارة" />
+                        placeholder="اكتب موديل السيارة" />
                     @error('car_type')
                     <span>{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="mb-3 form-password-toggle">
-                    <label class="form-label" for="brand">ماركة السيارة</label>
+                    <label class="form-label" for="brand">موديل السيارة</label>
                     <div class="input-group input-group-merge">
                         <input type="text" id="basic-default-name" name="brand" class="form-control"
-                            placeholder="اكتب ماركة العربية" aria-describedby="brand" />
+                            placeholder="اكتب موديل العربية" aria-describedby="brand" />
                         <span class="input-group-text cursor-pointer" id="basic-default-name"><i
                                 class="bx bx-hide"></i></span>
 

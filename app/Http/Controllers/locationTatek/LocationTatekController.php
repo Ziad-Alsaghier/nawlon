@@ -49,6 +49,8 @@ class LocationTatekController extends Controller
 
 
     public function deleteLocation($id){
+
+        
         $deleteLocation = LocationTatek::where('id', $id)->delete();
 
                         if($deleteLocation){

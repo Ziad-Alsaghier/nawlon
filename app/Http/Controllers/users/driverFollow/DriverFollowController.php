@@ -159,7 +159,7 @@ return redirect()->back();
 
 public function editFollowDriver(){
 
-        $driverFollows = driverFollow::all();
+        $driverFollows = driverFollow::where('user_id',auth()->user()->id)->get();
         return view('user.driver_follow.driverFollowList',compact('driverFollows'));
             } 
             public function deletedriverFollow($id){

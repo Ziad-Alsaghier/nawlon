@@ -137,7 +137,7 @@ $user='Minue';
 
 
                             <strong>
-                                {{$divide->id}}
+                                {{$loop->iteration}}
                             </strong>
                         </td>
                         <td>

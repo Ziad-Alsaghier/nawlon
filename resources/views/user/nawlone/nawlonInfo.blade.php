@@ -25,22 +25,22 @@ $user = 'Minue';
     rel="stylesheet" />
 
 <!-- Icons -->
-<link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
-<link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
-<link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/fontawesome.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
 
 <!-- Core CSS -->
-<link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" />
-<link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" />
-<link rel="stylesheet" href="../../assets/css/demo.css" />
+<link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" />
+<link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" />
+<link rel="stylesheet" href="../assets/css/demo.css" />
 
 <!-- Vendors CSS -->
-<link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/tagify/tagify.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
-<link rel="stylesheet" href="../../ assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/select2/select2.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/tagify/tagify.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
+<link rel="stylesheet" href="../ assets/vendor/libs/typeahead-js/typeahead.css" />
 <style>
     span {
         color: red;
@@ -51,7 +51,7 @@ $user = 'Minue';
 
 @section('page-style')
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,21 +61,21 @@ $user = 'Minue';
     rel="stylesheet" />
 
 <!-- Icons -->
-<link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
-<link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
-<link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/fontawesome.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
 
 <!-- Core CSS -->
-<link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" />
-<link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" />
-<link rel="stylesheet" href="../../assets/css/demo.css" />
+<link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" />
+<link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" />
+<link rel="stylesheet" href="../assets/css/demo.css" />
 
 <!-- Vendors CSS -->
-<link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
-<link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/flatpickr/flatpickr.css" />
 
 @endsection
 @section('vendor-script')
@@ -126,8 +126,8 @@ $user = 'Minue';
                             <div class="mb-xl-0 mb-4">
                                 <div class="d-flex svg-illustration mb-3 gap-2">
 
-                                    <img src="../../public/images/customer/{{ auth()->user()->logoImage }}"
-                                        width="250px" alt="">
+                                    <img src="../public/images/customer/{{ auth()->user()->logoImage }}" width="250px"
+                                        alt="">
                                 </div>
 
 
@@ -146,7 +146,7 @@ $user = 'Minue';
                         </div>
                         <div class="col-md-12 d-flex align-items-center justify-content-center my-5 mx-5">
 
-                            <img src="../../public/images/cars/{{ $nawlone->car->image }}" width="500px" alt="">
+                            <img src="../public/images/cars/{{ $nawlone->car->image }}" width="500px" alt="">
                         </div>
                     </div>
                     <hr class="my-0" />
@@ -156,6 +156,7 @@ $user = 'Minue';
                                 <h6 class="pb-2">تفاصيل:السيارة</h6>
                                 <p class="mb-1">اسم السيارة : {{ $nawlone->car->cars_name }}</p>
                                 <p class="mb-1">نوع السيارة : {{ $nawlone->car->brand }}</p>
+                                <p class="mb-1">فئة السيارة : {{ $nawlone->car->category->category }}</p>
                                 <p class="mb-1"> رقم السيارة : {{ $nawlone->car->car_number }}</p>
                             </div>
                             <div class="col-xl-6 col-md-12 col-sm-7 col-12">
@@ -197,6 +198,7 @@ $user = 'Minue';
                                     <td>{{ $nawlone->solar }}</td>
                                     <td>{{ $nawlone->created_at }}</td>
                                     <td>{{ $nawlone->updated_at }}</td>
+
                                 </tr>
 
 
@@ -361,9 +363,9 @@ Dear Queen Consolidated,
 
 @section('script')
 
-<script src="../../assets/js/main.js"></script>
+<script src="../assets/js/main.js"></script>
 
-<script src="../../assets/js/offcanvas-send-invoice.js"></script>
+<script src="../assets/js/offcanvas-send-invoice.js"></script>
 
 @endsection
 @endsection

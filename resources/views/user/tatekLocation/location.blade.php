@@ -136,7 +136,7 @@ $user='Minue';
 
 
                             <strong>
-                                {{$tatek->id }}
+                                {{$loop->iteration }}
                             </strong>
                         </td>
                         <td>

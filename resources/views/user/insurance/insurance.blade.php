@@ -136,9 +136,9 @@ $user = 'Minue';
         <table class="table">
             <thead class="table-dark">
                 <tr>
+                    <th>#</th>
                     <th>اسم السيارة</th>
                     <th>قيمة التأمين</th>
-                    <th>السعر المدفوع</th>
                     <th>تاريخ الدفع</th>
 
                     <th>تعديلات</th>
@@ -147,6 +147,10 @@ $user = 'Minue';
             <tbody class="table-border-bottom-0" id="my_table_insurance">
                 @foreach ($insurances as $insurance)
                 <tr>
+
+                    <td>
+                        {{ $loop->iteration }}
+                    </td>
                     <td>
                         <strong>
                             {{ $insurance->car->cars_name }}
@@ -154,11 +158,7 @@ $user = 'Minue';
                         </strong>
                     </td>
 
-                    <td>
-                        <strong>
 
-                        </strong>
-                    </td>
                     <td>
                         <strong>
                             {{ $insurance->total_insurance }}

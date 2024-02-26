@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Category;
 use App\Models\DownLocation;
+use App\Models\Driver;
 use App\Models\Nawlone;
 
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class NawloneController extends Controller
 {
     protected $nawlonePosts = [
           'car_id',
+          'driver_id',
           'down_location_id',
           'tatek_location',
           'nawlone_price',
@@ -30,15 +32,17 @@ class NawloneController extends Controller
 
         $cars = Car::where('user_id',auth()->user()->id)
                     ->where('status','1')
+                    ->withTrashed()
                     ->orderBy('cars_name','ASC')->get();
         $categories = Category::where('user_id',auth()->user()->id)->get();
+        $driveres = Driver::where('user_id',auth()->user()->id)->get();
         $locations = DownLocation::where('user_id',auth()->user()->id)->orderBy('name','ASC')->get();
-                    return view('user.nawlone.nawloneAdd',compact('cars','categories','locations'));
+                    return view('user.nawlone.nawloneAdd',compact('cars','driveres','categories','locations'));
             }
 
             public function addNawlone(Request $request){
                 
-        $dataNawlone = $request->only($this->nawlonePosts);
+       $dataNawlone = $request->only($this->nawlonePosts);
         $dataNawlone['user_id'] = auth()->user()->id;
 
          $checkStatusCar = Car::where('id', $request->car_id)->first();
@@ -62,15 +66,16 @@ class NawloneController extends Controller
                         }
 
             public function nawloneList($status){
-        $nawlones = Nawlone::where('user_id',auth()->user()->id)->with('car')->orderBy('created_at','desc')->get();
+         $nawlones = Nawlone::where('user_id',auth()->user()->id)->with('car')->orderBy('created_at','desc')->get();
                   $categories = Category::where('user_id',auth()->user()->id)->get();
         foreach ($nawlones as $nawlone) {
                      $nawlone->car;
                     }
         $cars = Car::where('user_id',auth()->user()->id)
         ->where('status',$status)->get();
+                $driveres = Driver::where('user_id',auth()->user()->id)->get();
         $locations = DownLocation::where('user_id',auth()->user()->id)->get();
-        return view('user.nawlone.nawloneList',compact('nawlones','cars','categories','locations'));
+        return view('user.nawlone.nawloneList',compact('nawlones','driveres','cars','categories','locations'));
             }
             public function editStatus(Request $request){
      
@@ -131,7 +136,7 @@ class NawloneController extends Controller
 
                     // Handl Report Nawlon
                     public function nawlonInfo($id){
-        $nawlone= Nawlone::where('id',$id)->With('car')->With('drivers')->with('down_location')->first();
+        $nawlone= Nawlone::where('id',$id)->With('car')->With('driver')->with('down_location')->first();
          
        
                          return view('user.nawlone.nawlonInfo',compact('nawlone'));

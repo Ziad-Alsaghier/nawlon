@@ -21,6 +21,7 @@ class InsuranceController extends Controller
         $insurances = Insurance::where('user_id',auth()->user()->id)->get();
         $cars = Car::where('user_id',auth()->user()->id)->get();
         $categories = Category::where('user_id',auth()->user()->id)->get();
+                    
         return view('user.insurance.insurance',compact('insurances','categories','cars'));
             }
 

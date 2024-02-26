@@ -160,6 +160,23 @@ $user='Minue';
                     @enderror
                 </div>
                 {{-- اختيار السيارة --}}
+                {{-- اختيار الساائق --}}
+                <div class="mb-3">
+
+                    <label class="form-label" for="basic-default-country"> اختيار الساائق </label>
+                    <select class="form-select" id="basic-default-country" name="driver_id">
+                        <option value="">اختار الساائق</option>
+                        @foreach($driveres as $driver)
+                        <option value="{{ $driver->id }}">{{ $driver->driv_name }}</option>
+
+                        @endforeach
+
+                    </select>
+                    @error('driver_id')
+                    <span>{{ $message }}</span>
+                    @enderror
+                </div>
+                {{-- اختيار الساائق --}}
                 {{-- اختيار مكان التحميل --}}
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-country">اختيار مكان التحميل</label>

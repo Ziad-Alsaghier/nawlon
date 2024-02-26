@@ -122,7 +122,7 @@ $user = 'Minue';
     </button>
 </div>
 <div class="card">
-    <h5 class="card-header">جميع السيارات</h5>
+    <h5 class="card-header">جميع الاصناف</h5>
     <div class="table-responsive text-nowrap">
         <table class="table">
             <thead class="table-dark">

@@ -147,7 +147,7 @@ $user='Minue';
 
                     <td>
                         <strong>
-
+                            {{$revenue->category_revenue->name}}
                         </strong>
                     </td>
                     <td>

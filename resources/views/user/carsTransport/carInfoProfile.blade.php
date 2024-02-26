@@ -832,7 +832,11 @@ $user = 'Minue';
                                 <td>${ele.custody}</td>
                                 <td>${ele.solar}</td>
                                 <td>${ele.created_at}</td>
-                                <td>${ele.down_location_id}</td>
+                                <td>
+                                    <a type="button" class="btn btn-info" href="/Nawlone/nawlonInfo/${ele.id}">
+                                        تفاصيل
+                                    </a>
+                                </td>
                             </tr>`
                                 $("#my_table_nawlon").append(nawlonens)
 

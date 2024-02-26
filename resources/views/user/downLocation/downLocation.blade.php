@@ -137,7 +137,7 @@ $user='Minue';
 
 
                             <strong>
-                                {{$location->id }}
+                                {{$loop->iteration }}
                             </strong>
                         </td>
                         <td>
