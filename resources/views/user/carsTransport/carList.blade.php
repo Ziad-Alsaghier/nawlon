@@ -588,6 +588,7 @@
                         $(".row_carr").addClass("d-none");
                         $(".car_row").removeClass("d-none");
                     } else {
+                        $(".row_carr").empty();
                         $.ajax({
                             type: 'GET',
                             url: '{{ route('filterCar') }}',
@@ -771,7 +772,7 @@
                                </tr>`;
 
 
-                                    $('.row_carr').hide();
+
 
                                     $(".car_row").addClass("d-none");
 
