@@ -29,7 +29,7 @@ class CarTransportController extends Controller
         { // Return The View Car
 
                 $categories = Category::where('user_id', auth()->user()->id)->get();
-                $cars = Car::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->get();
+                $cars = Car::where('user_id', auth()->user()->id)->withTrashed()->orderBy('created_at', 'DESC')->get();
 
 
                 return view('user.carsTransport.carList', compact('cars', 'categories'));
@@ -72,8 +72,6 @@ class CarTransportController extends Controller
                                 $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
                                 $createNewCar['image'] = $img_name;
                         }
-
-
                 }
                 $car = Car::where('user_id', auth()->user()->id)->get();
                 $createNewCar['user_id'] = auth()->user()->id;
@@ -91,9 +89,6 @@ class CarTransportController extends Controller
                         session()->flash('success', 'تم اضافة السيارة بنجاح');
                         return redirect()->back();
                 }
-
-
-
         }
         public function deleteCar($id)
         { // Start Delete Car
@@ -111,7 +106,6 @@ class CarTransportController extends Controller
                                 return redirect()->back();
                         }
                 }
-
         }
         public function softDelete($id)
         { // Start Delete Car
@@ -130,7 +124,6 @@ class CarTransportController extends Controller
                                 return redirect()->back();
                         }
                 }
-
         }
 
 
@@ -155,9 +148,6 @@ class CarTransportController extends Controller
                                 $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
                                 $requestUpdateCar['image'] = $img_name;
                         }
-
-
-
                 }
                 $updateCar = car::where('id', $request->car_id)->update($requestUpdateCar);
                 $updateCategory = Category::where('id', $request->category_id)->update($requestUpdatecategory);
@@ -173,17 +163,14 @@ class CarTransportController extends Controller
         public function statusCar($id)
         {
                 $categories = Category::where('user_id', auth()->user()->id);
-                $cars = car::where('user_id', auth()->user()->id)->
-                        where('status', $id)->get();
+                $cars = car::where('user_id', auth()->user()->id)->where('status', $id)->get();
                 return view('user.carsTransport.carList', compact('cars', 'categories'));
-
         }
 
         public function carInfo($id)
         {
                 $categories = Category::where('user_id', auth()->user()->id);
-                $car = car::where('user_id', auth()->user()->id)->with('nawlon')->
-                        where('id', $id)->withTrashed()->first();
+                $car = car::where('user_id', auth()->user()->id)->with('nawlon')->where('id', $id)->withTrashed()->first();
                 $totalnawlon = 0;
                 for ($i = 0; $i < count($car->nawlon); $i++) {
                         $totalnawlon += $car->nawlon[$i]['nawlone_price'];
@@ -191,13 +178,11 @@ class CarTransportController extends Controller
 
 
                 return view('user.carsTransport.carInfoProfile', compact('car', 'totalnawlon', 'categories'));
-
         }
         public function filterNawlon(request $request)
         {
 
-                $nawlon = Nawlone::whereBetween('created_at', [$request->start_date, $request->end_date])->
-                        where('car_id', $request->car_id)->get();
+                $nawlon = Nawlone::whereBetween('created_at', [$request->start_date, $request->end_date])->where('car_id', $request->car_id)->get();
 
                 if ($nawlon) {
 
@@ -206,19 +191,13 @@ class CarTransportController extends Controller
 
                         return response()->json(['faild' => 'Data Is Empty']);
                 }
-
-
         }
 
 
         public function filterMaintanence(Request $request)
         {
 
-                $maintanence = Maintenance::
-                        whereBetween('created_at', [$request->start_date_maintanence, $request->end_date_maintanence])->
-                        where('car_id', $request->car_id)->
-                        with('car')->
-                        with('car_parts')->get();
+                $maintanence = Maintenance::whereBetween('created_at', [$request->start_date_maintanence, $request->end_date_maintanence])->where('car_id', $request->car_id)->with('car')->with('car_parts')->get();
                 if ($maintanence) {
 
                         return response()->json([
@@ -253,15 +232,14 @@ class CarTransportController extends Controller
         }
 
 
-                                        public function filterCar(Request $request){
-                 $request->car_state;
+        public function filterCar(Request $request)
+        {
+                $request->car_state;
                 $car = Car::where('user_id', auth()->user()->id)
-                ->where('status',$request->category_id)->get();
+                        ->where('status', $request->category_id)->get();
                 return response()->json([
                         'success' => 'data Returned Successfully',
-                        'car_data'=> $car ,
-                                        ]);
-
-
-                                        }
+                        'car_data' => $car,
+                ]);
+        }
 }
