@@ -113,10 +113,10 @@
     <div class="mb-3">
         <label class="form-label" for="basic-default-car"> فلتر السيارات</label>
         <select class="form-select sel-CarState" id="basic-default-car" name="">
-            <option value="0">اختار حالة السيارة</option>
+            <option value="">اختار حالة السيارة</option>
             <option value="1">السيارات المتاحة</option>
             <option value="2">السيارات في الطريق</option>
-            <option value="3">السياراتمعطلة</option>
+            <option value="0">السياراتمعطلة</option>
 
         </select>
     </div>
@@ -147,7 +147,7 @@
                         <tr class="car_row">
 
                             <td>
-                                <img src="../public/images/cars/{{ $car->image }}" width="200px" alt="">
+                                <img src="../public/images/cars/{{ $car->image }}" width="90%" alt="">
                                 <br>
                                 {{-- {{$car->image}} --}}
                             </td>
@@ -182,8 +182,8 @@
                             <td>
 
                                 @if ($car->status == 0)
-                                    <a class="btn btn-danger text-black" data-bs-toggle="modal"
-                                        data-bs-target="#modalTop{{ $car->id }}">
+                                    <a class="btn btn-danger text-black" style="margin-top: 20px;width: 100%;"
+                                        data-bs-toggle="modal" data-bs-target="#modalTop{{ $car->id }}">
                                         <strong>
                                             السيارة معطلة
                                         </strong>
@@ -202,7 +202,8 @@
                                                 <div class="modal-dialog">
                                                     <form class="modal-content">
                                                         <div class="modal-header">
-                                                            <h2 class="modal-title" id="modalTopTitle">هل انت متأكد من تغيير
+                                                            <h2 class="modal-title" id="modalTopTitle">هل انت متأكد من
+                                                                تغيير
                                                                 حالة
                                                                 السيارة </h2>
                                                             <button type="button" class="btn-close"
@@ -224,8 +225,9 @@
                                     </div>
                                     {{-- Modale Update Status --}}
                                 @elseif($car->status == 1)
-                                    <a class="btn btn-success" data-bs-toggle="modal"
-                                        data-bs-target="#modalTop{{ $car->id }}" href="">
+                                    <a class="btn btn-success" style="margin-top: 20px;width: 100%;"
+                                        data-bs-toggle="modal" data-bs-target="#modalTop{{ $car->id }}"
+                                        href="">
                                         <strong>
                                             السيارة متوفرة
                                         </strong>
@@ -267,8 +269,8 @@
                                     </div>
                                     {{-- Modale Update Status --}}
                                 @elseif($car->status == 2)
-                                    <a class="btn btn-warning text-black" data-bs-toggle="modal"
-                                        data-bs-target="#modalTop{{ $car->id }}">
+                                    <a class="btn btn-warning text-black" style="margin-top: 20px;"
+                                        data-bs-toggle="modal" data-bs-target="#modalTop{{ $car->id }}">
                                         <strong>
                                             السيارة في الطريق
                                         </strong>
@@ -577,18 +579,16 @@
                 });
             });
 
-
-
             // Start Filter With Car By Status 
 
             $(document).ready(function() {
                 $(".sel-CarState").change(() => {
                     var Car_State = $(".sel-CarState").val();
-                    if (Car_State == 0) {
-                        $(".row_carr").addClass("d-none");
+                    if (Car_State == "") {
+                        $(".carr_row").addClass("d-none");
                         $(".car_row").removeClass("d-none");
                     } else {
-                        $(".row_carr").empty();
+                        $(".carr_row").empty();
                         $.ajax({
                             type: 'GET',
                             url: '{{ route('filterCar') }}',
@@ -601,23 +601,21 @@
                                     console.log("index", index)
                                     console.log("object", object)
 
-                                    var sss;
+                                    var states;
 
                                     if (response.car_data[index].status == 0) {
-                                        sss = ` <a class="btn btn-danger text-black" data-bs-toggle="modal" data-bs-target='#modalTop${response.car_data[index].id}' >
+                                        states = ` <a class="btn btn-danger text-black" style="margin-top: 20px;width: 100%;" data-bs-toggle="modal" data-bs-target='#modalTopp${response.car_data[index].id}' >
                                             <strong>
                                                 السيارة معطلة
                                             </strong>
                                         </a>
-                                {{-- Modale Update Status --}}
-                                <div class="col-lg-4 col-md-6">
+                                            {{-- Modale Update Status --}}
+                                            <div class="col-lg-4 col-md-6">
 
-                                    <div class="mt-3">
-                                        <!-- Button trigger modal -->
-
-
-                                        <!-- Modal -->
-                                        <div class="modal modal-top fade" id='modalTop${response.car_data[index].id}' tabindex="-1">
+                                                <div class="mt-3">
+                                                    <!-- Button trigger modal -->
+                                                    <!-- Modal -->
+                                        <div class="modal modal-top fade" id='modalTopp${response.car_data[index].id}' tabindex="-1">
 
                                             <div class="modal-dialog">
                                                 <form class="modal-content">
@@ -632,7 +630,7 @@
                                                             Close
                                                         </button>
                                                         <input type="hidden" name="status" value="0">
-                                                        <a href='${response.car_data[index].id}'
+                                                        <a href='updateStatus/${response.car_data[index].id}?status=1'
                                                             class="btn btn-primary">Save</a>
                                                     </div>
                                                 </form>
@@ -641,7 +639,7 @@
                                     </div>
                                 </div>`
                                     } else if (response.car_data[index].status == 1) {
-                                        sss = ` <a class="btn btn-success" data-bs-toggle="modal" data-bs-target='#modalTopVil${response.car_data[index].id}' href="">
+                                        states = ` <a class="btn btn-success" style="margin-top: 20px;width: 100%;" data-bs-toggle="modal" data-bs-target='#modalTopVil${response.car_data[index].id}' href="">
                                             <strong>
                                                 السيارة متوفرة
                                             </strong>
@@ -669,7 +667,7 @@
                                                             Close
                                                         </button>
                                                         <input type="hidden" name="status" value="0">
-                                                        <a href="Users/updateStatus/2"
+                                                        <a href="updateStatus/${response.car_data[index].id}?status=0"
                                                             class="btn btn-primary">Save</a>
                                                     </div>
                                                 </form>
@@ -678,7 +676,7 @@
                                     </div>
                                 </div>`
                                     } else if (response.car_data[index].status == 2) {
-                                        sss = ` <a class="btn btn-warning text-black" data-bs-toggle="modal" data-bs-target='#modalTopWay${response.car_data[index].id}'>
+                                        states = ` <a class="btn btn-warning text-black" style="margin-top: 20px;" data-bs-toggle="modal" data-bs-target='#modalTopWay${response.car_data[index].id}'>
                                             <strong>
                                                 السيارة في الطريق
                                             </strong>
@@ -688,11 +686,8 @@
 
                                     <div class="mt-3">
                                         <!-- Button trigger modal -->
-
-
                                         <!-- Modal -->
                                         <div class="modal modal-top fade" id='modalTopWay${response.car_data[index].id}' tabindex="-1">
-
                                             <div class="modal-dialog">
                                                 <form class="modal-content">
                                                     <div class="modal-header">
@@ -707,7 +702,7 @@
                                                             Close
                                                         </button>
                                                         <input type="hidden" name="status" value="0">
-                                                        <a href='${response.car_data[index].id}'
+                                                        <a href='updateStatus/${response.car_data[index].id}?status=1'
                                                             class="btn btn-primary">Save</a>
                                                     </div>
                                                 </form>
@@ -716,10 +711,10 @@
                                     </div>
                                 </div>`
                                     }
-                                    var car_list = `<tr class="row_carr row_car_fil${response.car_data[index].status}">
+                                    var car_list = `<tr class="carr_row row_car_fil${response.car_data[index].status}">
                         
                                             <td>
-                                                <img src= '../public/images/cars/${response.car_data[index].image}' width="200px" alt="">
+                                                <img src= '../public/images/cars/${response.car_data[index].image}' width="90%" alt="">
                                                 <br>
                                             </td>
                                             <td>
@@ -744,10 +739,10 @@
                                                 ${response.car_data[index].car_number}
                                             </td>
                                             <td>
-                                                ${sss}
+                                                ${states}
                                             </td>
                                             <td>
-                                                <a class="btn btn-info text-black" href='${response.car_data[index].id}'>
+                                                <a class="btn btn-info text-black" href='carInfo/${response.car_data[index].id}'>
                                                     <strong>
                                                         التفاصيل
                                                     </strong>
@@ -771,28 +766,26 @@
                                             </td>
                                </tr>`;
 
-
-
-
+                                    /* hide defilt row cars   */
                                     $(".car_row").addClass("d-none");
 
+                                    /* show only what i chose filter row cars   */
                                     $(`.row_car_fil${response.car_data[index].status}`)
                                         .show();
-
+                                    /* append filte car to table */
                                     $("#myTable").append(car_list);
 
-                                    console.log("Car_State", Car_State)
                                     /* Set Function to show datails side   */
                                     $(".btnCusFil").each((ele, val) => {
-                                        console.log(ele, val)
+
                                         var poi_id_Fil = `#${$(val).attr("id")}`
+
                                         $(poi_id_Fil).mouseenter(() => {
+
                                             $(".menu-cusFil").addClass(
                                                 "d-none");
                                             $(poi_id_Fil).next()
-                                                .toggleClass(
-                                                    "d-none");
-
+                                                .toggleClass("d-none");
                                         });
                                         $(".menu-cusFil").mouseleave(() => {
                                             $(".menu-cusFil").addClass(
