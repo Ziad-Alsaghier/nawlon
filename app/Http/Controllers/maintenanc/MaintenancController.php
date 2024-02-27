@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Car_CarPart_Maintenance;
+use App\Models\Category;
 use App\Models\Purchase;
 
 class MaintenancController extends Controller
@@ -22,15 +23,17 @@ class MaintenancController extends Controller
         $maintenances = Maintenance::where('user_id',auth()->user()->id)->With('car_parts')->get();
         $cars = Car::where('user_id',auth()->user()->id)->get();
         $CarParts = CarPart::where('user_id',auth()->user()->id)->get();
+        $categories = Category::where('user_id',auth()->user()->id)->get();
         
-        return view('user.maintenance.maintenance',compact('maintenances','cars','CarParts'));
+        return view('user.maintenance.maintenance',compact('maintenances','categories','cars','CarParts'));
             }
 
             public function addMaintan(){
                     $CarParts = CarPart::where('user_id',auth()->user()->id)->get();
         $cars = Car::where('user_id',auth()->user()->id)->get();
+        $categories = Category::where('user_id',auth()->user()->id)->get();
 
-                    return view('user.maintenance.maintanenceAdd',compact('cars','CarParts'));
+                    return view('user.maintenance.maintanenceAdd',compact('cars','categories','CarParts'));
             }
 
             public function addMaintenance(Request $request){

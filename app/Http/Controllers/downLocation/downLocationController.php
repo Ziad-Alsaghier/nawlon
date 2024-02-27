@@ -12,7 +12,7 @@ class downLocationController extends Controller
 
     protected $newLocation=['name','user_id'];
     // This First Controller With Dwonload Location V1
-    public function index(){c
+    public function index(){
         $locations = DownLocation::where('user_id',auth()->user()->id)->get();
         return view('user.downLocation.downLocation',compact('locations'));
     }

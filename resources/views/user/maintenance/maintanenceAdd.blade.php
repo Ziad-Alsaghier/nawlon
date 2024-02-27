@@ -138,18 +138,36 @@ $user='Minue';
                 <input type="number" name="maintenances_price" id="form-repeater-1-2" class="form-control"
                     placeholder="سعر الصيانة" />
             </div>
-            <div class="mb-3 col-md-12 mb-0">
-                <label class="form-label" for="form-repeater-1-3">السيارة</label>
-                <select id="form-repeater-1-3" name="car_id" class="form-select">
-                    <option value="">اختر سيارة</option>
-                    @foreach($cars as $car)
+            {{-- الفئة --}}
+            <div class="col-md-12">
+                <label class="form-label" for="category">اختيار فئة السيارة</label>
+                <select class="form-select" id="category" name="category_id">
+                    <option value="">اختيار فئة السيارة</option>
+                    @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->category }}</option>
 
-                    <option value="{{ $car->id }}">{{
-                        $car->cars_name }}
-                    </option>
                     @endforeach
+
                 </select>
+                @error('category_id')
+                <span class="error">{{ $message }}</span class="error">
+                @enderror
             </div>
+            {{-- الفئة --}}
+            {{-- السيار --}}
+            <div class="col-md-12">
+
+                <label class="form-label" for="basic-default-country">اختيار السيارة</label>
+                <select class="form-select name-car" id="basic-default-car car" name="car_id">
+                    <option value="">اختيار السيارة</option>
+
+
+                </select>
+                @error('car_id')
+                <span class="error">{{ $message }}</span class="error">
+                @enderror
+            </div>
+            {{-- السيار --}}
             <div class="mb-3 col-md-12 mb-12">
                 <label class="form-label" for="form-repeater-1-4">قطعة
                     الغيار</label>
@@ -174,4 +192,49 @@ $user='Minue';
         <button class="btn btn-primary mt-4" type="submit">اضافة صيانات
             جديدة</button>
 </form>
+
+
+
+
+@section('script')
+<script>
+    $(document).ready(function(){
+           $('#category').change(function(){
+                category = $('#category').val();
+                car = $('#car').val();
+                console.log(category);
+            $.ajax({
+            type: 'GET',
+            url: '{{ route('filterCar') }}',
+            dataType: "json",
+            data: {
+            'category_id': category,
+         
+            },
+            success: function(response) {
+            console.log(response);
+                    car = response.car_data;
+                    
+                    var carDataDf = "<option value=''>اختيار السيارة</option>";
+                    $(".name-car option").hide();
+                    $(".name-car").val("اختيار السيارة");
+                    $(car).each((value, ele) => {
+                        var carData = `<option value="${ele.id}">${ele.cars_name}</option>`;
+                        
+                        $(".name-car").append(carData);
+                    });
+            
+          
+            },
+            error: function(xhr) {
+            console.log("noooo");
+            }
+            
+        });
+                
+                
+            });
+        });
+</script>
+@endsection
 @endsection

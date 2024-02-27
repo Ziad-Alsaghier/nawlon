@@ -24,7 +24,7 @@ return new class extends Migration
                         $table->foreignId('car_id')->constrained();
                           $table->foreignId('down_location_id')->constrained();
                           $table->foreignId('user_id')->constrained();
-                          $table->foreignId('driver_id')->constrained();
+                          $table->foreignId('driver_id  ')->constrained();
             $table->timestamps();
         });
     }
