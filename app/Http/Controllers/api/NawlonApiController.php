@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Models\Car;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Nawlone;
 use Illuminate\Support\Facades\Auth;
 
 class NawlonApiController extends Controller
@@ -33,5 +34,14 @@ class NawlonApiController extends Controller
                         }
      
                     
+            }
+
+
+
+            public function nawlones(Request $request){
+
+        $user_id =$request->user()->id;
+        $nawlones = Nawlone::where('user_id',$user_id)
+                            ->where('status','0');
             }
 }

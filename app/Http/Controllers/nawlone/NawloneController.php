@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\Category;
 use App\Models\DownLocation;
 use App\Models\Driver;
+use App\Models\LocationTatek;
 use App\Models\Nawlone;
 
 use Illuminate\Http\Request;
@@ -15,9 +16,11 @@ class NawloneController extends Controller
 {
     protected $nawlonePosts = [
         'car_id',
-          'driver_id',
-        'down_location_id',
-        'tatek_location',
+        'driver_id',
+        'down_location_id', // id For down location tatek
+        'down_location_name',// name Location down
+        'location_tatek_id', // id tatek
+        'location_tatek_name', // string Name For location tatek
         'nawlone_price',
         'comsion_driver',
         'custody',
@@ -42,8 +45,12 @@ class NawloneController extends Controller
 
     public function addNawlone(Request $request)
     {
-
+        return $request->all();
        $dataNawlone = $request->only($this->nawlonePosts);
+
+                if($request->location_name){
+            return $request->location_name;
+                }
         $dataNawlone['user_id'] = auth()->user()->id;
 
         $checkStatusCar = Car::where('id', $request->car_id)->first();
@@ -77,7 +84,9 @@ class NawloneController extends Controller
             ->where('status', $status)->get();
                 $driveres = Driver::where('user_id',auth()->user()->id)->get();
         $locations = DownLocation::where('user_id', auth()->user()->id)->get();
-        return view('user.nawlone.nawloneList', compact('nawlones','driveres', 'cars', 'categories', 'locations'));
+        $locationTatek = LocationTatek::where('user_id', auth()->user()->id)->get();
+        return view('user.nawlone.nawloneList', compact('nawlones','driveres', 'cars', 'categories',
+        'locationTatek','locations'));
     }
     public function editStatus(Request $request)
     {

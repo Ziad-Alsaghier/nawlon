@@ -15,14 +15,18 @@ return new class extends Migration
     {
         Schema::create('nawlones', function (Blueprint $table) {
             $table->id();
-                        $table->string('tatek_location');
                         $table->integer('nawlone_price');
                         $table->integer('comsion_driver');
                         $table->integer('custody'); // 3ohda M3 Elswa2
                         $table->enum('status',['0','1']); 
                         $table->integer('solar'); // 
                         $table->foreignId('car_id')->constrained();
-                          $table->foreignId('down_location_id')->constrained();
+                        $table->foreignId('down_location_id')->constrained(); // Can Be Null And Debend Name Location
+                        $table->string('location_name');// Debend Location Name Where (Location_id) Embty
+                        $table->foreignId('location_tatek_id')->constrained(); // Can Be Null And Debend Name Location 
+                        $table->string('location_tatek_name'); // Debend Name Tatek Location Where (location_tatek_id) Embty 
+                        $table->string('tatek_location');
+
                           $table->foreignId('user_id')->constrained();
                           $table->foreignId('driver_id  ')->constrained();
             $table->timestamps();

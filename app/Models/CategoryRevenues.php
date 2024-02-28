@@ -16,4 +16,8 @@ class CategoryRevenues extends Model
     public function revenues(){
        return $this->hasMany(revenue::class);
     }
+
+        public function getCreatedAtAttribute($value){
+        return date('Y-m-d',strtotime($value));
+        }
 }

@@ -11,8 +11,10 @@ class Nawlone extends Model
     protected $fillable = [
     'driver_id',
     'car_id',
-    'down_location_id',
-    'tatek_location',
+    'down_location_id', // id For down location tatek
+    'down_location_name',// name Location down 
+    'location_tatek_id', // id tatek
+    'location_tatek_name', // string Name For location tatek  
     'nawlone_price',
     'comsion_driver',
     'custody',

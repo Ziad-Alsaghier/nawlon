@@ -473,63 +473,91 @@ $user = 'Minue';
 
                                     {{-- اختيار فئة السيارة --}}
                                     <div class="mb-3">
-
-                                        <label class="form-label" for="basic-default-country"> فئة السيارة </label>
-                                        <select class="form-select" id="basic-default-country" name="car_id">
-                                            <option value="">اختار فئة السيارة</option>
+                                        <label class="form-label" for="category">اختيار فئة السيارة</label>
+                                        <select class="form-select" id="category" name="category_id">
+                                            <option value="">اختيار فئة السيارة</option>
                                             @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->category }}</option>
 
                                             @endforeach
 
                                         </select>
-                                        @error('category')
-                                        <span>{{ $message }}</span>
+                                        @error('category_id')
+                                        <span class="error">{{ $message }}</span class="error">
                                         @enderror
                                     </div>
                                     {{-- اختيار فئة السيارة --}}
                                     {{-- اختيار السيارة --}}
                                     <div class="mb-3">
-                                        <label class="form-label" for="basic-default-country"> السيارة</label>
-                                        <select class="form-select" id="basic-default-country" name="car_id">
-                                            <option value="">اختار السيارة</option>
-                                            @foreach($cars as $car)
-                                            <option value="{{ $car->id }}">{{ $car->cars_name }}</option>
 
-                                            @endforeach
+                                        <label class="form-label" for="basic-default-country">اختيار السيارة</label>
+                                        <select class="form-select name-car" id="basic-default-car car" name="car_id">
+                                            <option value="">اختيار السيارة</option>
+
 
                                         </select>
-                                        @error('category')
-                                        <span>{{ $message }}</span>
+                                        @error('car_id')
+                                        <span class="error">{{ $message }}</span class="error">
                                         @enderror
                                     </div>
                                     {{-- اختيار السيارة --}}
                                     {{-- اختيار مكان التحميل --}}
                                     <div class="mb-3">
-                                        <label class="form-label" for="basic-default-country">اختيار مكان
+                                        <label class="form-label" for="basic-default-location">اختيار مكان
                                             التحميل</label>
-                                        <select class="form-select" id="basic-default-country" name="down_location_id">
-                                            <option value="">اختيار مكان التحميل</option>
+                                        <select class="form-select location" id="basic-default-location"
+                                            name="down_location_id">
                                             @foreach($locations as $location)
                                             <option value="{{ $location->id }}">{{ $location->name }}</option>
 
+                                            <option value="other"> {{ $location->id }}</option>
                                             @endforeach
+                                            <option value="other">مكان اخر</option>
                                         </select>
                                         @error('category')
                                         <span>{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    <div class="mb-3 d-none" id="writeLocation">
+                                        <label class="form-label " for="location_name">اكتب مكان
+                                            التحميل</label>
+                                        <input type="text" name="location_name" id="location_name" class="form-control"
+                                            placeholder="اكتب مكان التحميل" />
+                                        @error('location_name')
+                                        <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
                                     {{-- اختيار مكان التحميل --}}
 
-
+                                    {{-- اختيار مكان التعتيق --}}
                                     <div class="mb-3">
-                                        <label class="form-label" for="tatek_location">مكان التعتيق</label>
-                                        <input type="text" name="tatek_location" id="tatek_location"
+                                        <label class="form-label" for="basic-default-tatek">اختيار مكان
+                                            التعتيق</label>
+                                        <select class="form-select locationTtatek" id="basic-default-tatek"
+                                            name="location_tatek_id">
+                                            <option value="">اختيار مكان التعتيق</option>
+                                            @foreach($locationTatek as $location)
+                                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+
+                                            @endforeach
+                                            <option value="other">other</option>
+                                        </select>
+                                        @error('category')
+                                        <span>{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3 d-none" id="writeLocationTatek">
+                                        <label class="form-label" for="tatek_location_name">اكتب مكان التعتيق</label>
+                                        <input type="text" name="tatek_location_name" id="tatek_location_name"
                                             class="form-control" placeholder="اكتب مكان التعتيق" />
                                         @error('tatek_location')
                                         <span>{{ $message }}</span>
                                         @enderror
                                     </div>
+                                    {{-- اختيار مكان التعتيق --}}
+
+
+
                                     <div class="mb-3 form-password-toggle">
                                         <label class="form-label" for="nawlone_price">سعر النقله</label>
                                         <div class="input-group input-group-merge">
@@ -606,6 +634,72 @@ $user = 'Minue';
                 })
             })
         })
+
+
+
+
+
+        $(document).ready(function(){
+        $('#category').change(function(){
+        category = $('#category').val();
+        car = $('#car').val();
+        console.log(category);
+        $.ajax({
+        type: 'GET',
+        url: '{{ route('filterCarCategory') }}',
+        dataType: "json",
+        data: {
+        'category_id': category,
+        
+        },
+        success: function(response) {
+        console.log(response);
+        car = response.car_data;
+        
+        var carDataDf = "<option value=''>اختيار السيارة</option>";
+        $(".name-car option").hide();
+        $(".name-car").val("اختيار السيارة");
+        $(car).each((value, ele) => {
+        var carData = `<option value="${ele.id}">${ele.cars_name}</option>`;
+        
+        $(".name-car").append(carData);
+        });
+        
+        
+        },
+        error: function(xhr) {
+        console.log("noooo");
+        }
+        
+        });
+        
+        
+        });
+        });
+
+            $(document).ready(()=>{
+                $('#basic-default-location').on('change',function(){
+                   other =$('.location').val()
+                    if(other == 'other'){
+                        $('#writeLocation').removeClass('d-none');
+                    }else{
+                       $('#writeLocation').addClass('d-none');
+
+                   }
+                })
+                $('#basic-default-tatek').on('change',function(){
+                   other =$('.locationTtatek').val()
+                    if(other == 'other'){
+                        $('#writeLocationTatek').removeClass('d-none');
+                    }else{
+                       $('#writeLocationTatek').addClass('d-none');
+
+                   }
+                })
+            })
+        
     </script>
     @endsection
     @endsection
+
+    edit
