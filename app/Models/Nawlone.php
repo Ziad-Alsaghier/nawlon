@@ -12,7 +12,7 @@ class Nawlone extends Model
     'driver_id',
     'car_id',
     'down_location_id', // id For down location tatek
-    'down_location_name',// name Location down 
+    'location_name',// name Location down
     'location_tatek_id', // id tatek
     'location_tatek_name', // string Name For location tatek  
     'nawlone_price',
@@ -34,5 +34,8 @@ class Nawlone extends Model
     }
     public function down_location(){
     return $this->belongsTo(DownLocation::class);
+    }
+    public function location_tatek(){
+    return $this->belongsTo(LocationTatek::class);
     }
 }

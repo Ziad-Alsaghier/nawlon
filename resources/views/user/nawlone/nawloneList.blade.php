@@ -173,14 +173,22 @@ $user = 'Minue';
 
                         <strong>
 
+                            @if(!empty($nawlone->down_location->name))
                             {{ $nawlone->down_location->name }}
+                            @else
+                            {{$nawlone->location_name}}
+                            @endif
                         </strong>
                     </td>
                     <td>
 
                         <strong>
 
-                            {{ $nawlone->tatek_location }}
+                            @if(!empty($nawlone->location_tatek->name))
+                            {{ $nawlone->location_tatek->name }}
+                            @else
+                            {{ $nawlone->location_tatek_name }}
+                            @endif
                         </strong>
                     </td>
 
@@ -278,7 +286,7 @@ $user = 'Minue';
 
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-foother">
                                 <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                                     Close
                                 </button>
@@ -510,9 +518,8 @@ $user = 'Minue';
                                             @foreach($locations as $location)
                                             <option value="{{ $location->id }}">{{ $location->name }}</option>
 
-                                            <option value="other"> {{ $location->id }}</option>
                                             @endforeach
-                                            <option value="other">مكان اخر</option>
+                                            <option> other</option>
                                         </select>
                                         @error('category')
                                         <span>{{ $message }}</span>
@@ -540,7 +547,7 @@ $user = 'Minue';
                                             <option value="{{ $location->id }}">{{ $location->name }}</option>
 
                                             @endforeach
-                                            <option value="other">other</option>
+                                            <option>other</option>
                                         </select>
                                         @error('category')
                                         <span>{{ $message }}</span>

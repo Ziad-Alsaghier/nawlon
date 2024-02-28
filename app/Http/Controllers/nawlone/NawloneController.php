@@ -18,7 +18,8 @@ class NawloneController extends Controller
         'car_id',
         'driver_id',
         'down_location_id', // id For down location tatek
-        'down_location_name',// name Location down
+        'location_name',// name Location down
+        'location_name',// name Location down
         'location_tatek_id', // id tatek
         'location_tatek_name', // string Name For location tatek
         'nawlone_price',
@@ -45,12 +46,17 @@ class NawloneController extends Controller
 
     public function addNawlone(Request $request)
     {
-        return $request->all();
        $dataNawlone = $request->only($this->nawlonePosts);
 
-                if($request->location_name){
-            return $request->location_name;
+                if($request->down_location_id == 'مكان اخر' ){
+             $dataNawlone['location_name'] = $request->location_name ;
+             $dataNawlone['down_location_id'] = Null ;
                 }
+                if($request->location_tatek_id == 'مكان اخر'){
+             $dataNawlone['location_tatek_name'] = $request->tatek_location_name;
+             $dataNawlone['location_tatek_id'] =Null;
+                }
+             
         $dataNawlone['user_id'] = auth()->user()->id;
 
         $checkStatusCar = Car::where('id', $request->car_id)->first();

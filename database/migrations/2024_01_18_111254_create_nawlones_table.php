@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use League\CommonMark\Reference\Reference;
 
 return new class extends Migration
 {
@@ -21,14 +22,17 @@ return new class extends Migration
                         $table->enum('status',['0','1']); 
                         $table->integer('solar'); // 
                         $table->foreignId('car_id')->constrained();
-                        $table->foreignId('down_location_id')->constrained(); // Can Be Null And Debend Name Location
+                        $table->foreignId('down_location_id')->nullable()->constrained()->references('id')->on('down_locations')->
+                            onDelete('cascade')->onUpdate('cascade');
+                        // Can Be Null And Debend NameLocation
                         $table->string('location_name');// Debend Location Name Where (Location_id) Embty
-                        $table->foreignId('location_tatek_id')->constrained(); // Can Be Null And Debend Name Location 
+                        $table->foreignId('location_tatek_id')->nullable()->constrained()->references('id')->on('location_tateks');
+                        // Can Be Null And Debend Name Location
                         $table->string('location_tatek_name'); // Debend Name Tatek Location Where (location_tatek_id) Embty 
                         $table->string('tatek_location');
 
                           $table->foreignId('user_id')->constrained();
-                          $table->foreignId('driver_id  ')->constrained();
+                          $table->foreignId('driver_id')->constrained();
             $table->timestamps();
         });
     }

@@ -25,10 +25,10 @@ class NawlonApiController extends Controller
    return response()->json([
    'success'=> 'Data Return Successfuly',
         'cars'=>[
-               'carBusy'=>count($carBusy),
-               'carAvailable'=>count($carAvailable),
-               'carInRoad'=>count($carInRoad),
-               'carUnAvailable'=>count($carUnAvailable),
+               ['carBusy'=>count($carBusy),'status'=>'0'],
+               ['carAvailable'=>count($carAvailable),'status'=>'1'],
+               ['carInRoad'=>count($carInRoad),'status'=>'2'],
+               ['carUnAvailable'=>count($carUnAvailable),'status'=>'3'],
         ]
    ]);
                         }
