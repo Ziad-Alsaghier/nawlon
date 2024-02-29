@@ -30,7 +30,7 @@ Route::post('api_login/logout','logout')->name('logout')->middleware('auth:sanct
 
 Route::controller(NawlonApiController::class)->prefix('Car')->group(function () {
     Route::get('data','carTransport')->name('carData')->middleware('auth:sanctum');
-    Route::get('data','nawlones')->name('nawlones')->middleware('auth:sanctum');
+    Route::get('nawlon','nawlones')->name('nawlones')->middleware('auth:sanctum');
 });
 Route::controller(CarTransportController::class)->group(function () {
     Route::get('filterNawlon','filterNawlon')->name('filterNawlon');
