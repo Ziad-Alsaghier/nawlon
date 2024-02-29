@@ -38,7 +38,7 @@ class NawlonApiController extends Controller
 
 
 
-            public function dataNawlon(Request $request){
+            public function nawlones(Request $request){
 
                     if(Auth::check()){
                          $user_id =$request->user()->id;
