@@ -56,6 +56,8 @@ class PackageController extends Controller
                         
                 // $this->requestPackage['type'] = 'banana';
                  $createPackage = $request->only($this->requestPackage);
-                $updatePackage = Package::where('id', $request->package_id)->update([$createPackage]);
+                $updatePackage = Package::where('user_id',auth()->user()->id)->
+                where('id',
+                $request->package_id)->update([$createPackage]);
                 }
         }

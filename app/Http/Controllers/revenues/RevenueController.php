@@ -65,7 +65,7 @@ class RevenueController extends Controller
 
           
         $newRevenue['user_id'] = auth()->user()->id;
-        $createRevenue = revenue::where('id',$request->revenues_id)->update($newRevenue);
+        $createRevenue = revenue::where('user_id',auth()->user()->id)->where('id',$request->revenues_id)->update($newRevenue);
         if ($createRevenue) {
             session()->flash('success', 'تما اضافة الايراد بنجاح');
             return redirect()->back();

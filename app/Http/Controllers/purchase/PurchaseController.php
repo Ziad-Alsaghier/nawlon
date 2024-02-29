@@ -36,7 +36,7 @@ class PurchaseController extends Controller
         if($purchases){
              $countPurchase = $purchases->quantity + $request->quantity ;
             
-            Purchase::where('car_part_id', $request->car_part_id)->update([
+            Purchase::where('user_id',auth()->user()->id)->where('car_part_id', $request->car_part_id)->update([
                 'quantity'=> $countPurchase,
                 'totalPrice'=> $request->totalPrice
             ]);
@@ -76,7 +76,8 @@ class PurchaseController extends Controller
      );
      $requestNewPurchase =$request->only($this->requestPurchase);
      $requestNewPurchase['user_id'] = auth()->user()->id;
-     $createPurchases = Purchase::where('id',$request->purchase_id)->update($requestNewPurchase);
+     $createPurchases =
+     Purchase::where('user_id',auth()->user()->id)->where('id',$request->purchase_id)->update($requestNewPurchase);
      if($createPurchases){
 
      session()->flash('success','تم التعديل  في عملية الشراء بنجاح');
@@ -86,7 +87,7 @@ class PurchaseController extends Controller
      
 
     public function deletePrchase($id){
-        $deletePurchase = Purchase::where('id', $id)->delete();
+        $deletePurchase = Purchase::where('user_id',auth()->user()->id)->where('id', $id)->delete();
 
             if($deletePurchase){
                    session()->flash('success','تم الغاء عملية الشراء بنجاح');

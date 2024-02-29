@@ -60,12 +60,12 @@ class productCategoryController extends Controller
                                 $newProductCategory['user_id']=auth()->user()->id;
                               $newProductCategory['status']='0';
                               $createNewCategory =
-                              ProductCategory::where('id',$request->category_id)->update($newProductCategory);
+                              ProductCategory::where('user_id',auth()->user()->id)->where('id',$request->category_id)->update($newProductCategory);
                         } else{
                                  $newProductCategory['user_id']=auth()->user()->id;
                                  $newProductCategory['status']='1';
                                  $createNewCategory =
-                                 ProductCategory::where('id',$request->category_id)->update($newProductCategory);
+                                 ProductCategory::where('user_id',auth()->user()->id)->where('id',$request->category_id)->update($newProductCategory);
                         }
                           
                    
@@ -83,7 +83,7 @@ class productCategoryController extends Controller
        session()->flash('faild', 'يجب الغاء الاصناف التابعة لهذا الصنف');
        return redirect()->back();
        }
-                $deleteCategory = ProductCategory::where('id',$id)->delete();
+                $deleteCategory = ProductCategory::where('user_id',auth()->user()->id)->where('id',$id)->delete();
 
                     if($deleteCategory){
             session()->flash('success', 'تم الغاء الصنف ');
