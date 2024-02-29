@@ -38,7 +38,7 @@ class NawlonApiController extends Controller
 
 
 
-            public function nawlones(Request $request){
+            public function dataNawlon(Request $request){
 
                     if(Auth::check()){
                          $user_id =$request->user()->id;
@@ -61,7 +61,7 @@ class NawlonApiController extends Controller
                          // ===========This data Details About Pinding Nawlon===============================
                          $detailsPinding = Nawlone::where('user_id', $user_id)
                          ->where('status', '0')
-                         ->whith('car')
+                         ->with('car')
                          ->get();
                          // ============This data Details About Pinding Nawlon==============================
 
@@ -70,7 +70,7 @@ class NawlonApiController extends Controller
 
                          $detailsDone = Nawlone::where('user_id', $user_id)
                          ->where('status', '1')
-                         ->whith('car')
+                         ->with('car')
                          ->get();
                          // ============This data Details About Done Nawlon==============================
 
