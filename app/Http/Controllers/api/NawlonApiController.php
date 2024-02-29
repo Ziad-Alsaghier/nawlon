@@ -24,12 +24,12 @@ class NawlonApiController extends Controller
    $carUnAvailable= Car::where('user_id',$user_id)->onlyTrashed()->get();
    return response()->json([
    'success'=> 'Data Return Successfuly',
-        'cars'=>[
+        'cars'=>
                ['carBusy'=>count($carBusy),'status'=>'0'],
                ['carAvailable'=>count($carAvailable),'status'=>'1'],
                ['carInRoad'=>count($carInRoad),'status'=>'2'],
                ['carUnAvailable'=>count($carUnAvailable),'status'=>'3'],
-        ]
+        
    ]);
                         }
      
