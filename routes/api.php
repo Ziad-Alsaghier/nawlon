@@ -32,12 +32,17 @@ Route::controller(NawlonApiController::class)->prefix('Car')->group(function () 
     Route::get('data','carTransport')->name('carData')->middleware('auth:sanctum');
     Route::get('dataNawlon','nawlones')->name('nawlones')->middleware('auth:sanctum');
 });
+
+Route::middleware(['auth', 'auth.user'])->group(function () { 
 Route::controller(CarTransportController::class)->prefix('Car')->group(function () {
-    Route::get('filterNawlon','filterNawlon')->name('filterNawlon');
-    Route::get('filterMaintanence','filterMaintanence')->name('filterMaintanence');
-    Route::get('filterCarCategory','filterCarCategory')->name('filterCarCategory');
+Route::get('filterNawlon','filterNawlon')->name('filterNawlon');
+Route::get('filterMaintanence','filterMaintanence')->name('filterMaintanence');
+Route::get('filterCarCategory','filterCarCategory')->name('filterCarCategory');
 
 });
+
+});
+
 
 Route::controller(UpdateLicenseController::class)->group(function () {
     Route::get('filterCar','filterCar')->name('filterCar');

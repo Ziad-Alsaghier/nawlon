@@ -77,12 +77,11 @@ class NawlonApiController extends Controller
                          if($user){// if user Authantcated Return This Data
                          return response()->json([
                          'success'=>'Data Returned Successfuly',
-                            'cars'=>[
+                         
                                  ['nawlonesPending'=>count($nawlonesPending),'status'=>'0'],
                                  ['nawlonesDone'=>count($nawlonesDone),'status'=>'1'],
                                  ['detailsPinding'=>$detailsPinding,'status'=>'0'],
                                  ['detailsDone'=>$detailsDone,'status'=>'0'],
-                            ]
                          ]);
                          }else{ // Else Return Faild
                          return response()->json(['faild' => 'You Not Authantcated']);
