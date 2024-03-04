@@ -193,6 +193,7 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
                 Route::post('editnawlone','editnawlone')->name('editnawlone');
                 Route::post('editStatus','editStatus')->name('editStatus');
                 Route::get('nawlonInfo/{id}','nawlonInfo')->name('nawlonInfo');
+               
 
                 });
                 Route::controller(downLocationController::class)->prefix('DownLocation')->group(function () {
@@ -231,6 +232,7 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
                 Route::post('addPurchase','addPurchase')->name('addPurchase');
                 Route::get('deletePrchase/{id}','deletePrchase')->name('deletePrchase');
                 Route::post('editPurchase','editPurchase')->name('editPurchase');
+                Route::get('purchaseInfo/{id}','purchaseInfo')->name('purchaseInfo');
         });
 
         // Maintenance 

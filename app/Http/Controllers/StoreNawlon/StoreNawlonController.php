@@ -12,7 +12,7 @@ class StoreNawlonController extends Controller
     // Tis First Controller With nawlon Store 
     public function index()
     {
-        $purchases = Purchase::where('user_id',auth()->user()->id)->get();
+        $purchases = Purchase::where('user_id',auth()->user()->id)->get()->unique('car_part_id');
         return view('user.nawlonStore.nawlonStore',compact('purchases'));
     }
 }

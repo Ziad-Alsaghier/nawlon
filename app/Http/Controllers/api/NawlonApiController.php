@@ -5,6 +5,9 @@ namespace App\Http\Controllers\api;
 use App\Models\Car;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Driver;
+use App\Models\driverFollow;
+use App\Models\Employee;
 use App\Models\Nawlone;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,6 +91,42 @@ class NawlonApiController extends Controller
                          }
                     }
             }
+                        public function workerData(Request $request){
+                                if(Auth::check()){
+                        // Start Get Data Driver
+                        $driverAvailable = Driver::where('user_id',$request->user()->id)->where('status','1')->count();
+                        $driverUnAvailable = Driver::where('user_id',$request->user()->id)->where('status','0')->count();
+                        // Start Get Data Driver
 
+                        // Start Get Data Follow Driver
+                        $driverFollowAvailable = driverFollow::where('user_id',$request->user()->id)->where('status','1')->count();
+                        $driverFollowUnAvailable = driverFollow::where('user_id',$request->user()->id)->where('status','0')->count();
+                        // Start Get Data Follow Driver
+
+                        // Start Get Data Follow Driver
+                        $employeeAvailable = Employee::where('user_id',$request->user()->id)->where('status','1')->count();
+                        $employeeUnAvailable = Employee::where('user_id',$request->user()->id)->where('status','0')->count();
+                        // Start Get Data Follow Driver
+
+
+                                        return response()->json([
+                                                'success' => 'Data Return Successfully',
+                                                //This Driver Available & un Available
+                                                [
+                                                       [ 'driverAvillable'=>$driverAvailable,'statusAvaillable'=>'1',],
+                                                        ['driverUnAvailable'=>$driverUnAvailable,'statusUnAvaillable'=>'0',],
+                                                ],
+                                                //This Follow Driver Available & un Available
+                                                [
+                                                       ['driverFollowAvailable'=>$driverFollowAvailable,'statusAvaillable'=>'1'],
+                                                        ['driverFollowUnAvailable'=>$driverFollowUnAvailable,'statusUnAvaillable'=>'0'],
+                                                ],
+                                                [
+                                                       ['employeeAvailable'=>$employeeAvailable,'statusAvaillable'=>'1'],
+                                                        ['employeeUnAvailable'=>$employeeUnAvailable,'statusUnAvaillable'=>'0'],
+                                                ]
+                                        ],200);
+                                }
+                        }
 
 }

@@ -183,6 +183,7 @@ $user = 'Minue';
                                 <tr>
 
                                     <th>مكان التحميل</th>
+                                    <th>مكان التعتيق</th>
                                     <th>سعر النقلة</th>
                                     <th>العهدة</th>
                                     <th>سولار</th>
@@ -192,7 +193,11 @@ $user = 'Minue';
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="text-nowrap">{{ $nawlone->down_location->name }}</td>
+                                    <td class="text-nowrap">
+                                        {{ $nawlone->down_location->name ??$nawlone->location_name}}
+                                    <td class="text-nowrap">
+                                        {{ $nawlone->location_tatek->name ?? $nawlone->location_tatek_name}}
+                                    </td>
                                     <td class="text-nowrap">{{ $nawlone->nawlone_price }} EGP</td>
                                     <td>{{ $nawlone->custody }}</td>
                                     <td>{{ $nawlone->solar }}</td>
