@@ -39,22 +39,23 @@ $configData = Helper::appClasses();
     <a href="{{url('/')}}" class="app-brand-link">
       @if(auth()->user()->position == 'customer')
 
+      <form method="post" enctype="multipart/form-data">
+        @csrf
+        <div class='d-flex justify-content-center py-2'>
+          <label for="logoImage">
+            <img style="height: 130px; cursor: pointer; width: 200px;"
+              src="{{asset('public/images/customer/' . auth()->user()->logoImage)}}" />
+          </label>
+          <input type="file" name="logoImage" class='d-none' id='logoImage' class="changeImage" />
+        </div>
+        <div class='d-flex justify-content-center '>
 
-      @csrf
-      <div class='d-flex justify-content-center py-2'>
-        <label for="logoImage">
-          <img style="height: 130px; cursor: pointer; width: 200px;"
-            src="{{asset('public/images/customer/' . auth()->user()->logoImage)}}" />
-        </label>
-        <input type="file" name="logoImage" class='d-none' id='logoImage' class="changeImage" />
-      </div>
-      <div class='d-flex justify-content-center '>
-
-        <button type="submit" class="btn btn-primary ">تغيير الصورة</button>
-      </div>
-      <br>
-      <br>
-
+          <button type="submit" class="btn btn-primary ">تغيير الصورة</button>
+        </div>
+        <br>
+        <br>
+        <br>
+      </form>
       @endif
       <img class="logo-dark" src="{{asset('assets/img/pngegg.png')}}">
 

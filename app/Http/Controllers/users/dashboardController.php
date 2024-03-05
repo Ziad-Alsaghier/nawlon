@@ -131,19 +131,19 @@ class dashboardController extends Controller
 
                     
               // test
-               $image_procedures = null;
+               $logoImage = null;
                if (!empty($name)) {
-                       extract($_FILES['image_procedures']);
+                       extract($_FILES['logoImage']);
               $extension_arr = ['png', 'jpg', 'jpeg', 'svg', 'webp'];
               $extension = explode('.', $name);
               $extension = end($extension);
               $extension = strtolower($extension);
               if (in_array($extension, $extension_arr)) {
-              $image_procedures = rand(0, 1000) . now() . $name;
-              $image_procedures = str_replace([' ', ':', '-'], 'X', $image_procedures);
-              $requestDriver['image_procedures'] = $image_procedures;
+              $logoImage = rand(0, 1000) . now() . $name;
+              $logoImage = str_replace([' ', ':', '-'], 'X', $logoImage);
+              $requestDriver['logoImage'] = $logoImage;
               
-              return  move_uploaded_file($tmp_name, 'public/images/customer/' . $image_procedures);
+              return  move_uploaded_file($tmp_name, 'public/images/customer/' . $logoImage);
               }
 
 
