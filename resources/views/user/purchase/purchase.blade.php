@@ -131,6 +131,8 @@ $user='Minue';
                     <th> المورد</th>
                     <th> التاريخ</th>
                     <th> اجمالي القيمة</th>
+                    <th> صورة الفاتورة</th>
+                    <th> تفاصيل الفاتورة</th>
 
 
                     <th>تعديلات</th>
@@ -138,7 +140,6 @@ $user='Minue';
             </thead>
             <tbody class="table-border-bottom-0">
                 @foreach ($purchases as $purchase)
-
 
                 <tr>
                     <td>
@@ -179,9 +180,23 @@ $user='Minue';
                     </td>
                     <td>
                         <strong>
-                            EGP {{ $purchase->totalPrice }}
+                            {{$purchase->totalPrice }}
 
                         </strong>
+                    </td>
+                    <td>
+                        <strong>
+                            <img width="200px" src='{{ asset("public/images/purchase/"    .$purchase->imageInvoice ) }}'
+                                alt="">
+
+                        </strong>
+                    </td>
+                    <td>
+                        <a class="btn btn-info text-black" href="{{ route('purchaseInfo',['id'=>$purchase->id]) }}">
+                            <strong>
+                                تفاصيل
+                            </strong>
+                        </a>
                     </td>
 
 
@@ -278,6 +293,19 @@ $user='Minue';
                                             placeholder=" اكتب اجمالي القيمة ">
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
+                                    <div class="mb-3" style="position: relative;top:0;">
+                                        <label class="form-label" for="basic-default-upload-file">
+                                            صورة الفاتورة
+                                        </label>
+                                        <input type="file" placeholder="{{ $purchase->imageInvoice }}"
+                                            value="{{ $purchase->imageInvoice }}" name="imageInvoice"
+                                            class="form-control" id="basic-default-upload-file">
+                                        <img style="width: 20%"
+                                            src='{{ asset("public/images/purchase/".$purchase->imageInvoice ) }}'
+                                            alt="">
+
+                                    </div>
+
 
                                     <div class="row">
 
@@ -395,6 +423,13 @@ $user='Minue';
                                             name="totalPrice" placeholder=" اكتب اجمالي القيمة ">
                                         <div class="valid-feedback">Looks good!</div>
                                     </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="basic-default-upload-file">
+                                            صورة الفاتورة
+                                        </label>
+                                        <input type="file" name="imageInvoice" class="form-control"
+                                            id="basic-default-upload-file">
+                                    </div>
 
                                     <div class="row">
 
@@ -413,4 +448,17 @@ $user='Minue';
         </div>
     </div>
     {{-- End Model With Eit Car --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
     @endsection

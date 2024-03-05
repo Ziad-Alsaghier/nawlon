@@ -21,7 +21,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->date('date');
             $table->integer('totalPrice');
+            $table->integer('car_part_price');
             $table->integer('quantity');
+            $table->string('imageInvoice');
             $table->timestamps();
         });
     }

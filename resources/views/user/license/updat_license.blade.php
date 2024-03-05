@@ -423,7 +423,7 @@ $user='Minue';
                 console.log(category);
             $.ajax({
             type: 'GET',
-            url: '{{ route('filterCar') }}',
+            url: '{{ route('filterCarCategory') }}',
             dataType: "json",
             data: {
             'category_id': category,

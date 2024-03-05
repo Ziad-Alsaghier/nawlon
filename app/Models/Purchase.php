@@ -17,6 +17,7 @@ class Purchase extends Model
         'date',
         'totalPrice',
         'user_id',
+        'imageInvoice',
     ];
 
 
@@ -28,5 +29,14 @@ class Purchase extends Model
         }
         public function carPart(){
         return $this->belongsTo(CarPart::class);
+        }
+
+
+        public function getCreatedAtAttribute($date){
+                return date('Y-m-d',strtotime($date));
+        }
+       
+        public function getDateAttribute($date){
+                return date('Y-m-d',strtotime($date));
         }
 }

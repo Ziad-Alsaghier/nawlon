@@ -126,6 +126,8 @@ $user='Minue';
                     <th> المنتج</th>
                     <th> مكان المنتج</th>
                     <th> الكمية</th>
+                    <th> السعر النهائي للقطعة</th>
+                    <th> السعر الكلي</th>
 
 
                     {{-- <th>تعديلات</th> --}}
@@ -136,6 +138,12 @@ $user='Minue';
 
                 @if($purchase->quantity !== 0)
                 <tr>
+                    @php
+                    $total = DB::table('purchases')->where('car_part_id',$purchase->car_part_id)->sum('totalPrice');
+                    $totalQuantity =
+                    DB::table('purchases')->where('car_part_id',$purchase->car_part_id)->sum('quantity');
+
+                    @endphp
                     <td>
 
 
@@ -163,7 +171,19 @@ $user='Minue';
 
                     <td>
                         <strong>
-                            {{ $purchase->quantity }}
+                            {{$totalQuantity }}
+
+                        </strong>
+                    </td>
+                    <td>
+                        <strong>
+                            {{ round($total/$totalQuantity) }}
+
+                        </strong>
+                    </td>
+                    <td>
+                        <strong>
+                            {{ round($total) }}
 
                         </strong>
                     </td>
