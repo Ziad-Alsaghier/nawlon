@@ -244,9 +244,9 @@ class CarTransportController extends Controller
         }
         public function filterCarCategory(Request $request)
         {
-                $car = Car::where('user_id', auth()->user()->id)
-                        ->where('category_id', $request->category_id)
-                        ->with('car_parts')->get();
+                $request->category_id;
+                $car = Car::where('user_id', auth()->user()->id)->with('car_parts')
+                        ->where('category_id', $request->category_id)->get();
                 return response()->json([
                         'success' => 'data Returned Successfully',
                         'car_data' => $car,

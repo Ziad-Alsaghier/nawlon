@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Car extends Model
 {
-    use HasFactory ,SoftDeletes;
-        
-        protected $fillable =[
+        use HasFactory, SoftDeletes;
+
+        protected $fillable = [
                 'cars_name',
                 'image',
                 'brand',
@@ -22,25 +22,29 @@ class Car extends Model
 
         ];
 
-        function category(){
-        return $this->belongsTo(Category::class);
-
+        function category()
+        {
+                return $this->belongsTo(Category::class);
         }
-        function license(){
-        return $this->hasOne(License::class);
-
+        function license()
+        {
+                return $this->hasOne(License::class);
+        }
+        public function car_parts()
+        {
+                return $this->hasMany(CarPart::class);
         }
 
- 
-        public function violations(){
+        public function violations()
+        {
                 return $this->hasMany(ViolationCar::class);
         }
-         function maintenances(){
-         return $this->hasMany(Maintenance::class,'car_id');
-
-         }
-         public function nawlon(){
-         return $this->hasMany(Nawlone::class)->orderBy('created_at', 'desc');
-         }
-        
+        function maintenances()
+        {
+                return $this->hasMany(Maintenance::class, 'car_id');
+        }
+        public function nawlon()
+        {
+                return $this->hasMany(Nawlone::class)->orderBy('created_at', 'desc');
+        }
 }
