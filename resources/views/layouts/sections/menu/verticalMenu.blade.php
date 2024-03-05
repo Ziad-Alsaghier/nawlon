@@ -61,7 +61,7 @@ $configData = Helper::appClasses();
       <script>
         $(document).ready(function(){
                 $('#logoImage').on('change',function(){
-                    image = $('#logoImage').val();
+                    image = $('#logoImage').attr("src");
                     $.ajax({
                       type:'GET',
                       url:'{{ route('updateImage') }}',
