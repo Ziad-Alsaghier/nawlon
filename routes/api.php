@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\NawlonApiController;
 use App\Http\Controllers\license\UpdateLicenseController;
+use App\Http\Controllers\users\dashboardController;
 use App\Http\Controllers\users\carTransport\CarTransportController;
+use Illuminate\Routing\RouteAction;
 
 $controller_path = 'App\Http\Controllers';
 /*
@@ -27,7 +29,9 @@ Route::post('api_login/logout','logout')->name('logout')->middleware('auth:sanct
 
 
 });
-
+Route::controller(dashboardController::class)->group(function () {
+    Route::get('updateImage', 'updateImage')->name('updateImage');
+        });
 Route::controller(NawlonApiController::class)->prefix('Car')->group(function () {
     Route::get('data','carTransport')->name('carData')->middleware('auth:sanctum');
     Route::get('dataNawlon','nawlones')->name('nawlones')->middleware('auth:sanctum');

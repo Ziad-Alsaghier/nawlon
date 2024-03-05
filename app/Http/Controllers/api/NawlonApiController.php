@@ -107,8 +107,6 @@ class NawlonApiController extends Controller
                         $employeeAvailable = Employee::where('user_id',$request->user()->id)->where('status','1')->count();
                         $employeeUnAvailable = Employee::where('user_id',$request->user()->id)->where('status','0')->count();
                         // Start Get Data Follow Driver
-
-
                                         return response()->json([
                                                 'success' => 'Data Return Successfully',
                                                 //This Driver Available & un Available

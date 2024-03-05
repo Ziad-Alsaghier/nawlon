@@ -2,7 +2,8 @@
 $configData = Helper::appClasses();
 @endphp
 
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
 
@@ -38,27 +39,45 @@ $configData = Helper::appClasses();
     <a href="{{url('/')}}" class="app-brand-link">
       @if(auth()->user()->position == 'customer')
 
-      <form action="{{ route('editProfile') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class='d-flex justify-content-center py-2'>
-          <label for="logoImage">
-            <img style="height: 130px; cursor: pointer; width: 200px;"
-              src="{{asset('public/images/customer/' . auth()->user()->logoImage)}}" />
-          </label>
-          <input type="file" name="logoImage" class='d-none' id='logoImage' />
-        </div>
-        <div class='d-flex justify-content-center '>
 
-          <button type="submit" class="btn btn-primary ">تغيير الصورة</button>
-        </div>
-        <br>
-        <br>
-        <br>
-      </form>
+      @csrf
+      <div class='d-flex justify-content-center py-2'>
+        <label for="logoImage">
+          <img style="height: 130px; cursor: pointer; width: 200px;"
+            src="{{asset('public/images/customer/' . auth()->user()->logoImage)}}" />
+        </label>
+        <input type="file" name="logoImage" class='d-none' id='logoImage' class="changeImage" />
+      </div>
+      <div class='d-flex justify-content-center '>
+
+        <button type="submit" class="btn btn-primary ">تغيير الصورة</button>
+      </div>
+      <br>
+      <br>
+
       @endif
       <img class="logo-dark" src="{{asset('assets/img/pngegg.png')}}">
 
-
+      <script>
+        $(document).ready(function(){
+                $('#logoImage').on('change',function(){
+                    image = $('#logoImage').val();
+                    $.ajax({
+                      type:'GET',
+                      url:'{{ route('updateImage') }}',
+                      dataType:"json",
+                      data:{
+                        'logoImage':image,
+                     
+                      },
+                      success: function(respnse){
+                          console.log(respnse);
+                      },
+                });
+                      // console.log(image);
+                });
+      });
+      </script>
 
 
 
