@@ -38,4 +38,7 @@ class Nawlone extends Model
     public function location_tatek(){
     return $this->belongsTo(LocationTatek::class);
     }
+     public function getDateAttribute($date){
+     return date('d-m-Y',strtotime($date));
+     }
 }

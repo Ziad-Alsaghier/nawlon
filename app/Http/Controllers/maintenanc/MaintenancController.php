@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Car_CarPart_Maintenance;
 use App\Models\Category;
 use App\Models\Purchase;
+use App\Models\ServicesMaintanence;
 
 class MaintenancController extends Controller
 {
@@ -40,36 +41,63 @@ class MaintenancController extends Controller
 
     public function addMaintenance(Request $request)
     {
-        return $request->all();
-        $decreaseCarPart = Purchase::where('car_part_id', $request->car_part_id)->first();
 
-        if ($decreaseCarPart) {
-            $countPurchase = $decreaseCarPart->quantity - 1;
-            $countPurchase;
-            Purchase::where('car_part_id', $request->car_part_id)->update(['quantity' => $countPurchase]);
-        }
+         $request->all();
+        //[$request->totalServicesPrice,
+        //  $request->totalSparePrice,];
+        
+          $spareParts =$request->sparePart;
 
-        $data = $request->validate([
-            'description' => 'required',
-            'maintenances_price' => 'required',
-            'car_id' => 'required',
-            'car_part_id' => 'required',
-        ]);
+         
+         $car = $request->only('car,','user_id', 'category','totalServicesPrice','maintenances_price', 'description');
+        $car['user_id'] = auth()->user()->id;
+        $car['car_id'] = $request->car;
+        $Maintanenc =new  Maintenance;
+            $Maintanenc->user_id = $car['user_id'] ;
+            $Maintanenc->maintenances_price =$car['maintenances_price'] ;
+            $Maintanenc->description =$car['description'] ;
+            $Maintanenc->car_id = $car['car_id'];
+            $Maintanenc->totalServicesPrice = $car['totalServicesPrice'];
+        $Maintanenc->save();
+            if($Maintanenc){
+            
+                 for ($i=0; $i < count($spareParts); $i++) { // return carr part data return
+                   $maintanence_id=$Maintanenc->id;
+               
+                $insertMaintanence = Maintenance::findOrFail($maintanence_id);
+                    $insertMaintanence->car_parts()->syncWithoutDetaching($spareParts[$i]['car_part_id']);
+            
+                    $user_id = auth()->user()->id;
+                    $services =$request->services;
+                    $totalServicesPrice = $request->totalServicesPrice;
+                    count($services);
+                    for ($j=0; $j <count($services) ; $j++) {
+                    $createNewServices = ServicesMaintanence::create(
+                         [
+                        'maintenance_id'=>$maintanence_id,
+                        'user_id'=>$user_id,
+                        'servicesTitle'=> $services[$j]['servicesName'],
+                        'servicesPrice'=>$services[$j]['servicesPrice']
+                        ]
+                    );
+                      // Services Maintanecne For Services
+                    }
+                   }
+           return session()->flash('success', 'تم تسجيل الصيانة بنجاح');
+            }
+         
+            
+           
+             
+        
+        
 
 
-        $maintanence = new Maintenance();
-        $maintanence->description = $data['description'];
-        $maintanence->maintenances_price = $data['maintenances_price'];
-        $maintanence->car_id = $data['car_id'];
-        // $maintanence->car_part_id = $request->group_a[0]['car_part_id'];
-        $maintanence->user_id = auth()->user()->id;
-        $maintanence->save();
-        $maintanence->car_parts()->attach($data['car_part_id']);
-        session()->flash('success', 'تم اضافة الصيانة بنجاح');
-        return redirect()->back();
+        
     }
     public function EditMaintenance(Request $request)
     {
+
     }
     public function deleteMaintenance(Request $request, $id)
     {

@@ -37,6 +37,6 @@ class Purchase extends Model
         }
        
         public function getDateAttribute($date){
-                return date('Y-m-d',strtotime($date));
+                return date('d-m-Y',strtotime($date));
         }
 }

@@ -522,7 +522,7 @@ $configData = Helper::appClasses();
 
           </ul>
 
-          <a href="{{ route('report')}}" class="menu-link ">
+          <a href="{{ route('report') }}" class="menu-link ">
             <i class="fa-solid fa-receipt mx-2"></i>
             <div> تقارير </div>
           </a>

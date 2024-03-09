@@ -17,12 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
              $table->foreignId('product_category_id')->constrained();
-             $table->foreignId('car_id')->constrained();
              $table->foreignId('user_id')->constrained();
-             $table->string('coverPhoto');
-             $table->string('image');
+             $table->string('coverPhoto')->nullable();
+             $table->string('image')->nullable();
              $table->string('code');
-             $table->string('location');
+             $table->string('location')->nullable();
              $table->timestamps();
         });
     }

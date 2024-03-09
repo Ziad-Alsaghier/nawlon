@@ -515,11 +515,13 @@ $user = 'Minue';
                                             التحميل</label>
                                         <select class="form-select location" id="basic-default-location"
                                             name="down_location_id">
+                                            <option value="">اختيار مكان التحميل</option>
                                             @foreach($locations as $location)
+
                                             <option value="{{ $location->id }}">{{ $location->name }}</option>
 
                                             @endforeach
-                                            <option> other</option>
+                                            <option>other</option>
                                         </select>
                                         @error('category')
                                         <span>{{ $message }}</span>
@@ -708,5 +710,3 @@ $user = 'Minue';
     </script>
     @endsection
     @endsection
-
-    edit

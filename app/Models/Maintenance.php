@@ -12,6 +12,7 @@ class Maintenance extends Model
         'maintenances_price',
         'description',
         'car_id',
+        'user_id',
         
     ];
 
@@ -24,6 +25,12 @@ class Maintenance extends Model
      return $this->belongsToMany(CarPart::class,'maintenance_car_parts');
         
      }
-    
+     function sevicesMaintanenc(){
+     return $this->hasMany(ServicesMaintanence::class);
+        
+     }
+     public function getDateAttribute($date){
+     return date('d-m-Y',strtotime($date));
+     }
     
 }

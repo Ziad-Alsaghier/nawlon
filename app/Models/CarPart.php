@@ -25,9 +25,10 @@ class CarPart extends Model
     public function product_categories(){
         return $this->belongsTo(ProductCategory::class,'product_category_id');
     }
-    public function car(){
-        return $this->belongsTo(Car::class);
+    public function cars(){
+        return $this->belongsToMany(Car::class,'cars_car_part');
     }
+   
     public function productCars(){
         return $this->belongsTo(ProductCategory::class,'product_category_id');
     }

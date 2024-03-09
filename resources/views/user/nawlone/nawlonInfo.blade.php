@@ -4,7 +4,7 @@ $user = 'Minue';
 @endphp
 
 
-@section('title', 'Customer List')
+@section('title', 'Report Nawlon')
 
 @section('vendor-style')
 <link rel="stylesheet" href="{{ asset('assets/vendor/libs/apex-charts/apex-charts.css') }}" />
@@ -42,13 +42,34 @@ $user = 'Minue';
 <link rel="stylesheet" href="../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
 <link rel="stylesheet" href="../ assets/vendor/libs/typeahead-js/typeahead.css" />
 <style>
-    span {
-        color: red;
-    }
+
 </style>
 <!-- Page CSS -->
 @endsection
+@section('style-header')
+<style>
+    @media print {
 
+
+
+        .action {
+            display: none;
+        }
+
+        .content-wrapper {
+            width: 100%;
+        }
+
+        aside#layout-menu {
+            display: none;
+        }
+
+        nav#layout-navbar {
+            display: none;
+        }
+    }
+</style>
+@endsection
 @section('page-style')
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
@@ -117,7 +138,7 @@ $user = 'Minue';
     <div class="container-xxl flex-grow-1 container-p-y" id="printData">
         <div class="row invoice-preview">
             <!-- Invoice -->
-            <div class="col-xl-9 col-md-8 col-12 mb-md-0 mb-4">
+            <div class="col-xl-9 col-md-8 col-12 mb-md-0 mb-4 printContent">
                 <div class="card invoice-preview-card">
 
                     <div class="card-body">
@@ -233,7 +254,7 @@ $user = 'Minue';
                         </table>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body action">
                         <div class="row">
                             <div class="col-12">
 
@@ -247,7 +268,7 @@ $user = 'Minue';
             <!-- Invoice Actions -->
             <div class="col-xl-3 col-md-4 col-12 invoice-actions">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body action">
                         <button class="btn btn-primary d-grid w-100 mb-3" data-bs-toggle="offcanvas"
                             data-bs-target="#sendInvoiceOffcanvas">
                             <span class="d-flex align-items-center justify-content-center text-nowrap"><i

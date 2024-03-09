@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->float('maintenances_price');
+            $table->float('totalServicesPrice');
             $table->longText('description');
             $table->foreignId('car_id')->constrained();
             $table->timestamps();

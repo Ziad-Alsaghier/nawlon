@@ -78,6 +78,30 @@ $user = 'Minue';
 <link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
 
 @endsection
+@section('style-header')
+<style>
+    @media print {
+
+
+
+        .action {
+            display: none;
+        }
+
+        .content-wrapper {
+            width: 100%;
+        }
+
+        aside#layout-menu {
+            display: none;
+        }
+
+        nav#layout-navbar {
+            display: none;
+        }
+    }
+</style>
+@endsection
 @section('vendor-script')
 <!-- Helpers -->
 <script src="../assets/vendor/js/helpers.js"></script>
@@ -173,6 +197,7 @@ $user = 'Minue';
                         </div>
                     </div>
                     <div class="table-responsive">
+
                         <table class="table border-top m-0">
                             <thead>
                                 <tr>
@@ -209,7 +234,47 @@ $user = 'Minue';
                                     </td>
                                     <td class="px-4 py-5">
                                         <p class="fw-semibold mb-2">
-                                            {{ $maintanences->maintenances_price }} EGP
+                                            {{ round($maintanences->maintenances_price) }} EGP
+                                        </p>
+                                        {{-- <p class="fw-semibold mb-2">$00.00</p>
+                                        <p class="fw-semibold mb-2">$50.00</p>
+                                        <p class="fw-semibold mb-0">$204.25</p> --}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table border-top m-0">
+                            <thead>
+                                <tr>
+                                    <th>الخدمة</th>
+                                    <th>ثمن الخدمة</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($maintanences->sevicesMaintanenc as $service)
+
+                                <tr>
+                                    <td class="text-nowrap">{{$service->servicesTitle }}</td>
+                                    <td class="text-nowrap">{{ $service->servicesPrice }}</td>
+
+                                </tr>
+                                @endforeach
+
+
+
+                                <tr>
+
+                                    <td class="text-end px-4 py-5">
+                                        <p class="mb-2">Total:</p>
+                                        {{-- <p class="mb-2">Discount:</p>
+                                        <p class="mb-2">Tax:</p>
+                                        <p class="mb-0">Total:</p> --}}
+                                    </td>
+                                    <td class="px-4 py-5">
+                                        <p class="fw-semibold mb-2">
+                                            {{ round($maintanences->maintenances_price) }} EGP
                                         </p>
                                         {{-- <p class="fw-semibold mb-2">$00.00</p>
                                         <p class="fw-semibold mb-2">$50.00</p>
@@ -232,7 +297,7 @@ $user = 'Minue';
             <!-- /Invoice -->
 
             <!-- Invoice Actions -->
-            <div class="col-xl-3 col-md-4 col-12 invoice-actions">
+            <div class="col-xl-3 col-md-4 col-12 invoice-actions action">
                 <div class="card">
                     <div class="card-body">
 

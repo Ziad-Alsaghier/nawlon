@@ -13,7 +13,7 @@ class CarPartController extends Controller
 {
     //      This First Controller With Car Parts
     protected $requesrCarPart = [
-        'name', 'product_category_id', 'car_id', 'coverPhoto', 'image', 'code', 'location',
+        'name', 'product_category_id', 'coverPhoto', 'image', 'code', 'location',
     ];
 
     public function index()
@@ -37,9 +37,9 @@ class CarPartController extends Controller
         //     'code'=>'required',
         //     'location'=>'required',
         // ]);
-
+       
         $carPart = $request->only($this->requesrCarPart);
-
+  
 
         $checkCodeCar = CarPart::where('code', '=', $request->code)->first();
         if ($checkCodeCar) {
@@ -75,8 +75,13 @@ class CarPartController extends Controller
         }
 
         $carPart['user_id'] = auth()->user()->id;
-
         $createCarPart = CarPart::create($carPart);
+        $carPart_id= $createCarPart->id;
+      
+        for ($i=0; $i < count($request->car_id) ; $i++) {
+             $insertMaintanence = CarPart::findOrFail($carPart_id);
+             $insertMaintanence->cars()->syncWithoutDetaching($request->car_id[$i]);
+        }
         if ($createCarPart) {
             move_uploaded_file($tmp_name, 'public/images/carPart/covers/' . $img_name);
             session()->flash('success', 'تم اضافة قطعة الغيار');
@@ -121,6 +126,7 @@ class CarPartController extends Controller
         $carPart['user_id'] = auth()->user()->id;
 
         $createCarPart = CarPart::where('id', $request->carPart_id)->update($carPart);
+      
         if ($createCarPart) {
             move_uploaded_file($tmp_name, 'public/images/carPart/covers/' . $img_name);
             session()->flash('success', 'تم التعديل في قطعة الغيار');

@@ -122,9 +122,9 @@ $user='Minue';
 
 
 <!-- Bootstrap Table with Header - Dark -->
-<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
-    اضافة صيانة
-</button>
+<a type="button" class="btn btn-primary mb-3" href="{{route('addMaintan')}}">
+    اضافة صيانة جديدة
+</a>
 
 
 {{--

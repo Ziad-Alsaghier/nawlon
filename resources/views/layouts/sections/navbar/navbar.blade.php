@@ -408,8 +408,8 @@ $containerNav = $containerNav ?? 'container-fluid';
           <ul class="dropdown-menu dropdown-menu-end">
             <li>
 
-
-              <a class="dropdown-item" href="{{ route('dashboard-analytics') }}">
+              @if(auth()->user()->position == 'customer')
+              <a class="dropdown-item" href="{{ route('profileUser') }}">
                 <div class="d-flex">
                   <div class="flex-shrink-0 me-3">
                     <div class="avatar avatar-online">
@@ -433,10 +433,13 @@ $containerNav = $containerNav ?? 'container-fluid';
 
             <li>
               <a class="dropdown-item" href="">
-                <i class="bx bx-credit-card me-2"></i>
+                <i class="fa-solid fa-user"></i>
                 <span class="align-middle">Billing</span>
               </a>
             </li>
+            @endif
+
+
 
             <li>
               <div class="dropdown-divider"></div>

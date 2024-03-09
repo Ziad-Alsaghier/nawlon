@@ -9,6 +9,7 @@ use App\Models\Driver;
 use App\Models\driverFollow;
 use App\Models\Employee;
 use App\Models\Nawlone;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 
 class NawlonApiController extends Controller
@@ -124,6 +125,21 @@ class NawlonApiController extends Controller
                                                         ['employeeUnAvailable'=>$employeeUnAvailable,'statusUnAvaillable'=>'0'],
                                                 ]
                                         ],200);
+                                }
+                        }
+
+
+                        public function storeNawlon(Request $request){
+                $user_id = $request->user()->id;
+                                if(Auth::check()){ // Return Nawlon Store For Application 
+                              $storeNawlone =
+                              Purchase::where('user_id',auth()->user()->id)->with('carPart')->get();
+                                              
+                        return response()->json(['success'=>'Data Returned Successfuly',
+                          ['storeNawlon'=>$storeNawlone]
+                        
+                        ],200);
+
                                 }
                         }
 

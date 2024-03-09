@@ -49,6 +49,33 @@ $user='Minue';
 <!-- Page CSS -->
 @endsection
 
+@section('style-header')
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+<!-- Icons -->
+<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/fontawesome.css" />
+<link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
+
+<!-- Core CSS -->
+<link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" />
+<link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" />
+<link rel="stylesheet" href="../assets/css/demo.css" />
+
+<!-- Vendors CSS -->
+<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/select2/select2.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/tagify/tagify.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
+<link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
+@endsection
+
 @section('page-style')
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
@@ -156,7 +183,10 @@ $user='Minue';
                         {{$carPart->product_categories->name}}
                     </td>
                     <td>
-                        {{$carPart->car->cars_name}}
+                        @foreach($carPart->cars as $car)
+                        - {{ $car->cars_name }}
+                        <br>
+                        @endforeach
                     </td>
                     <td>
                         {{$carPart->code}}
@@ -246,16 +276,16 @@ $user='Minue';
                                             @endforeach
                                         </select>
                                     </div> --}}
-                                    <div class="mb-3">
+                                    {{-- <div class="mb-3">
                                         <label class="form-label" for="basic-default-country">اختر السيارة</label>
                                         <select class="form-select" id="basic-default-country" name="car_id">
-                                            <option value="{{$carPart->car->id}}"> {{$carPart->car->cars_name}}
+                                            <option value="{{$carPart}}">
                                             </option>
                                             @foreach ($cars as $car)
                                             <option value="{{ $car->id }}"> {{ $car->cars_name }}</option>
                                             @endforeach
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-upload-file"> صورة الغلاف
                                         </label>
@@ -380,13 +410,16 @@ $user='Minue';
                                             @endforeach
                                         </select>
                                     </div> --}}
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basic-default-country">اختر السيارة</label>
-                                        <select class="form-select" id="basic-default-country" name="car_id">
-                                            <option value="">اختار السيارة </option>
-                                            @foreach ($cars as $car)
-                                            <option value="{{ $car->id }}"> {{ $car->cars_name }}</option>
-                                            @endforeach
+                                    <div class="col-md-6 mb-4">
+                                        <label for="car" class="form-label">اختر السيارات المناسبة</label>
+
+                                        <select id="car" name="car_id[]" class="select2 form-select" multiple>
+
+                                            <optgroup label="">
+                                                @foreach ($cars as $car)
+                                                <option value="{{ $car->id }}"> {{ $car->cars_name }}</option>
+                                                @endforeach
+                                            </optgroup>
                                         </select>
                                     </div>
                                     <div class="mb-3">
@@ -434,26 +467,57 @@ $user='Minue';
     </div>
     {{-- End Model With Eit Car --}}
 
+
+
     @section('script')
+
     <script>
         $(document).ready(() => {
-                    $(".btnCus").each((ele, val) => {
-                        var poi_id = `#${$(val).attr("id")}`
-                        $(poi_id).mouseenter(() => {
-                            $(".menu-cus").addClass("d-none");
-                            $(poi_id).next().toggleClass("d-none");
-    
-                        });
-                        $(".menu-cus").mouseleave(() => {
-                            $(".menu-cus").addClass("d-none");
-                        });
-    
-    
-                    });
-                });
-    
-         
-    
+        $(".btnCus").each((ele, val) => {
+        var poi_id = `#${$(val).attr("id")}`
+        $(poi_id).mouseenter(() => {
+        $(".menu-cus").addClass("d-none");
+        $(poi_id).next().toggleClass("d-none");
+        
+        });
+        $(".menu-cus").mouseleave(() => {
+        $(".menu-cus").addClass("d-none");
+        });
+        
+        
+        });
+        });
+    </script>
+    <script>
+        <script src="../assets/vendor/libs/jquery/jquery.js">
+    </script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../assets/vendor/libs/hammer/hammer.js"></script>
+
+    <script src="../assets/vendor/libs/i18n/i18n.js"></script>
+    <script src="../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+    <script src="../assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script src="../assets/vendor/libs/select2/select2.js"></script>
+    <script src="../assets/vendor/libs/tagify/tagify.js"></script>
+    <script src="../assets/vendor/libs/bootstrap-select/bootstrap-select.js"></script>
+    <script src="../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="../assets/vendor/libs/bloodhound/bloodhound.js"></script>
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="../assets/js/forms-selects.js"></script>
+    <script src="../assets/js/forms-tagify.js"></script>
+    <script src="../assets/js/forms-typeahead.js"></script>
+
     </script>
 
     @endsection

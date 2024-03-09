@@ -32,7 +32,7 @@ class Car extends Model
         }
         public function car_parts()
         {
-                return $this->hasMany(CarPart::class);
+                return $this->belongsToMany(CarPart::class,'cars_car_part');
         }
 
         public function violations()

@@ -48,11 +48,11 @@ class NawloneController extends Controller
     {
        $dataNawlone = $request->only($this->nawlonePosts);
 
-                if($request->down_location_id == 'مكان اخر' ){
+                if($request->down_location_id == 'other' ){
              $dataNawlone['location_name'] = $request->location_name ;
              $dataNawlone['down_location_id'] = Null ;
                 }
-                if($request->location_tatek_id == 'مكان اخر'){
+                if($request->location_tatek_id == 'other'){
              $dataNawlone['location_tatek_name'] = $request->tatek_location_name;
              $dataNawlone['location_tatek_id'] =Null;
                 }
