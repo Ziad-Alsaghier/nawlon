@@ -427,7 +427,7 @@ $user='Minue';
             dataType: "json",
             data: {
             'category_id': category,
-         
+         'user_id': {{ auth()->user()->id }},
             },
             success: function(response) {
             console.log(response);
