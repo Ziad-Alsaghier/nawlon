@@ -586,6 +586,7 @@ $user = 'Minue';
                             url: '{{ route('filterCar') }}',
                             data: {
                                 'car_state': Car_State,
+                                'user_id': {{ auth()->user()->id }},
                             },
                             success: function(response) {
                                 var car_Data = response.car_data;
