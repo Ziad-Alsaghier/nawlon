@@ -38,10 +38,10 @@ class CarPartController extends Controller
         //     'location'=>'required',
         // ]);
        
-        $carPart = $request->only($this->requesrCarPart);
+        $requestCar = $request->only($this->requesrCarPart);
   
 
-        $checkCodeCar = CarPart::where('code', '=', $request->code)->first();
+        $checkCodeCar = CarPart::where('user_id',auth()->user()->id)->where('code', '=', $request->code)->first();
         if ($checkCodeCar) {
             session()->flash('faild', 'هذا الكود موجود بالفعل');
             return redirect()->back();
@@ -56,7 +56,7 @@ class CarPartController extends Controller
             if (in_array($extension, $extension_arr)) {
                 $img_name = rand(0, 1000) . now() . $name;
                 $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
-                $carPart['image'] = $img_name;
+                $image =$carPart['image'] = $img_name;
                 move_uploaded_file($tmp_name, 'public/images/carPart/' . $img_name);
             }
         }
@@ -70,23 +70,30 @@ class CarPartController extends Controller
             if (in_array($extension, $extension_arr)) {
                 $img_name = rand(0, 1000) . now() . $name;
                 $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
-                $carPart['coverPhoto'] = $img_name;
+               $coverImage = $carPart['coverPhoto'] = $img_name;
             }
         }
 
         $carPart['user_id'] = auth()->user()->id;
-        $createCarPart = CarPart::create($carPart);
-        $carPart_id= $createCarPart->id;
-      
+            $carPart =new CarPart;
+            $carPart->name                    = $requestCar['name'] ;
+            $carPart->product_category_id     = $requestCar['product_category_id'] ;
+            $carPart->user_id                 = auth()->user()->id;
+            $carPart->coverPhoto              = $coverImage;
+            $carPart->image                     = $image;
+            $carPart->code                      = $requestCar['code'];
+            $carPart->location                  = $requestCar['location'];
+           $createCarPart = $carPart->save();
+            $carPart_id= $carPart->id;
         for ($i=0; $i < count($request->car_id) ; $i++) {
-             $insertMaintanence = CarPart::findOrFail($carPart_id);
-             $insertMaintanence->cars()->syncWithoutDetaching($request->car_id[$i]);
+             $insertcarPart = CarPart::findOrFail($carPart_id);
+             $insertcarPart->cars()->syncWithoutDetaching($request->car_id[$i]);
         }
-        if ($createCarPart) {
+                if($createCarPart){
             move_uploaded_file($tmp_name, 'public/images/carPart/covers/' . $img_name);
             session()->flash('success', 'تم اضافة قطعة الغيار');
             return redirect()->back();
-        }
+            }
     }
     public function editCarPart(Request $request)
     {
@@ -136,7 +143,8 @@ class CarPartController extends Controller
 
     public function deleteCarPart($id)
     {
-        $deleteCarPart = CarPart::where('id', $id)->delete();
+        $deleteCarPart = CarPart::where('id', $id)->first();
+        return $deleteCarPart->delete();
 
         if ($deleteCarPart) {
             session()->flash('success', 'تما الغاء قطعة الغيار بنجاح');
