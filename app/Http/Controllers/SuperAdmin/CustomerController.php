@@ -21,7 +21,7 @@ class CustomerController extends Controller
     }
     
             public function addCustomer(Request $request){
-       
+   
                  // Start Create New Customer 
                    $newCustomer = $request->validate([
                         'name'=>'required',
@@ -35,7 +35,7 @@ class CustomerController extends Controller
                     ]);
 
                     $img_name = null;
-                    extract($_FILES['logoImage']);
+                     extract($_FILES['logoImage']);
                     if (!empty($name)) {
                     $extension_arr = ['png', 'jpg', 'jpeg', 'svg', 'webp'];
                     $extension = explode('.', $name);
@@ -45,10 +45,12 @@ class CustomerController extends Controller
                     $img_name = rand(0, 1000) . now() . $name;
                     $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
                     $newCustomer['logoImage'] = $img_name;
-                    
+                    move_uploaded_file($tmp_name, 'public/images/customer/' . $img_name);
                     }
                     }
-                    $img_name = null;
+
+                    $imageUser = null;
+
                     extract($_FILES['image']);
                     if (!empty($name)) {
                     $extension_arr = ['png', 'jpg', 'jpeg', 'svg', 'webp'];
@@ -56,11 +58,11 @@ class CustomerController extends Controller
                     $extension = end($extension);
                     $extension = strtolower($extension);
                     if (in_array($extension, $extension_arr)) {
-                    $img_name = rand(0, 1000) . now() . $name;
-                    $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
-                    $newCustomer['image'] = $img_name;
-                                    move_uploaded_file($tmp_name, 'public/images/customer/avatar' . $img_name);
-                    }
+                    $imageUser = rand(0, 1000) . now() . $name;
+                    $imageUser = str_replace([' ', ':', '-'], 'X', $imageUser);
+                    $newCustomer['image'] = $imageUser;
+                  move_uploaded_file($tmp_name, 'public/images/customer/' . $img_name);
+                }
                     }
                                 $checkEmail = User::where('email',$request->email)->first();
                                 if($checkEmail){
@@ -71,7 +73,6 @@ class CustomerController extends Controller
                                 $newCustomer['password']=bcrypt($request->password);
                                    $createNewCustomer= User::create( $newCustomer );
                                    if($createNewCustomer){
-                                    move_uploaded_file($tmp_name, 'public/images/customer/' . $img_name);
 
                                                 session()->flash('success','Customer Add Successfully');
                                             return redirect()->back();
