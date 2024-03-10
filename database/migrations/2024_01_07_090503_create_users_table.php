@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('identity');
             $table->enum('position',['customer','superAdmin']);
             $table->string('logoImage');
+            $table->string('image');
             $table->foreignId('package_id')
       ->constrained()
       ->onUpdate('cascade')

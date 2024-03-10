@@ -12,7 +12,7 @@ class CustomerController extends Controller
 
     public function index()
     {   
-            $requestNewCustomer= [];
+            // $requestNewCustomer= [];
                 $package = Package::all();
             return view('SuperAdmin.customer.customerAdd',compact('package'));
 
@@ -31,6 +31,7 @@ class CustomerController extends Controller
                         'parent_phone'=>'required',
                         'password'=>'required',
                         'logoImage'=>'required',
+                        'image'=>'required',
                     ]);
 
                     $img_name = null;
@@ -45,6 +46,20 @@ class CustomerController extends Controller
                     $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
                     $newCustomer['logoImage'] = $img_name;
                     
+                    }
+                    }
+                    $img_name = null;
+                    extract($_FILES['image']);
+                    if (!empty($name)) {
+                    $extension_arr = ['png', 'jpg', 'jpeg', 'svg', 'webp'];
+                    $extension = explode('.', $name);
+                    $extension = end($extension);
+                    $extension = strtolower($extension);
+                    if (in_array($extension, $extension_arr)) {
+                    $img_name = rand(0, 1000) . now() . $name;
+                    $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
+                    $newCustomer['image'] = $img_name;
+                                    move_uploaded_file($tmp_name, 'public/images/customer/avatar' . $img_name);
                     }
                     }
                                 $checkEmail = User::where('email',$request->email)->first();

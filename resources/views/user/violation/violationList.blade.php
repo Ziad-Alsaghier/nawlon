@@ -219,7 +219,6 @@ $user = 'Minue';
                                 </td>
 
 
-                                <td>
 
                                 <td>
                                     <div style="display: flex;align-items: center;justify-content: space-between;">

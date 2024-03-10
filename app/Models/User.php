@@ -27,6 +27,7 @@ class User extends Authenticatable
         'identity',
         'package_id',
         'logoImage',
+        'image',
     ];
 
     /**

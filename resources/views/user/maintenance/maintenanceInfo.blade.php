@@ -274,7 +274,7 @@ $user = 'Minue';
                                     </td>
                                     <td class="px-4 py-5">
                                         <p class="fw-semibold mb-2">
-                                            {{ round($maintanences->maintenances_price) }} EGP
+                                            {{ round($maintanences->totalServicesPrice) }} EGP
                                         </p>
                                         {{-- <p class="fw-semibold mb-2">$00.00</p>
                                         <p class="fw-semibold mb-2">$50.00</p>

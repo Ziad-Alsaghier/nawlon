@@ -41,21 +41,16 @@ $configData = Helper::appClasses();
             <form method="post" enctype="multipart/form-data" id="profile-setup">
                 @csrf
                 <div class='d-flex justify-content-center py-2' style="flex-direction: column;">
-                    <label for="logoImage">
+                    <label for="profile_image">
                         <img id="image-profile-prev" style="height: 130px; cursor: pointer; width: 200px;"
                             src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
                     </label>
-                    <input type="file" name="profile_image" class="form-control" id="profile_image" />
+                    <input type="file" name="profile_image" class="form-control d-none" id="profile_image" />
                 </div>
-                <div class='d-flex justify-content-center' style="width: 200px;">
-                    <button type="submit" class="btn btn-primary ">تغيير الصورة</button>
-                </div>
-                <br>
-                <br>
-                <br>
+
             </form>
             @endif
-            <img class="logo-dark" src="{{ asset('assets/img/pngegg.png') }}">
+            <img class="logo-dark" src="{{ asset('assets/img/default.png') }}">
 
             <!--<span class="app-brand-logo demo">-->
             <!--  @include('_partials.macros')-->

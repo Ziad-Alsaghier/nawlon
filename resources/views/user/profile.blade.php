@@ -28,11 +28,10 @@ $user='Minue';
 <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
 <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome.css" />
 <link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
-
 <!-- Core CSS -->
-<link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" />
-<link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" />
-<link rel="stylesheet" href="../assets/css/demo.css" />
+<link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" />
+<link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" />
+<link rel="stylesheet" href="../../assets/css/demo.css" />
 
 <!-- Vendors CSS -->
 <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
@@ -215,19 +214,19 @@ $user='Minue';
                 <!-- Profile Overview -->
                 <div class="card mb-4">
                     <div class="card-body">
-                        <small class="text-muted text-uppercase">Overview</small>
+                        <small class="text-muted text-uppercase">تفاصيل الخطة</small>
                         <ul class="list-unstyled mt-3 mb-0">
                             <li class="d-flex align-items-center mb-3">
-                                <i class="bx bx-check"></i><span class="fw-semibold mx-2">Task Compiled:</span>
-                                <span>13.5k</span>
+                                <i class="bx bx-check"></i><span class="fw-semibold mx-2"> الحد الاقصي للسيارات</span>
+                                <span>{{ auth()->user()->package->car_limitation }}</span>
                             </li>
                             <li class="d-flex align-items-center mb-3">
-                                <i class="bx bx-customize"></i><span class="fw-semibold mx-2">Projects Compiled:</span>
-                                <span>146</span>
+                                <i class="bx bx-customize"></i><span class="fw-semibold mx-2">الدفع الشهري:</span>
+                                <span>{{ auth()->user()->package->price_monthly }}</span>
                             </li>
                             <li class="d-flex align-items-center">
-                                <i class="bx bx-user"></i><span class="fw-semibold mx-2">Connections:</span>
-                                <span>897</span>
+                                <i class="bx bx-user"></i><span class="fw-semibold mx-2">الدفع السنوي:</span>
+                                <span>{{ auth()->user()->package->price_year }}</span>
                             </li>
                         </ul>
                     </div>
@@ -322,6 +321,20 @@ $user='Minue';
 
     <div class="content-backdrop fade"></div>
 </div>
+@section('script')
+<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../assets/vendor/libs/popper/popper.js"></script>
+<script src="../assets/vendor/js/bootstrap.js"></script>
+<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
+<script src="../assets/vendor/libs/hammer/hammer.js"></script>
+
+<script src="../assets/vendor/libs/i18n/i18n.js"></script>
+<script src="../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+
+
+
+@endsection
 
 @endsection

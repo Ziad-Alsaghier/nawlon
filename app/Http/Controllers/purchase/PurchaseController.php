@@ -26,7 +26,6 @@ class PurchaseController extends Controller
         $productCategories = ProductCategory::where('user_id',auth()->user()->id)->get();
         $car_parts = CarPart::where('user_id',auth()->user()->id)->get();
         $purchases = Purchase::where('user_id',auth()->user()->id)->get();
-      
         $suppliers = Supplier::where('user_id',auth()->user()->id)->get();
         return view('user.purchase.purchase',compact('purchases','car_parts','productCategories','suppliers'));
     }
