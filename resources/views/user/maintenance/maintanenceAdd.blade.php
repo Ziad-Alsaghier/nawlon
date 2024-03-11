@@ -597,7 +597,7 @@ $user = 'Minue';
                                         console.log("###################");
 
                                         var sparePartt =
-                                            `<option value='${valP.code}_${valP.name}-${valP.id}'>${valP.name}</option>`;
+                                            `<option value='${valP.avg_car_part}_${valP.name}-${valP.id}'>${valP.name}</option>`;
 
                                         sparePart.push(sparePartt);
                                     })

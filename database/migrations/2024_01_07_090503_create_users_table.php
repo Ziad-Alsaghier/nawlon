@@ -21,14 +21,14 @@ return new class extends Migration
             $table->string('password');
             $table->string('parent_phone');
             $table->string('identity');
-            $table->enum('position',['customer','superAdmin']);
+            $table->enum('position', ['customer', 'superAdmin']);
             $table->string('logoImage');
-            $table->string('image');
+            // $table->string('image');
             $table->foreignId('package_id')
-      ->constrained()
-      ->onUpdate('cascade')
-      ->onDelete('cascade');
-      
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
