@@ -22,7 +22,7 @@ class Maintenance extends Model
         
      }
      function car_parts(){
-     return $this->belongsToMany(CarPart::class,'maintenance_car_parts');
+     return $this->belongsToMany(CarPart::class,'maintenance_car_parts')->withTimestamps();
         
      }
      function sevicesMaintanenc(){

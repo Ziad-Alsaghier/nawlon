@@ -48,6 +48,27 @@ class PurchaseController extends Controller
                   'max:2048',
               ]
         );
+        
+        $avg_car_part = Purchase::where('car_part_id',$request->car_part_id)->get();
+         if($avg_car_part){
+
+              $totalQuantity = 0;
+              $totalAvgPrice = 0;
+              for ($i=0; $i <count($avg_car_part) ; $i++) {
+                 $totalQuantity +=$avg_car_part[$i]['quantity'];
+                $totalAvgPrice +=$avg_car_part[$i]['totalPrice'];
+            } 
+           $AVG= $totalAvgPrice / $totalQuantity; //
+
+              $updateCarPart = CarPart::where('id', $request->car_part_id)->update([
+              'avg_car_part'=>$AVG,
+              ]);
+              
+                // if($updateCarPart){
+                // return "dasdasdasd";
+                // }
+         }
+         
            $requestNewPurchase =$request->only($this->requestPurchase);
 
 
@@ -72,6 +93,10 @@ class PurchaseController extends Controller
 
           $requestNewPurchase['user_id'] = auth()->user()->id;
         $createPurchases = Purchase::create($requestNewPurchase);
+        $perOneCarPart = $request->totalPrice / $request->quantity;
+         $updateCarPart = CarPart::where('id', $request->car_part_id)->update([
+         'avg_car_part'=>$perOneCarPart,
+         ]);
         if($createPurchases){
           
             session()->flash('success','تم عملية الشراء بنجاح');
@@ -80,16 +105,6 @@ class PurchaseController extends Controller
     }
 
      public function editPurchase(Request $request){
-     $request->validate(
-     [
-     'product_category_id'=>'required',
-     'car_part_id'=>'required',
-     'supplier_id'=>'required',
-     'quantity'=>'required',
-     'date'=>'required',
-     'totalPrice'=>'required',
-     ]
-     );
 
      $requestNewPurchase =$request->only($this->requestPurchase);
 

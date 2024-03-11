@@ -47,7 +47,6 @@ class MaintenancController extends Controller
         //  $request->totalSparePrice,];
         
           $spareParts =$request->sparePart;
-
          
          $car = $request->only('car,','user_id', 'category','totalServicesPrice','maintenances_price', 'description');
         $car['user_id'] = auth()->user()->id;
@@ -60,13 +59,35 @@ class MaintenancController extends Controller
             $Maintanenc->totalServicesPrice = $car['totalServicesPrice'];
         $Maintanenc->save();
             if($Maintanenc){
-            
+            for ($i = 0; $i < count($spareParts); $i++) {
+                // Get The Car Part
+               return $checkCountStore = Purchase::where('car_part_id', $spareParts[$i]['car_part_id'])
+               ->with('carPart')->get();
+                $checkCountStore;
+                $totalQuantity = 0; // Display Counter Cause Take total Quantity Of Car Part
+                for ($c = 0; $c < count($checkCountStore); $c++) {
+                    $totalQuantity = +$checkCountStore[$i]['quantity'];
+                    $carPart = $spareParts[$i]['sparePartCount'];
+                    $resultCheck = $totalQuantity -
+                        $spareParts[$i]['sparePartCount'];
+                    if ($totalQuantity < $carPart) {
+                        return response()->
+                            json(['faild' => 'الكمية المطلوبة اكبر من المتوفر']);
+                    }
+                    return $resultCheck;
+
+                }
+            }
                  for ($i=0; $i < count($spareParts); $i++) { // return carr part data return
                    $maintanence_id=$Maintanenc->id;
                
+                // return $resultCheck;
+                   
+            
                 $insertMaintanence = Maintenance::findOrFail($maintanence_id);
                     $insertMaintanence->car_parts()->syncWithoutDetaching($spareParts[$i]['car_part_id']);
-            
+                    $insertMaintanence->car_parts()->attach(
+                    $spareParts[$i]['car_part_id'],['sparePartCount'=>$spareParts[$i]['sparePartCount']]);
                     $user_id = auth()->user()->id;
                     $services =$request->services;
                     $totalServicesPrice = $request->totalServicesPrice;

@@ -21,6 +21,7 @@ return new class extends Migration
              $table->string('coverPhoto')->nullable();
              $table->string('image')->nullable();
              $table->string('code');
+             $table->string('avg_car_part')->nullable();
              $table->string('location')->nullable();
              $table->timestamps();
         });

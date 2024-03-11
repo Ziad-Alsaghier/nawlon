@@ -220,7 +220,7 @@ $superAdmin = 'Minue';
                                         class="d-block rounded" height="100" width="100" id="uploadedAvatar" /> --}}
                                     <div class="button-wrapper">
                                         <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                            <span class="d-none d-sm-block">تحميل صورة لوجو الشركة</span>
+                                            <span class="d-none d-sm-block">اضافة صورة لوجو الشركة</span>
                                             <i class="bx bx-upload d-block d-sm-none"></i>
                                             <input type="file" name="logoImage" id="upload" class="account-file-input"
                                                 hidden accept="image/png, image/jpeg" />
@@ -233,18 +233,10 @@ $superAdmin = 'Minue';
                                     </div>
 
                                 </div>
-                                <div class="button-wrapper">
-                                    <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                        <span class="d-none d-sm-block">تحميل صورة العميل</span>
-                                        <i class="bx bx-upload d-block d-sm-none"></i>
-                                        <input type="file" name="image" id="upload" class="account-file-input" hidden
-                                            accept="image/png, image/jpeg" />
-                                    </label>
-                                    <button type="button" class="btn btn-label-secondary account-image-reset mb-4">
-                                        <i class="bx bx-reset d-block d-sm-none"></i>
-                                        <span class="d-none d-sm-block">Reset</span>
-                                    </button>
-
+                                <div class="mb-3">
+                                    <label class="form-label" for="basic-default-upload-file">اضافة صورة
+                                        للسيار</label>
+                                    <input type="file" name="image" class="form-control" id="basic-default-upload-file">
                                 </div>
                             </div>
                             <div class="valid-feedback">Looks good!</div>

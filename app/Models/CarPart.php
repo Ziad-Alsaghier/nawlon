@@ -16,6 +16,7 @@ class CarPart extends Model
         'image',
         'code',
         'user_id',
+        'avg_car_part',
         'location',
     ];
 
