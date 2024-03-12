@@ -69,8 +69,9 @@ class MaintenancController extends Controller
                $carPart_id = $spareParts[$i]['car_part_id'];
                 //  return  $checkCarPart->quantity;
                   
-                $totalQuantityCarPart = 0;
-                 if($totalQuantityCarPart <= $requestCount){ 
+                $totalQuantityCarPart = $checkCarPart->quantity;
+                
+                 if($checkCarPart->quantity <= $requestCount){
                     return response()->json(['faild', 'الكمية المطلوبة غير متوفرة']);
 
                    }
@@ -81,23 +82,14 @@ class MaintenancController extends Controller
                 where('car_part_id', $carPart_id)
                 ->where('id',$checkCarPart->id)->
                 update(['quantity' =>$updateCountCarPart]);
-                    if($updateStore){
-                    return response()->json(['success', 'تم تعديل الكمية بنجاح']);
-            }
+                   
                
 
                 }
-          
-                        // Wait For Update New Store ???~~!!!!
-
-
-                        
+            // Wait For Update New Store ???~~!!!!
                  for ($i=0; $i < count($spareParts); $i++) { // return carr part data return
                    $maintanence_id=$Maintanenc->id;
-               
-                // return $resultCheck;
-                   
-            
+            // return $resultCheck;
                 $insertMaintanence = Maintenance::findOrFail($maintanence_id);
                     $insertMaintanence->car_parts()->syncWithoutDetaching($spareParts[$i]['car_part_id']);
                     $insertMaintanence->car_parts()->attach(

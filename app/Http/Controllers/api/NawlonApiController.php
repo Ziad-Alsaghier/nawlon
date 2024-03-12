@@ -153,8 +153,11 @@ class NawlonApiController extends Controller
                         
                         
                                         // Start Get Data About mintanence With Car  
-                                $maintainence = Maintenance::where('user_id',$request->user()->id);
-                        with('car')->car_parts('car_parts')->with('sevicesMaintanenc');
+                                $maintainence = Maintenance::where('user_id',$request->user()->id)->
+                        with('car')->with('sevicesMaintanenc')
+                        ->with('car_parts')
+                        ->with('sevicesMaintanenc')
+                        ->get();
                         
                         
                         
