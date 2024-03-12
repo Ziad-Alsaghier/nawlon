@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\driverFollow;
 use App\Models\Employee;
+use App\Models\Maintenance;
 use App\Models\Nawlone;
 use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
@@ -141,6 +142,39 @@ class NawlonApiController extends Controller
                         ],200);
 
                                 }
+                        }
+
+
+
+
+                        public function maintanenceApi(Request $request){
+                        if(Auth::check()){
+                        
+                        
+                        
+                                        // Start Get Data About mintanence With Car  
+                                $maintainence = Maintenance::where('user_id',$request->user()->id);
+                        with('car')->car_parts('car_parts')->with('sevicesMaintanenc');
+                        
+                        
+                        
+                        
+                        
+                        
+                                return response()->json([
+                                        
+                                        'success'=>'Welcom To Nawlon for Maintanence',
+                                        ['maintanence'=>$maintainence],
+                        
+                        ]);
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        }
                         }
 
 }

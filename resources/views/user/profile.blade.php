@@ -127,8 +127,13 @@ $user='Minue';
                     </div>
                     <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                         <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
-                            <img src="../assets/img/avatars/1.png" alt="user image"
-                                class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img">
+                            <label for="profile_image">
+                                <img id="image-profile-prev" style=" cursor: pointer;"
+                                    class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img"
+                                    src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
+                            </label>
+                            <input type="file" name="profile_image" class="form-control d-none" id="profile_image" />
+
                         </div>
                         <div class="flex-grow-1 mt-3 mt-sm-5">
                             <div

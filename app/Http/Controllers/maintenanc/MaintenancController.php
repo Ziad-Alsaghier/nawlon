@@ -61,23 +61,37 @@ class MaintenancController extends Controller
             if($Maintanenc){
             for ($i = 0; $i < count($spareParts); $i++) {
                 // Get The Car Part
-               return $checkCountStore = Purchase::where('car_part_id', $spareParts[$i]['car_part_id'])
-               ->with('carPart')->get();
-                $checkCountStore;
-                $totalQuantity = 0; // Display Counter Cause Take total Quantity Of Car Part
-                for ($c = 0; $c < count($checkCountStore); $c++) {
-                    $totalQuantity = +$checkCountStore[$i]['quantity'];
-                    $carPart = $spareParts[$i]['sparePartCount'];
-                    $resultCheck = $totalQuantity -
-                        $spareParts[$i]['sparePartCount'];
-                    if ($totalQuantity < $carPart) {
-                        return response()->
-                            json(['faild' => 'الكمية المطلوبة اكبر من المتوفر']);
-                    }
-                    return $resultCheck;
+
+                $checkCarPart = Purchase::where('quantity','!=','0')
+                                        ->where('car_part_id', $spareParts[$i]['car_part_id'])->first();
+                  
+                $requestCount = $spareParts[$i]['sparePartCount'];
+               $carPart_id = $spareParts[$i]['car_part_id'];
+                //  return  $checkCarPart->quantity;
+                  
+                $totalQuantityCarPart = 0;
+                 if($totalQuantityCarPart <= $requestCount){ 
+                    return response()->json(['faild', 'الكمية المطلوبة غير متوفرة']);
+
+                   }
+
+                    $updateCountCarPart = $totalQuantityCarPart - $requestCount;
+
+                    $updateStore = Purchase::
+                where('car_part_id', $carPart_id)
+                ->where('id',$checkCarPart->id)->
+                update(['quantity' =>$updateCountCarPart]);
+                    if($updateStore){
+                    return response()->json(['success', 'تم تعديل الكمية بنجاح']);
+            }
+               
 
                 }
-            }
+          
+                        // Wait For Update New Store ???~~!!!!
+
+
+                        
                  for ($i=0; $i < count($spareParts); $i++) { // return carr part data return
                    $maintanence_id=$Maintanenc->id;
                
