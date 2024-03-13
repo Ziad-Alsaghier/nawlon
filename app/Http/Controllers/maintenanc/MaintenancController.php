@@ -62,26 +62,28 @@ class MaintenancController extends Controller
             for ($i = 0; $i < count($spareParts); $i++) {
                 // Get The Car Part
 
-                $checkCarPart = Purchase::where('quantity','!=','0')
+                $checkCarPart = Purchase::where('user_id',auth()->user()->id)->where('quantity','!=','0')
                                         ->where('car_part_id', $spareParts[$i]['car_part_id'])->first();
-                  
-                $requestCount = $spareParts[$i]['sparePartCount'];
-               $carPart_id = $spareParts[$i]['car_part_id'];
-                //  return  $checkCarPart->quantity;
-                  
-                $totalQuantityCarPart = $checkCarPart->quantity;
-                
-                 if($checkCarPart->quantity <= $requestCount){
-                    return response()->json(['faild', 'الكمية المطلوبة غير متوفرة']);
+                  if ($checkCarPart) {
+                      $requestCount = $spareParts[$i]['sparePartCount'];
+                      $carPart_id = $spareParts[$i]['car_part_id'];
+                      // return $checkCarPart->quantity;
 
-                   }
+                      $totalQuantityCarPart = $checkCarPart->quantity;
 
-                    $updateCountCarPart = $totalQuantityCarPart - $requestCount;
+                      if($checkCarPart->quantity <= $requestCount){ return response()->json(['faild', 'الكمية المطلوبة
+                        غير متوفرة']);
 
-                    $updateStore = Purchase::
-                where('car_part_id', $carPart_id)
-                ->where('id',$checkCarPart->id)->
-                update(['quantity' =>$updateCountCarPart]);
+                        }
+
+                        $updateCountCarPart = $totalQuantityCarPart - $requestCount;
+
+                        $updateStore = Purchase::
+                        where('car_part_id', $carPart_id)
+                        ->where('id',$checkCarPart->id)->
+                        update(['quantity' =>$updateCountCarPart]); 
+                  }
+              
                    
                
 
