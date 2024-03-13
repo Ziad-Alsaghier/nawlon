@@ -148,7 +148,6 @@ class MaintenancController extends Controller
                 )->delete();
             if ($deleteMaint) {
                 $deleteMaintenance = Maintenance::where('id', $id)->first();
-              return   $deleteMaintenance->maintenance_car_parts();
 
                 if ($deleteMaintenance) {
                     session()->flash('success', 'تم الغاء الصيانة ');

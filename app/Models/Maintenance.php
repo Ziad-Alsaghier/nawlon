@@ -29,7 +29,7 @@ class Maintenance extends Model
      return $this->hasMany(ServicesMaintanence::class);
         
      }
-     public function getDateAttribute($date){
+     public function getCreatedAtAttribute($date){
      return date('d-m-Y',strtotime($date));
      }
     
