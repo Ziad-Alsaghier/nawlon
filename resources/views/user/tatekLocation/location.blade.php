@@ -222,6 +222,11 @@ $user='Minue';
                                     placeholder="اكتب اسم المكان الجديد" aria-describedby="subscribe" name="name" />
                                 <button class="btn btn-primary" type="submit" id="subscribe">اضافة</button>
                             </div>
+                            <div class="input-group input-group-lg mb-3">
+                                <input type="text" class="form-control bg-white border-0"
+                                    placeholder="اكتب تفاصل المكان" aria-describedby="subscribe" name="address" />
+                                <button class="btn btn-primary" type="submit" id="subscribe">اضافة</button>
+                            </div>
 
                         </form>
 

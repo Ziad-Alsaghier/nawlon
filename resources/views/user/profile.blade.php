@@ -132,8 +132,12 @@ $user='Minue';
                                     class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img"
                                     src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
                             </label>
-                            <input type="file" name="profile_image" class="form-control d-none" id="profile_image" />
+                            <form method="post" enctype="multipart/form-data" id="profile-setup">
+                                <input type="file" name="profile_image" class="form-control d-none"
+                                    id="profile_image" />
 
+                                <button type="submit">تعديل</button>
+                            </form>
                         </div>
                         <div class="flex-grow-1 mt-3 mt-sm-5">
                             <div
@@ -191,7 +195,7 @@ $user='Minue';
                             </li>
                             <li class="d-flex align-items-center mb-3">
                                 <i class="bx bx-check"></i><span class="fw-semibold mx-2">الأيميل:</span>
-                                <span>{{ auth()->user()->name }}</span>
+                                <span>{{ auth()->user()->email }}</span>
                             </li>
                             <li class="d-flex align-items-center mb-3">
                                 <i class="bx bx-star"></i><span class="fw-semibold mx-2">نوع المستخدم:</span>
@@ -336,7 +340,6 @@ $user='Minue';
 
 <script src="../assets/vendor/libs/i18n/i18n.js"></script>
 <script src="../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-
 
 
 

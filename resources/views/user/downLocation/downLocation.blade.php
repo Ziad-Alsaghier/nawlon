@@ -191,6 +191,14 @@ $user='Minue';
                                                     <span>{{ $message }}</span>
                                                     @enderror
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="address">تفاصيل العنوان</label>
+                                                    <input type="text" value='{{ $location->name }}' name="address"
+                                                        class="form-control" id="address" />
+                                                    @error('name')
+                                                    <span>{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                                 <input type="hidden" name="location_id" value="{{$location->id}}">
                                                 <div class="row">
                                                     <div class="col-12">

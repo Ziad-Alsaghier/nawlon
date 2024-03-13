@@ -624,30 +624,30 @@ $configData = Helper::appClasses();
 
 </aside>
 <script>
-    $(document).ready(function() {
-        $('#profile_image').on('change', function() {
-            var reader = new FileReader();
+    // $(document).ready(function() {
+    //     $('#profile_image').on('change', function() {
+    //         var reader = new FileReader();
 
-            reader.onload = (e) => {
-                $("#image-profile-prev").attr("src", e.target.ressult)
-            }
-            reader.readAsDataURL(this.files[0]);
+    //         reader.onload = (e) => {
+    //             $("#image-profile-prev").attr("src", e.target.ressult)
+    //         }
+    //         reader.readAsDataURL(this.files[0]);
 
 
 
-            //     $.ajax({
-            //       type:'GET',
-            //       url:'{{ route('updateImage') }}',
-            //       dataType:"json",
-            //       data:{
-            //         'logoImage':image,
+    //         //     $.ajax({
+    //         //       type:'GET',
+    //         //       url:'{{ route('updateImage') }}',
+    //         //       dataType:"json",
+    //         //       data:{
+    //         //         'logoImage':image,
 
-            //       },
-            //       success: function(respnse){
-            //           console.log(respnse);
-            //       },
-            // });
-            console.log("image");
-        });
-    });
+    //         //       },
+    //         //       success: function(respnse){
+    //         //           console.log(respnse);
+    //         //       },
+    //         // });
+    //         console.log("image");
+    //     });
+    // });
 </script>

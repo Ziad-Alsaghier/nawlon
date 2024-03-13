@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class downLocationController extends Controller
 {
 
-    protected $newLocation=['name','user_id'];
+    protected $newLocation=['name','address','user_id'];
     // This First Controller With Dwonload Location V1
     public function index(){
         $locations = DownLocation::where('user_id',auth()->user()->id)->get();
@@ -21,7 +21,7 @@ class downLocationController extends Controller
 
         public function locationAdd(Request $request){
         $newDataLocation =$request->validate(
-            ['name'=>'required',]
+            ['name'=>'required','address'=>'required']
         );
 $createNewLocation =$request->only($this->newLocation);
         $createNewLocation['user_id'] = auth()->user()->id;
@@ -36,9 +36,7 @@ $createNewLocation =$request->only($this->newLocation);
         public function locationEdit(Request $request){
 
 
-        $newDataLocation =$request->validate(
-            ['name'=>'required',]
-        );
+      
 $createNewLocation =$request->only($this->newLocation);
         $createNewLocation['user_id'] = auth()->user()->id;
         $addNewLocation = DownLocation::where('user_id',auth()->user()->id)->

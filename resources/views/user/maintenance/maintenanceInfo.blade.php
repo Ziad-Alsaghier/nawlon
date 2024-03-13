@@ -147,13 +147,15 @@ $user = 'Minue';
                         <div
                             class="d-flex justify-content-between flex-xl-row flex-md-column flex-sm-row flex-column p-sm-3 p-0">
                             <div class="mb-xl-0 mb-4">
-                                <div class="d-flex svg-illustration mb-3 gap-2">
-                                    <img src="{{ asset(" ../../public/images/cars/" . $maintanences->car->image) }}"
+                                <div class="d-flex justify-content-center svg-illustration mb-3 gap-2">
+
+                                    <img src="{{ asset(" ../../public/images/customer/" . auth()->user()->logoImage) }}"
                                     width="200px" alt="">
                                 </div>
 
                             </div>
                             <div>
+
                                 <h4>رقم &nbsp; #{{ $maintanences->id }}</h4>
                                 <div class="mb-2">
                                     <span class="me-1">بداية الصيانة :</span>
@@ -169,7 +171,10 @@ $user = 'Minue';
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
+                        <img src="{{ asset(" ../../public/images/cars/" . $maintanences->car->image) }}"
+                        width="" alt="" >
                         <div class="row p-sm-3 p-0">
+
                             <div class="col-xl-6 col-md-12 col-sm-5 col-12 mb-xl-0 mb-md-4 mb-sm-0 mb-4">
                                 <h6 class="pb-2">تفاصيل:السيارة</h6>
                                 <p class="mb-1">اسم السيارة : {{ $maintanences->car->cars_name }}</p>

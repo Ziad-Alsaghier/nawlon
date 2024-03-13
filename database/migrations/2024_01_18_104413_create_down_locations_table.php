@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('down_locations', function (Blueprint $table) {
             $table->id();
             $table->string('name'); 
+            $table->string('address');
            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

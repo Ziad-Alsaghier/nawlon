@@ -10,6 +10,7 @@ class DownLocation extends Model
     use HasFactory;
     protected $fillable= [
         'name',
+        'address',
         'user_id'
     ];
 
