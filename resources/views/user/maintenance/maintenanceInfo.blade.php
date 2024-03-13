@@ -149,7 +149,8 @@ $user = 'Minue';
                             <div class="mb-xl-0 mb-4">
                                 <div class="d-flex justify-content-center svg-illustration mb-3 gap-2">
 
-                                    <img src="{{ asset(" ../../public/images/customer/" . auth()->user()->logoImage) }}"
+                                    <img width="150px" src="{{ asset(" ../../public/images/customer/" .
+                                        auth()->user()->logoImage) }}"
                                     width="200px" alt="">
                                 </div>
 
@@ -171,7 +172,7 @@ $user = 'Minue';
                     </div>
                     <hr class="my-0" />
                     <div class="card-body">
-                        <img src="{{ asset(" ../../public/images/cars/" . $maintanences->car->image) }}"
+                        <img width="150px" src="{{ asset(" ../../public/images/cars/" . $maintanences->car->image) }}"
                         width="" alt="" >
                         <div class="row p-sm-3 p-0">
 
