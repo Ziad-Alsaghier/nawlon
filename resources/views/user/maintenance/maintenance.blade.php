@@ -228,7 +228,7 @@ $user='Minue';
                     <td>
 
                         <span class="badge bg-label-primary me-1">
-                            {{ $maintenance->created_at->format('Y-M-d') }}
+                            {{ $maintenance->created_at }}
                         </span>
                     </td>
                     <td>
