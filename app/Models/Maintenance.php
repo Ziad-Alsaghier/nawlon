@@ -25,7 +25,7 @@ class Maintenance extends Model
      return $this->belongsToMany(CarPart::class,'maintenance_car_parts')->withTimestamps();
         
      }
-     function sevicesMaintanenc(){
+     function srevicesMaintanenc(){
      return $this->hasMany(ServicesMaintanence::class);
         
      }

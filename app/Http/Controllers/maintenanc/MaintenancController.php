@@ -93,7 +93,7 @@ class MaintenancController extends Controller
                    $maintanence_id=$Maintanenc->id;
             // return $resultCheck;
                 $insertMaintanence = Maintenance::findOrFail($maintanence_id);
-                    $insertMaintanence->car_parts()->syncWithoutDetaching($spareParts[$i]['car_part_id']);
+                    // $insertMaintanence->car_parts()->syncWithoutDetaching($spareParts[$i]['car_part_id']);
                     $insertMaintanence->car_parts()->attach(
                     $spareParts[$i]['car_part_id'],['sparePartCount'=>$spareParts[$i]['sparePartCount']]);
                     $user_id = auth()->user()->id;

@@ -160,11 +160,11 @@ $user = 'Minue';
                                 <h4>رقم &nbsp; #{{ $maintanences->id }}</h4>
                                 <div class="mb-2">
                                     <span class="me-1">بداية الصيانة :</span>
-                                    <span class="fw-semibold">{{ $maintanences->created_at->format('d-m-Y') }}</span>
+                                    <span class="fw-semibold">{{ $maintanences->created_at }}</span>
                                 </div>
                                 <div>
                                     <span class="me-1">انتهاء الصيانة:</span>
-                                    <span class="fw-semibold">{{ $maintanences->updated_at->format('d-m-Y')
+                                    <span class="fw-semibold">{{ $maintanences->updated_at
                                         }}</span>
                                 </div>
                             </div>
@@ -188,11 +188,11 @@ $user = 'Minue';
                                     <tbody>
                                         <tr>
                                             <td class="pe-3">بداية الصيانة:</td>
-                                            <td>{{ $maintanences->created_at->format('d-m-Y') }}</td>
+                                            <td>{{ $maintanences->created_at }}</td>
                                         </tr>
                                         <tr>
                                             <td class="pe-3">تاريخ الانتهاء :</td>
-                                            <td>{{ $maintanences->updated_at->format('d-m-Y')
+                                            <td>{{ $maintanences->updated_at
                                                 }}</td>
                                         </tr>
 

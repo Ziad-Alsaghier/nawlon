@@ -11,6 +11,7 @@ use App\Models\Employee;
 use App\Models\Maintenance;
 use App\Models\Nawlone;
 use App\Models\Purchase;
+use App\Models\ServicesMaintanence;
 use Illuminate\Support\Facades\Auth;
 
 class NawlonApiController extends Controller
@@ -157,14 +158,21 @@ class NawlonApiController extends Controller
                 if (Auth::check()) {
                         // Start Get Data About mintanence With Car  
                         $maintainence = Maintenance::where('user_id', $request->user()->id)
-                                ->with('car')->with('sevicesMaintanenc')
-                                ->with('car_parts')
-                                ->with('sevicesMaintanenc')
+                                ->with('car')
+                              
                                 ->get();
                                 // Start Return response data Of /_____Maintanence______\
+                        for ($i=0; $i < count($maintainence); $i++) {
+                                
+                                $servicesMaintanince = ServicesMaintanence::where('user_id', auth()->user()->id)
+                                        ->where('maintenance_id', $maintainence[$i]['id'])->get();
+                        }
+                        
                         return response()->json([
                                 'success' => 'Welcom To Nawlon for Maintanence',
                                 ['maintanence' => $maintainence],
+                                ['maintanenceSevices' => $servicesMaintanince],
+                                
                         ]);
                 }
         }
