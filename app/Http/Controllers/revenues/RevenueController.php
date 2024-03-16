@@ -5,6 +5,7 @@ namespace App\Http\Controllers\revenues;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\CategoryRevenues;
+use App\Models\Nawlone;
 use App\Models\revenue;
 use Illuminate\Http\Request;
 
@@ -22,8 +23,11 @@ class RevenueController extends Controller
     {
         $revenues = revenue::where('user_id', auth()->user()->id)->get();
         $categoryRevenues = CategoryRevenues::where('user_id', auth()->user()->id)->get();
-        return view('user.revenue.revenue', compact('revenues', 'categoryRevenues'));
+        $nawlonDone = Nawlone::where('user_id', auth()->user()->id)
+                                ->where('status','1')->get();
+        return view('user.revenue.revenue', compact('revenues', 'nawlonDone' ,'categoryRevenues'));
     }
+
 
 
 

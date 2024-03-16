@@ -47,4 +47,8 @@ class Car extends Model
         {
                 return $this->hasMany(Nawlone::class)->orderBy('created_at', 'desc');
         }
+
+         public function getCreatedAtAttribute($date){
+         return date('d-m-Y',strtotime($date));
+         }
 }
