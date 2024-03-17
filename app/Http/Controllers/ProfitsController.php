@@ -15,6 +15,8 @@ class ProfitsController extends Controller
         for ($i=0; $i <count($nawlons) ; $i++) {
             $totalNawlon= +$nawlons[$i]['nawlone_price'];
             }
+            $nawlons = Nawlone::where('id',auth()->user()->id)->get();
+            
         return view('user.profits.profits',compact('nawlons','totalNawlon'));
 
     }

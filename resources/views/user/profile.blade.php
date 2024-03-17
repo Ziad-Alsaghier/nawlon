@@ -114,9 +114,7 @@ $user='Minue';
     <!-- Content -->
 
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 breadcrumb-wrapper mb-4">
-            <span class="text-muted fw-light">User Profile /</span> Profile
-        </h4>
+
 
         <!-- Header -->
         <div class="row">
@@ -132,12 +130,7 @@ $user='Minue';
                                     class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img"
                                     src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
                             </label>
-                            <form method="post" enctype="multipart/form-data" id="profile-setup">
-                                <input type="file" name="profile_image" class="form-control d-none"
-                                    id="profile_image" />
 
-                                <button type="submit">تعديل</button>
-                            </form>
                         </div>
                         <div class="flex-grow-1 mt-3 mt-sm-5">
                             <div
@@ -157,29 +150,6 @@ $user='Minue';
         </div>
         <!--/ Header -->
 
-        <!-- Navbar pills -->
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="nav nav-pills flex-column flex-sm-row mb-4">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>
-                            Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages-profile-teams.html"><i class="bx bx-group me-1"></i> Teams</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages-profile-projects.html"><i class="bx bx-grid-alt me-1"></i>
-                            Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="pages-profile-connections.html"><i class="bx bx-link-alt me-1"></i>
-                            Connections</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!--/ Navbar pills -->
 
         <!-- User Profile Content -->
         <div class="row">
@@ -246,80 +216,74 @@ $user='Minue';
                 <!-- Activity Timeline -->
 
                 <!--/ Activity Timeline -->
-                <div class="row">
+                <div class="row fv-plugins-icon-container">
+                    <div class="col-md-12">
+                        <ul class="nav nav-pills flex-column flex-md-row mb-3">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="javascript:void(0);"><i class="bx bx-user me-1"></i>
+                                    Account</a>
+                            </li>
 
 
-                </div>
-                <!-- Projects table -->
-                <div class="card">
-                    <div class="card-datatable table-responsive">
-                        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer">
-                            <div class="card-header pb-0 pt-sm-0">
-                                <div class="head-label text-center">
-                                    <h5 class="card-title mb-0">Projects</h5>
-                                </div>
-                                <div class="d-flex justify-content-center justify-content-md-end">
-                                    <div id="DataTables_Table_0_filter" class="dataTables_filter"><label>Search:<input
-                                                type="search" class="form-control" placeholder=""
-                                                aria-controls="DataTables_Table_0"></label></div>
-                                </div>
-                            </div>
-                            <table class="datatables-projects border-top table dataTable no-footer dtr-column collapsed"
-                                id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
-                                <thead>
-                                    <tr>
-                                        <th class="control sorting_disabled" rowspan="1" colspan="1"
-                                            style="width: 7.1125px;" aria-label=""></th>
-                                        <th class="sorting_disabled dt-checkboxes-cell dt-checkboxes-select-all"
-                                            rowspan="1" colspan="1" style="width: 7.75px;" data-col="1" aria-label="">
-                                            <input type="checkbox" class="form-check-input">
-                                        </th>
-                                        <th class="sorting sorting_desc" tabindex="0" aria-controls="DataTables_Table_0"
-                                            rowspan="1" colspan="1" style="width: 52.25px;" aria-sort="descending"
-                                            aria-label="Name: activate to sort column ascending">Name</th>
-                                        <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1"
-                                            colspan="1" style="width: 68.025px;"
-                                            aria-label="Leader: activate to sort column ascending">Leader</th>
-                                        <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 49.975px;"
-                                            aria-label="Team">Team</th>
-                                        <th class="w-px-200 sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                            rowspan="1" colspan="1" style="width: 200px;"
-                                            aria-label="Status: activate to sort column ascending">Status</th>
-                                        <th class="sorting_disabled dtr-hidden" rowspan="1" colspan="1"
-                                            style="width: 75.6875px; display: none;" aria-label="Actions">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr class="odd">
-                                        <td valign="top" colspan="6" class="dataTables_empty">Loading...</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div class="row mx-2">
-                                <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                        aria-live="polite">Showing 0 to 0 of 0 entries</div>
-                                </div>
-                                <div class="col-sm-12 col-md-6">
-                                    <div class="dataTables_paginate paging_simple_numbers"
-                                        id="DataTables_Table_0_paginate">
-                                        <ul class="pagination">
-                                            <li class="paginate_button page-item previous disabled"
-                                                id="DataTables_Table_0_previous"><a href="#"
-                                                    aria-controls="DataTables_Table_0" data-dt-idx="previous"
-                                                    tabindex="0" class="page-link">Previous</a></li>
-                                            <li class="paginate_button page-item next disabled"
-                                                id="DataTables_Table_0_next"><a href="#"
-                                                    aria-controls="DataTables_Table_0" data-dt-idx="next" tabindex="0"
-                                                    class="page-link">Next</a></li>
-                                        </ul>
+                        </ul>
+                        <div class="card mb-4">
+                            <h5 class="card-header">Profile Details</h5>
+                            <!-- Account -->
+
+                            <hr class="my-0">
+                            <div class="card-body">
+                                <form id="formAccountSettings" method="POST" action="editProfile"
+                                    onsubmit="return false" class="fv-plugins-bootstrap5 fv-plugins-framework"
+                                    novalidate="novalidate">
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                                            <label for="firstName" class="form-label">الاسم</label>
+                                            <input class="form-control" type="text" id="firstName" name="name"
+                                                value="{{ auth()->user()->name }}" autofocus="">
+                                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                                        </div>
+                                        <div class="mb-3 col-md-6 fv-plugins-icon-container">
+                                            <label for="email" class="form-label">Last Name</label>
+                                            <input class="form-control" type="text" name="email" id="email"
+                                                value="{{ auth()->user()->email }}">
+                                            <div class="fv-plugins-message-container invalid-feedback"></div>
+                                        </div>
+
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label" for="phoneNumber">Phone Number</label>
+                                            <div class="input-group input-group-merge">
+                                                <span class="input-group-text">US (+1)</span>
+                                                <input type="text" id="phoneNumber" name="phoneNumber"
+                                                    class="form-control" placeholder="{{ auth()->user()->phone }}">
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="email" class="form-label">رقم التليفون الثاني</label>
+                                                <input class="form-control" type="text" id="email" name="email"
+                                                    value="{{ auth()->user()->parent_phone }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label for="address" class="form-label">تغيير كلمة المرور</label>
+                                            <input type="text" class="form-control" id="address" name="address"
+                                                placeholder="Address">
+                                        </div>
+                                        <input type="file" name="logoImage" class="form-control " id="logoImage" />
+
+
                                     </div>
-                                </div>
+                                    <div class="mt-2">
+                                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                        <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                                    </div>
+                                    <input type="hidden">
+                                </form>
                             </div>
+                            <!-- /Account -->
                         </div>
+
                     </div>
                 </div>
-                <!--/ Projects table -->
+
             </div>
         </div>
         <!--/ User Profile Content -->

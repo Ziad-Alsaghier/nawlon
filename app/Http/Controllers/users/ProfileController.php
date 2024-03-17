@@ -18,11 +18,10 @@ class ProfileController extends Controller
         
         }
         public function editProfile(Request $request){
-         $updateLogo = $request->only($this->requestData);
-       $img_name = null;
+          $updateLogo = $request->only($this->requestData);
 
  $logoImage = null;
- extract($_FILES['logoImage']);
+  extract($_FILES['logoImage']);
         if (!empty($name)) {
             $extension_arr = ['png', 'jpg', 'jpeg', 'svg', 'webp'];
             $extension = explode('.', $name);
