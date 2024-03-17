@@ -171,7 +171,6 @@ class NawlonApiController extends Controller
                         return response()->json([
                                 'success' => 'Welcom To Nawlon for Maintanence',
                                 ['maintanence' => $maintainence],
-                                ['maintanenceSevices' => $servicesMaintanince],
 
                         ]);
                 }
