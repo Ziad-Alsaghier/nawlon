@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\Car;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Driver;
-use App\Models\driverFollow;
-use App\Models\Employee;
-use App\Models\Maintenance;
 use App\Models\Nawlone;
+use App\Models\Employee;
 use App\Models\Purchase;
+use App\Models\Maintenance;
+use App\Models\driverFollow;
+use Illuminate\Http\Request;
 use App\Models\ServicesMaintanence;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class NawlonApiController extends Controller
@@ -39,8 +39,6 @@ class NawlonApiController extends Controller
 
                         ]);
                 }
-
-
         }
 
 
@@ -82,7 +80,7 @@ class NawlonApiController extends Controller
                                 ->get();
                         // ============This data Details About Done Nawlon==============================
 
-                        if ($user) {// if user Authantcated Return This Data
+                        if ($user) { // if user Authantcated Return This Data
                                 return response()->json([
                                         'success' => 'Data Returned Successfuly',
 
@@ -146,7 +144,6 @@ class NawlonApiController extends Controller
                                 ['storeNawlon' => $storeNawlone]
 
                         ], 200);
-
                 }
         }
 
@@ -156,25 +153,27 @@ class NawlonApiController extends Controller
         public function maintanenceApi(Request $request)
         {
                 if (Auth::check()) {
-                        // Start Get Data About mintanence With Car  
+                        // Start Get Data About mintanence With Car
                         $maintainence = Maintenance::where('user_id', $request->user()->id)
+                                ->with('srevicesMaintanenc')
+                                ->with('car_parts')
                                 ->with('car')
-                              
                                 ->get();
-                                // Start Return response data Of /_____Maintanence______\
-                        for ($i=0; $i < count($maintainence); $i++) {
-                                
-                                $servicesMaintanince = ServicesMaintanence::where('user_id', auth()->user()->id)
+                        // Start Return response data Of /_____Maintanence______\
+                        for ($i = 0; $i < count($maintainence); $i++) {
+                                $servicesMaintanince = ServicesMaintanence::where(
+                                        'user_id',
+                                        auth()->user()->id
+                                )
                                         ->where('maintenance_id', $maintainence[$i]['id'])->get();
                         }
-                        
+
                         return response()->json([
                                 'success' => 'Welcom To Nawlon for Maintanence',
                                 ['maintanence' => $maintainence],
                                 ['maintanenceSevices' => $servicesMaintanince],
-                                
+
                         ]);
                 }
         }
-
 }

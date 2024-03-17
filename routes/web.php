@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfitsController;
 use App\Models\Expense;
 use App\Models\Category;
 use App\Models\UpdateLicense;
@@ -308,6 +309,11 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
                 Route::post('Location.add','store')->name('storeLocation');
                 Route::get('Location.deleteLocation/{id}','deleteLocation')->name('deleteLocation');
                 Route::post('Location.editLocation','editLocation')->name('editTatekLocation');
+
+        });
+        Route::controller(ProfitsController::class)->prefix('Tatek')->group(function () {
+                Route::get('profits','index')->name('profits');
+         
 
         });
                         

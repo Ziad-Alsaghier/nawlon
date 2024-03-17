@@ -476,6 +476,11 @@ $configData = Helper::appClasses();
 
                             <div> جميع الأيرادات </div>
                         </a>
+                        <a href="{{ route('profits') }}" class="menu-link ">
+                            <i class="fa-solid fa-plus m-md-1"></i>
+
+                            <div> المكسب و الخسارة</div>
+                        </a>
                         {{-- <a href="{{ route('packageList')}}" class="menu-link ">
                             <i class="fa-solid fa-users mx-1"></i>
 
