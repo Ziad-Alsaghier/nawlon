@@ -43,12 +43,24 @@ class Car extends Model
         {
                 return $this->hasMany(Maintenance::class, 'car_id');
         }
+        function maintenances_price()
+        {
+                return $this->hasMany(Maintenance::class, 'car_id')->sum('maintenances_price');
+        }
         public function nawlon()
         {
                 return $this->hasMany(Nawlone::class)->orderBy('created_at', 'desc');
+        }
+        public function nawlon_price()
+        {
+                return $this->hasMany(Nawlone::class)->sum('nawlone_price');
         }
 
          public function getCreatedAtAttribute($date){
          return date('d-m-Y',strtotime($date));
          }
+         public function taxes(){
+         return $this -> hasMany(tax::class)->sum('total_tex');
+         }
+       
 }

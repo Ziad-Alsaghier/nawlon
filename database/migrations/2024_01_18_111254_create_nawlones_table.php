@@ -30,6 +30,8 @@ return new class extends Migration
                         // Can Be Null And Debend Name Location
                         $table->string('location_tatek_name'); // Debend Name Tatek Location Where (location_tatek_id) Embty 
                         $table->string('tatek_location');
+                        $table->integer('returnedCustody')->nullable();
+                        $table->integer('returnedSolar')->nullable();
 
                           $table->foreignId('user_id')->constrained();
                           $table->foreignId('driver_id')->constrained();

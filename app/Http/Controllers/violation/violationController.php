@@ -24,7 +24,7 @@ class violationController extends Controller
     ];
         public function index (){
 
-            $cars = Car::orderBy('cars_name', 'ASC')->get();
+            $cars = Car::where('user_id',auth()->user()->id)->withTrached()->orderBy('cars_name', 'ASC')->get();
             $drivers = Driver::orderBy('driv_name', 'ASC')->get();
  
         return view('user.violation.violationAdd',compact('cars','drivers'));
@@ -66,7 +66,7 @@ class violationController extends Controller
         public function violationList()
         {
 
-        $cars = Car::all();
+        $cars = Car::where('user_id',auth()->user()->id)->orderBy('cars_name', 'ASC')->get();
         $carVaiolations = ViolationCar::all();
         $driverVaiolations = ViolationDriver::all();
               

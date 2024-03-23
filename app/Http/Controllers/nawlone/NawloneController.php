@@ -27,6 +27,7 @@ class NawloneController extends Controller
         'custody',
         'solar',
         'status',
+        'returned',
         'user_id',
     ];
     // This First Controller With Nawlone Se3r Elna2la Elwa7da
@@ -97,13 +98,13 @@ class NawloneController extends Controller
     public function editStatus(Request $request)
     {
 
-        $updateStatus = $request->only('custody', 'solar', 'car_id', 'status');
+        $updateStatus = $request->only('returnedCustody', 'returnedSolar', 'car_id', 'status');
 
         $nawlone = Nawlone::where('id', $request->nawlone_id)->first();
 
         $updateStatus['status'] = $request->status;
 
-        if ($request->solar < $nawlone->solar) {
+        if ($request->returnedSolar < $nawlone->solar) {
             session()->flash('faild', 'لا يمكن ادخال هذه القيمة');
             return redirect()->back();
         }

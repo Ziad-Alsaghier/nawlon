@@ -23,7 +23,7 @@ class MaintenancController extends Controller
     public function index()
     {
         $maintenances = Maintenance::where('user_id', auth()->user()->id)->With('car_parts')->get();
-        $cars = Car::where('user_id', auth()->user()->id)->get();
+        $cars = Car::where('user_id', auth()->user()->id)->withTrashed()->get();
         $CarParts = CarPart::where('user_id', auth()->user()->id)->get();
         $categories = Category::where('user_id', auth()->user()->id)->get();
 
@@ -33,7 +33,7 @@ class MaintenancController extends Controller
     public function addMaintan()
     {
         $CarParts = CarPart::where('user_id', auth()->user()->id)->get();
-        $cars = Car::where('user_id', auth()->user()->id)->get();
+        $cars = Car::where('user_id', auth()->user()->id)->withTrashed()->get();
         $categories = Category::where('user_id', auth()->user()->id)->get();
 
         return view('user.maintenance.maintanenceAdd', compact('cars', 'categories', 'CarParts'));

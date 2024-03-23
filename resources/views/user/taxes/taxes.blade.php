@@ -304,42 +304,50 @@ $user = 'Minue';
 
 
                                     <div class="mb-3">
-                                        <label class="form-label" for="basic-default-country">اختر سيارة </label>
-                                        <select class="form-select" id="basic-default-country" name="car_id">
-                                            <option value="">اختار السيارة </option>
-                                            @foreach ($cars as $car)
-                                            <option value="{{ $car->id }}">{{ $car->cars_name }}
-                                            </option>
+                                        <label class="form-label" for="category">اختيار فئة السيارة</label>
+                                        <select class="form-select" id="category" name="category_id">
+                                            <option value="">اختيار فئة السيارة</option>
+                                            @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category }}</option>
+
                                             @endforeach
+
                                         </select>
-                                        @error('car_id')
-                                        <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-
-                                    <div class="mb-3">
-                                        <label class="form-label" for="total_tex"> المبلغ </label>
-                                        <input type="number" name="total_tex" class="form-control" id="total_tex"
-                                            placeholder=" الأيراد " />
-                                        @error('total_tex')
-                                        <span>{{ $message }}</span>
+                                        @error('category_id')
+                                        <span class="error">{{ $message }}</span class="error">
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label class="form-label" for="date">تاريخ الدفع</label>
-                                        <input type="date" name="date" class="form-control" id="date"
-                                            placeholder="اكتب تاريخ دفع المصروف " />
-                                        @error('date')
-                                        <span>{{ $message }}</span>
-                                        @enderror
-                                    </div>
 
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <button type="submit" class="btn btn-primary">اضافة</button>
+                                        <label class="form-label" for="basic-default-country">اختيار السيارة</label>
+                                        <select class="form-select name-car" id="basic-default-car car" name="car_id">
+                                            <option value="">اختيار السيارة</option>
+
+
+                                        </select>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="total_tex"> المبلغ </label>
+                                            <input type="number" name="total_tex" class="form-control" id="total_tex"
+                                                placeholder=" الأيراد " />
+                                            @error('total_tex')
+                                            <span>{{ $message }}</span>
+                                            @enderror
                                         </div>
-                                    </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="date">تاريخ الدفع</label>
+                                            <input type="date" name="date" class="form-control" id="date"
+                                                placeholder="اكتب تاريخ دفع المصروف " />
+                                            @error('date')
+                                            <span>{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary">اضافة</button>
+                                            </div>
+                                        </div>
 
                                 </form>
                             </div>
@@ -368,6 +376,46 @@ $user = 'Minue';
                     });
                 });
             })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+               $('#category').change(function(){
+                    category = $('#category').val();
+                    car = $('#car').val();
+                    console.log(category);
+                $.ajax({
+                type: 'GET',
+                url: '{{ route('filterCarCategory') }}',
+                dataType: "json",
+                data: {
+                'category_id': category,
+             'user_id': {{ auth()->user()->id }},
+                },
+                success: function(response) {
+                console.log(response);
+                        car = response.car_data;
+                        
+                        var carDataDf = "<option value=''>اختيار السيارة</option>";
+                        $(".name-car option").hide();
+                        $(".name-car").val("اختيار السيارة");
+                        $(car).each((value, ele) => {
+                            var carData = `<option value="${ele.id}">${ele.cars_name}</option>`;
+                            
+                            $(".name-car").append(carData);
+                        });
+                
+              
+                },
+                error: function(xhr) {
+                console.log("noooo");
+                }
+                
+            });
+                    
+                    
+                });
+            });
     </script>
     @endsection
 

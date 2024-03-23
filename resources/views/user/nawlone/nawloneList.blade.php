@@ -144,7 +144,7 @@ $user = 'Minue';
                 @if($nawlone->car->deleted_at == null)
 
                 @endif
-                <tr>
+                <tr>    
                     <td>
 
 
@@ -274,14 +274,14 @@ $user = 'Minue';
                                         <input type="hidden" value="{{ $nawlone->car->id }}" name="car_id">
                                         <label for="nameWithTitle" class="form-label">عهدة</label>
                                         <input type="number" value="{{ $nawlone->custody }}" id="nameWithTitle"
-                                            class="form-control" value="" name="custody">
+                                            class="form-control" value="" name="returnedCustody">
                                     </div>
                                 </div>
                                 <div class="row g-2">
                                     <div class="col mb-0">
                                         <label for="emailWithTitle" class="form-label">سولار</label>
                                         <input type="number" value="{{ $nawlone->solar }}" id="emailWithTitle"
-                                            class="form-control" value='' name="solar">
+                                            class="form-control" value='' name="returnedSolar">
                                     </div>
 
                                 </div>

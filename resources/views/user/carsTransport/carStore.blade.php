@@ -172,7 +172,7 @@ $user = 'Minue';
                     <td>
 
                         @if($car->deleted_at)
-                        <a class="btn btn-danger text-black" data-bs-toggle="modal"
+                        <a class="btn btn-danger text-black" data-bs-toggle="modal" href=""
                             data-bs-target="#modalTop{{ $car->id }}">
                             <strong>
                                 السيارة خارج الخدمة

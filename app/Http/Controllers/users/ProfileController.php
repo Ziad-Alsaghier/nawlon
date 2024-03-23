@@ -10,6 +10,10 @@ class ProfileController extends Controller
 {
     // This Second Controller With Profile 
         protected $requestData= [
+            'email',
+            'name',
+            'phone',
+            'parent_phone',
             'logoImage',
         ];
 
@@ -18,7 +22,8 @@ class ProfileController extends Controller
         
         }
         public function editProfile(Request $request){
-          $updateLogo = $request->only($this->requestData);
+         
+          $updateProfile = $request->only($this->requestData);
 
  $logoImage = null;
   extract($_FILES['logoImage']);
@@ -30,12 +35,12 @@ class ProfileController extends Controller
             if (in_array($extension, $extension_arr)) {
                 $logoImage = rand(0, 1000) . now() . $name;
                 $logoImage = str_replace([' ', ':', '-'], 'X', $logoImage);
-                $updateLogo['logoImage'] = $logoImage;
+                $updateProfile['logoImage'] = $logoImage;
                 move_uploaded_file($tmp_name, 'public/images/customer/' . $logoImage);
 
             }
         }
-        $updateImage = User::where('id', auth()->user()->id)->update($updateLogo);
+        $updateImage = User::where('id', auth()->user()->id)->update($updateProfile);
 
                 if($updateImage){
             session()->flash('success', 'تم التغيير بنجاح');

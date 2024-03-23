@@ -19,7 +19,10 @@ class Nawlone extends Model
     'comsion_driver',
     'custody',
     'solar',
+    'returned',
     'user_id',
+    'returnedCustody',
+    'returnedSolar',
     ];
 
 

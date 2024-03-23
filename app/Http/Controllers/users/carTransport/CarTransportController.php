@@ -99,17 +99,23 @@ class CarTransportController extends Controller
                         return redirect()->back();
                 } else {
 
-                        $deletCar = car::where('id', $id)->delete();
+                        $deletCar = car::where('user_id',auth()->user()->id)->where('id', $id)->forceDelete();
 
                         if ($deletCar) {
                                 session()->flash('success', 'تم الغاء السيارة بنجاح');
                                 return redirect()->back();
                         }
                 }
+                return $id .'<br>'.$deletCar = car::where('user_id',auth()->user()->id)->where('id', $id)->forceDelete();
+                ;
         }
         public function softDelete($id)
         { // Start Delete Car
-
+                $carCheck = Maintenance::where('car_id',$id)->get();
+                        if($carCheck){
+                        session()->flash('faild','يجب مسج جميع الصيانات المرتبطة بهذه السيارة و اي شئ مرتبط بها');
+                        return redirect()->back();       
+                        }
                 $checkData = Car::where('id', $id)
                         ->where('status', '2')->first();
                 if ($checkData) {

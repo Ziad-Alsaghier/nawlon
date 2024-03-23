@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Models\Car;
+use App\Models\tax;
 use App\Models\Driver;
 use App\Models\Nawlone;
 use App\Models\Employee;
@@ -174,5 +175,17 @@ class NawlonApiController extends Controller
 
                         ]);
                 }
+        }
+
+
+
+
+        public function totalProfits(Request $request){
+                $user_id = $request->user()->id;
+                        $totalNawlonPrice = Nawlone::where('user_id',auth()->user()->id)->sum('nawlone_price');
+                        $taxses = tax::where('user_id', auth()->user()->id)->sum('total_tex');
+                        $maintanences = Maintenance::where('user_id',auth()->user()->id)->sum('maintenances_price');
+
+                
         }
 }

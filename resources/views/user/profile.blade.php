@@ -232,67 +232,73 @@ $user='Minue';
 
                             <hr class="my-0">
                             <div class="card-body">
-                                <form id="formAccountSettings" method="POST" action="editProfile"
-                                    onsubmit="return false" class="fv-plugins-bootstrap5 fv-plugins-framework"
-                                    novalidate="novalidate">
+                                <form id="formAccountSettings" method="POST" action="{{ route('editProfile') }}"
+                                    enctype="multipart/form-data">
+
                                     <div class="row">
+
                                         <div class="mb-3 col-md-6 fv-plugins-icon-container">
-                                            <label for="firstName" class="form-label">الاسم</label>
-                                            <input class="form-control" type="text" id="firstName" name="name"
-                                                value="{{ auth()->user()->name }}" autofocus="">
+                                            <label for="name" class="form-label">الاسم</label>
+                                            <input class="form-control" type="text" id="name" name="name"
+                                                value="{{ auth()->user()->name }}">
                                             <div class="fv-plugins-message-container invalid-feedback"></div>
                                         </div>
                                         <div class="mb-3 col-md-6 fv-plugins-icon-container">
-                                            <label for="email" class="form-label">Last Name</label>
+                                            <label for="email" class="form-label">الايميل الخاص</label>
                                             <input class="form-control" type="text" name="email" id="email"
                                                 value="{{ auth()->user()->email }}">
                                             <div class="fv-plugins-message-container invalid-feedback"></div>
                                         </div>
 
                                         <div class="mb-3 col-md-6">
-                                            <label class="form-label" for="phoneNumber">Phone Number</label>
+                                            <label class="form-label" for="phone">رقم التليفون</label>
                                             <div class="input-group input-group-merge">
-                                                <span class="input-group-text">US (+1)</span>
-                                                <input type="text" id="phoneNumber" name="phoneNumber"
-                                                    class="form-control" placeholder="{{ auth()->user()->phone }}">
-                                            </div>
-                                            <div class="mb-3 col-md-6">
-                                                <label for="email" class="form-label">رقم التليفون الثاني</label>
-                                                <input class="form-control" type="text" id="email" name="email"
-                                                    value="{{ auth()->user()->parent_phone }}">
+                                                {{-- <span class="input-group-text">US (+1)</span> --}}
+                                                <input type="text" id="phone" name="phone" class="form-control"
+                                                    value="{{ auth()->user()->phone }}">
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="address" class="form-label">تغيير كلمة المرور</label>
-                                            <input type="text" class="form-control" id="address" name="address"
-                                                placeholder="Address">
+                                            <label for="parent_phone" class="form-label">رقم التليفون
+                                                الثاني</label>
+                                            <input class="form-control" type="text" id="parent_phone"
+                                                name="parent_phone" value="{{ auth()->user()->parent_phone }}">
                                         </div>
-                                        <input type="file" name="logoImage" class="form-control " id="logoImage" />
 
 
-                                    </div>
-                                    <div class="mt-2">
-                                        <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                        <button type="reset" class="btn btn-label-secondary">Cancel</button>
-                                    </div>
-                                    <input type="hidden">
+                                        <div class='d-flex justify-content-center py-2' style="flex-direction: column;">
+                                            <label for="logoImage">
+                                                <img id="image-profile-prev"
+                                                    style="height: 130px; cursor: pointer; width: 200px;"
+                                                    src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
+                                            </label>
+                                            <input type="file" name="logoImage" class="form-control" id="logoImage" />
+                                        </div>
+                                        <div class="mt-2">
+                                            <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                            <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                                        </div>
                                 </form>
                             </div>
-                            <!-- /Account -->
+
+
+                            </form>
                         </div>
-
+                        <!-- /Account -->
                     </div>
+
                 </div>
-
             </div>
+
         </div>
-        <!--/ User Profile Content -->
     </div>
-    <!-- / Content -->
+    <!--/ User Profile Content -->
+</div>
+<!-- / Content -->
 
 
 
-    <div class="content-backdrop fade"></div>
+<div class="content-backdrop fade"></div>
 </div>
 @section('script')
 <script src="../assets/vendor/libs/jquery/jquery.js"></script>

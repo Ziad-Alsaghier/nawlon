@@ -116,54 +116,146 @@ $user='Minue';
 
 <!-- Bootstrap Table with Header - Dark -->
 
-
-<div class="card">
+<div class="card col-4 d-flex justfy-content-center">
+    <div class="card-body">
+        <div class="d-flex align-items-start justify-content-between">
+            <div class="content-left">
+                <span>الربح النهائي</span>
+                <div class="d-flex align-items-end mt-2">
+                    @if($totalProfit > 0)
+                    <h4 class="mb-0 me-2 " style="color: green">{{ $totalProfit }}</h4>
+                    <small class="text-success">(+{{ "%".round($totalProfitPercentage )}})</small>
+                    @else
+                    <h4 class="mb-0 me-2 " style="color: red">{{ $totalProfit }}</h4>
+                    <small class="text-danger">(-{{ "%". round($totalProfitPercentage) }})</small>
+                    @endif
+                </div>
+                <small>الربح الكلي</small>
+            </div>
+            <span class="badge bg-label-primary rounded p-2">
+                <i class="fa-solid fa-dollar-sign" style="color: #63E6BE;"></i>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="card  d-inline-block col-5 mx-5">
     <h5 class="card-header">جميع الايرادات</h5>
     <div class="table-responsive text-nowrap">
         <table class="table">
             <thead class="table-dark">
                 <tr>
-                    <th> #</th>
                     <th> الايرادات</th>
+                    <th> سعر الناولون</th>
 
-                    <th>#</th>
-                    <th>المصروفات</th>
+
                 </tr>
             </thead>
             <tbody class="table-border-bottom-0">
-                @foreach ($nawlons as $nawlon)
+
+                <tr>
+
+                    <td>
+                        <strong>
+                            جميع النوالون
+                        </strong>
+                    </td>
+                    <td>
+                        <strong>
+                            {{ $totalNawlonPrice }}
+                        </strong>
+                    </td>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<div class="card  d-inline-block col-5 m-5">
+
+    <h5 class="card-header">جميع المصروفات</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th> المصروفات</th>
+                    <th> المصروفات المدفوعة</th>
+
+
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
                 <tr>
                     <td>
-                        <strong>
-                            {{ $loop->iteration }}
-                        </strong>
+                        الصيانات
+                    </td>
+                    <td>
+                        {{ $totalPriceMaintanence }}
+                    </td>
+                <tr>
+                    <td>
+                        الضرائب
+                    </td>
+                    <td>
+                        {{ $taxses }}
                     </td>
 
-                    <td>
-                        <strong>
-                            جميع النوالون {{ $totalNawlon }}
-                        </strong>
-                    </td>
-                    <td>
-                        <strong>
-                        </strong>
-                    </td>
-                    <td>
-                    </td>
-                    {{-- <td>
-                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <a class="dropdown-item" data-bs-target="#basicModal{{ $revenue->id}}" data-bs-toggle="modal"
-                            href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
-                            Edit</a>
-                        <a class="dropdown-item" href="{{ route('deleteRevenue',['id'=>$revenue->id]) }}"><i
-                                class="bx bx-trash me-1"></i>
-                            Delete</a>
-                    </td> --}}
                 </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="card  d-inline-block col-12">
 
+    <h5 class="card-header">جميع المصروفات للسيارات</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th> #</th>
+                    <th> المصروفات</th>
+                    <th> المصروفات للصيانة</th>
+                    <th> المصروفات نوالون</th>
+                    <th> مصروفات الضرائب</th>
+
+
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+
+                @foreach($cars as $car)
+                <tr>
+                    <td>
+                        {{ $loop->iteration }}
+                    </td>
+                    <td>
+                        {{ $car->cars_name }}
+                    </td>
+                    <td>
+                        {{ $car->maintenances_price() }}
+                    </td>
+                    <td>
+                        @if($car->nawlon_price() == 0)
+                        <span>لا يوجد ناولون</span>
+                        @else
+                        {{ $car->nawlon_price() }}
+                        @endif
+
+                    </td>
+                    <td>
+                        @if($car->taxes() == 0)
+                        <span>لا يوجد ضرائب</span>
+                        @else
+                        {{ $car->taxes() }}
+                        @endif
+
+                    </td>
+                </tr>
                 @endforeach
+
             </tbody>
         </table>
     </div>

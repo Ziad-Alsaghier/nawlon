@@ -4,6 +4,7 @@ namespace App\Http\Controllers\taxes;
 
 use App\Models\Car;
 use App\Models\tax;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,7 +18,8 @@ class TaxesController extends Controller
 
         $taxes = tax::where('user_id', auth()->user()->id)->get();
         $cars = Car::where('user_id', auth()->user()->id)->get();
-        return view('user.taxes.taxes', compact('taxes', 'cars'));
+          $categories = Category::where('user_id', auth()->user()->id)->get();
+        return view('user.taxes.taxes', compact('taxes','categories', 'cars'));
     }
 
     public function addTaxes(Request $request)
