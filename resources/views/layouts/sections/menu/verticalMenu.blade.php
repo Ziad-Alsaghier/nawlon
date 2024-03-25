@@ -149,7 +149,7 @@ $configData = Helper::appClasses();
                     </a>
                 </li>
 
-
+                @if(auth()->user()->can('cars'))
                 {{-- Start cars --}}
                 <li class="menu-item ">
                     <a href="" class="menu-link menu-toggle">
@@ -207,7 +207,7 @@ $configData = Helper::appClasses();
                     </ul>
                     {{-- Start cars --}}
 
-
+                    @endif
                 <li class="menu-item ">
                     <a href="" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-user"></i>
@@ -308,7 +308,7 @@ $configData = Helper::appClasses();
 
 
 
-
+                    @if(auth()->user()->can('nawlon'))
                 <li class="menu-item ">
                     <a href="" class="menu-link menu-toggle">
                         <i class="fa-solid fa-truck-fast mx-1"></i>
@@ -331,7 +331,7 @@ $configData = Helper::appClasses();
 
                     </ul>
 
-
+                    @endif
 
 
 
@@ -531,6 +531,11 @@ $configData = Helper::appClasses();
                                     <i class="fa-solid fa-users mx-1"></i>
 
                                     <div> اماكن التعتيق</div>
+                                </a>
+                                <a href="{{ route('newSupAdmin') }}" class="menu-link ">
+                                    <i class="fa-solid fa-users mx-1"></i>
+
+                                    <div> اضافة مسئول جديد</div>
                                 </a>
 
                             </ul>

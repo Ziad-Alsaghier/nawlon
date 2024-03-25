@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\users\carTransport;
 
 use App\Models\Car;
+use App\Models\Nawlone;
 use App\Models\Category;
 use App\Models\Maintenance;
-use App\Models\Nawlone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Contracts\Service\Attribute\Required;
 
 class CarTransportController extends Controller
@@ -27,7 +28,10 @@ class CarTransportController extends Controller
 
         public function index()
         { // Return The View Car
-
+                       if(!Gate::allows('cars')){
+                        session()->flash('success','This Page Can not Access');
+                       
+                       }
                 $categories = Category::where('user_id', auth()->user()->id)->get();
                 $cars = Car::where('user_id', auth()->user()->id)->withTrashed()->orderBy('created_at', 'DESC')->get();
 

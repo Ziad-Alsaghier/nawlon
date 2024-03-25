@@ -15,7 +15,7 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         // This Is Protected Pages Login Where Teacher Don't Login
-        if (! $request->expectsJson()) {
+        if ( $request->expectsJson()) {
             return route('login');
         }
     }

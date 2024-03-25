@@ -57,6 +57,9 @@ class User extends Authenticatable
     public function package(){
         return  $this->belongsTo(Package::class);
       }
+    public function roles(){
+        return  $this->hasMany(RoleUser::class);
+      }
              
     
 }

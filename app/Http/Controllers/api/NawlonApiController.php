@@ -138,7 +138,7 @@ class NawlonApiController extends Controller
                 $user_id = $request->user()->id;
                 if (Auth::check()) { // Return Nawlon Store For Application 
                         $storeNawlone =
-                                Purchase::where('user_id', auth()->user()->id)->with('carPart')->get();
+                                Purchase::where('user_id', $user_id)->with('carPart')->get();
 
                         return response()->json([
                                 'success' => 'Data Returned Successfuly',
@@ -164,7 +164,7 @@ class NawlonApiController extends Controller
                         for ($i = 0; $i < count($maintainence); $i++) {
                                 $servicesMaintanince = ServicesMaintanence::where(
                                         'user_id',
-                                        auth()->user()->id
+                                        $request->user()->id
                                 )
                                         ->where('maintenance_id', $maintainence[$i]['id'])->get();
                         }
@@ -181,11 +181,26 @@ class NawlonApiController extends Controller
 
 
         public function totalProfits(Request $request){
-                $user_id = $request->user()->id;
-                        $totalNawlonPrice = Nawlone::where('user_id',auth()->user()->id)->sum('nawlone_price');
-                        $taxses = tax::where('user_id', auth()->user()->id)->sum('total_tex');
-                        $maintanences = Maintenance::where('user_id',auth()->user()->id)->sum('maintenances_price');
+               if(Auth::check()){
+                 $user_id = $request->user()->id;
+                 /* 1 - */ $totalNawlonPrice = Nawlone::where('user_id',$user_id)->sum('nawlone_price');
+                 /* 2 - */ $taxses = tax::where('user_id', $user_id)->sum('total_tex');
+                 /* 3 - */ $maintanences = Maintenance::where('user_id',$user_id)->sum('maintenances_price');
+                 $totalNawlonPrice ; // revenue
+                 /** totalExpense = taxes + maintanences */
+                 $totalExpense = $taxses + $maintanences;
+                 /** totalRevenue = Total Price Of Nawlon */
+                 $totalRevenue = $totalNawlonPrice;
 
-                
+                 $totalProfit = $totalRevenue - $totalExpense;
+                        return response()->json([
+                                'success'=>'Data Returned Successfully',
+                                'totalRevenue' => (int) $totalRevenue,
+                                'totalExpense' => $totalExpense,
+                                'totalProfit' => $totalProfit,
+                        ]);
+               }
+
         }
+        
 }

@@ -38,6 +38,7 @@ Route::controller(NawlonApiController::class)->prefix('Car')->group(function () 
     Route::get('worker','WorkerData')->name('WorkerData')->middleware('auth:sanctum');
     Route::get('store','storeNawlon')->name('storeNawlon')->middleware('auth:sanctum');
     Route::get('maintanence','maintanenceApi')->name('maintanence')->middleware('auth:sanctum');
+    Route::get('profit','totalProfits')->name('totalProfits')->middleware('auth:sanctum');
 
 });
 

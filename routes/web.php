@@ -37,6 +37,7 @@ use App\Http\Controllers\downLocation\downLocationController;
 use App\Http\Controllers\locationTatek\LocationTatekController;
 use App\Http\Controllers\reportNawlon\ReportNawlonController;
 use App\Http\Controllers\productCategory\productCategoryController;
+use App\Http\Controllers\supAdmin\UserSupAdminController;
 use App\Http\Controllers\users\carTransport\CarTransportController;
 use App\Http\Controllers\users\driverFollow\DriverFollowController;
 use App\Http\Controllers\users\carTransport\CategoryTransportController;
@@ -103,8 +104,9 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
         Route::post('Users/editProfile','editProfile')->name('editProfile');
         // Users/car
         });
-        Route::controller(CarTransportController::class)->group(function () {
-        Route::get('Users/CarsList','index')->name('carList');
+
+        Route::controller(CarTransportController::class)->middleware('can:cars')->group(function () {
+                Route::get('Users/CarsList', 'index')->name('carList');
         Route::get('Users/CarsList/{id}','statusCar')->name('statusCarList');
         Route::get('Users/Cars','carAdd')->name('AddNewCar');
         Route::post('Users/CarAddProcessing','newCarAdd')->name('processAddCar');
@@ -184,7 +186,8 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
                 });
 
 
-                Route::controller(NawloneController::class)->prefix('Nawlone')->group(function () {
+                Route::controller(NawloneController::class)->middleware('can:nawlon')->prefix('Nawlone')->group(function
+                () {
                 Route::get('nawloneAdd','index')->name('nawlone');
                 Route::post('proccessAddNawlone','addNawlone')->name('addNawlone');
                 
@@ -311,10 +314,14 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
                 Route::post('Location.editLocation','editLocation')->name('editTatekLocation');
 
         });
-        Route::controller(ProfitsController::class)->prefix('Tatek')->group(function () {
+        Route::controller(ProfitsController::class)->prefix('car')->group(function () {
                 Route::get('profits','index')->name('profits');
          
 
+        });
+
+        Route::controller(UserSupAdminController::class)->prefix('sup_admin')->group(function () {
+                Route::get('addNew','index')->name('newSupAdmin');
         });
                         
         });
