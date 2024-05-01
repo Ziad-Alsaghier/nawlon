@@ -108,7 +108,9 @@ $user = 'Minue';
 <script src="../assets/js/tables-datatables-advanced.js"></script>
 @endsection
 @section('content')
+{{-- Alert --}}
 @include('success')
+{{-- Alert --}}
 
 
 <!-- Bootstrap Table with Header - Dark -->
@@ -144,7 +146,7 @@ $user = 'Minue';
                 @if($nawlone->car->deleted_at == null)
 
                 @endif
-                <tr>    
+                <tr>
                     <td>
 
 

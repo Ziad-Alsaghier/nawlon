@@ -28,15 +28,20 @@ class CarTransportController extends Controller
 
         public function index()
         { // Return The View Car
-                       if(!Gate::allows('cars')){
-                        session()->flash('success','This Page Can not Access');
-                       
-                       }
-                $categories = Category::where('user_id', auth()->user()->id)->get();
-                $cars = Car::where('user_id', auth()->user()->id)->withTrashed()->orderBy('created_at', 'DESC')->get();
+
+                       if(Gate::denies('cars')){
+                                 
+                        $categories = Category::where('user_id', auth()->user()->user_id)->get();
+                        $cars = Car::where('user_id', auth()->user()->user_id)->withTrashed()->orderBy('created_at', 'DESC')->get();
+                        return view('user.carsTransport.carList', compact('cars', 'categories'));
+
+                        }else{
+                        $categories = Category::where('user_id', auth()->user()->id)->get();
+                        $cars = Car::where('user_id', auth()->user()->id)->withTrashed()->orderBy('created_at', 'DESC')->get();
+                        return view('user.carsTransport.carList', compact('cars', 'categories'));
+                }
 
 
-                return view('user.carsTransport.carList', compact('cars', 'categories'));
         }
         public function carAdd()
         { // Return Data OF Category Choose When i Add New Car

@@ -149,7 +149,7 @@ $configData = Helper::appClasses();
                     </a>
                 </li>
 
-                @if(auth()->user()->can('cars'))
+                @if(auth()->user()->can('cars') or auth()->user()->can('isAdmin'))
                 {{-- Start cars --}}
                 <li class="menu-item ">
                     <a href="" class="menu-link menu-toggle">
@@ -208,6 +208,8 @@ $configData = Helper::appClasses();
                     {{-- Start cars --}}
 
                     @endif
+                    @if(auth()->user()->can('employee') or auth()->user()->can('isAdmin'))
+
                 <li class="menu-item ">
                     <a href="" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-user"></i>
@@ -294,6 +296,7 @@ $configData = Helper::appClasses();
 
 
 
+                    @endif
 
 
 
@@ -307,8 +310,7 @@ $configData = Helper::appClasses();
 
 
 
-
-                    @if(auth()->user()->can('nawlon'))
+                    @if(auth()->user()->can('nawlon') or auth()->user()->can('isAdmin'))
                 <li class="menu-item ">
                     <a href="" class="menu-link menu-toggle">
                         <i class="fa-solid fa-truck-fast mx-1"></i>

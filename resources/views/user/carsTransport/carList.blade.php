@@ -341,15 +341,8 @@ $user = 'Minue';
                 </tr>
                 {{-- Start Model With Eit Car --}}
                 <div class="modal fade" id="basicModal{{ $car->id }}" tabindex="-1" aria-hidden="true">
-
-
-
-
                     <div class="modal-dialog" role="document">
-
-
                         <div class="modal-content">
-
                             <div class="modal-header">
 
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"

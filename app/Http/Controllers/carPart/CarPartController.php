@@ -28,15 +28,15 @@ class CarPartController extends Controller
 
     public function addCarPart(Request $request)
     {
-        // $request->validate([
-        //     'name'=>'required',
-        //     'product_category_id'=>'required',
-        //     'car_id'=>'required',
-        //     'coverPhoto'=>'required',
-        //     'image'=>'required',
-        //     'code'=>'required',
-        //     'location'=>'required',
-        // ]);
+        $request->validate([
+            'name'=>'required',
+            'product_category_id'=>'required',
+            'car_id'=>'required',
+            'coverPhoto'=>'required',
+            'image'=>'required',
+            'code'=>'required',
+            'location'=>'required',
+        ]);
        
         $requestCar = $request->only($this->requesrCarPart);
   

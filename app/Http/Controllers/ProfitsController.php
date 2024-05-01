@@ -35,7 +35,7 @@ class ProfitsController extends Controller
         $taxses = tax::where('user_id', auth()->user()->id)->sum('total_tex');
 
         $totalProfit = $totalNawlonPrice - ($taxses + $totalPriceMaintanence );
-        $totalProfitPercentage = $totalNawlonPrice / ($taxses + $totalPriceMaintanence ) * 100;
+        $totalProfitPercentage = $totalNawlonPrice ?? 0/ ($taxses + $totalPriceMaintanence ) * 100;
 
 
         // 

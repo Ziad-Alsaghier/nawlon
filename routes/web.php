@@ -106,7 +106,7 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
         });
 
         Route::controller(CarTransportController::class)->middleware('can:cars')->group(function () {
-                Route::get('Users/CarsList', 'index')->name('carList');
+        Route::get('Users/CarsList', 'index')->name('carList');
         Route::get('Users/CarsList/{id}','statusCar')->name('statusCarList');
         Route::get('Users/Cars','carAdd')->name('AddNewCar');
         Route::post('Users/CarAddProcessing','newCarAdd')->name('processAddCar');
@@ -117,8 +117,6 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
         Route::get('Users/storeCar','storeCar')->name('storeCar');
         Route::get('Users/softDelete/{id}','softDelete')->name('softDelete');
         Route::get('Users/filterCar','filterCar')->name('filterCar');
-     
- 
         });
          // Category Cars 
         Route::controller(CategoryTransportController::class)->group(function () {
@@ -225,7 +223,7 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
         });
 
         Route::controller(CarPartController::class)->prefix('CarPart')->group(function () {
-                Route::get('CreateCar','index')->name('CarPart');
+                Route::get('Maintanence','index')->name('CarPart');
                 Route::post('CreateCar','addCarPart')->name('addCarPart');
                 Route::get('deleteCarPart/{id}','deleteCarPart')->name('deleteCarPart');
                 Route::post('editCarPart','editCarPart')->name('editCarPart');
@@ -320,8 +318,11 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
 
         });
 
-        Route::controller(UserSupAdminController::class)->prefix('sup_admin')->group(function () {
+        Route::controller(UserSupAdminController::class)->middleware('can:isAdmin')->prefix('sup_admin')->group(function () {
                 Route::get('addNew','index')->name('newSupAdmin');
+                Route::post('store_role_user','store_role_user')->name('store_role_user');
+                Route::get('delete_role_user/{id}','deleteRole')->name('deleteRole');
+                Route::get('delete_user/{id}','deleteUserAdmin')->name('deleteUserAdmin');
         });
                         
         });

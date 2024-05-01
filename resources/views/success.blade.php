@@ -6,15 +6,17 @@
 <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
 <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
 @if (session()->has('success'))
+
+
+
 <div class="alert alert-success text-center" role="alert">
     {{session()->get('success')}}
 </div>
 {{-- <div class="alert alert-solid-success text-center" role="alert">
     {{session()->get('success')}}
 </div> --}}
-@endif
 
-@if (session()->has('faild'))
+@elseif (session()->has('faild'))
 <div class="alert alert-danger text-center" role="alert">
     {{session()->get('faild')}}
 </div>

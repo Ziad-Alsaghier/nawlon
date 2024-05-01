@@ -33,7 +33,7 @@ class LoginController extends Controller
                     }else{
             if(Auth::attempt($cradetional)){
 
-                        if($user->position == 'customer'){
+                        if($user->position == 'customer' or $user->position == 'userAdmin'){
                                 
                                 return redirect()->route('dashboard')->with(['success'=>'تم التسجيل بنجاح']);
                         }elseif($user->position == 'superAdmin'){

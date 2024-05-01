@@ -175,7 +175,6 @@ $user = 'Minue';
                         <img width="150px" src="{{ asset(" ../../public/images/cars/" . $maintanences->car->image) }}"
                         width="" alt="" >
                         <div class="row p-sm-3 p-0">
-
                             <div class="col-xl-6 col-md-12 col-sm-5 col-12 mb-xl-0 mb-md-4 mb-sm-0 mb-4">
                                 <h6 class="pb-2">تفاصيل:السيارة</h6>
                                 <p class="mb-1">اسم السيارة : {{ $maintanences->car->cars_name }}</p>
@@ -259,6 +258,7 @@ $user = 'Minue';
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($maintanences->sevicesMaintanenc)
                                 @foreach($maintanences->sevicesMaintanenc as $service)
 
                                 <tr>
@@ -267,6 +267,14 @@ $user = 'Minue';
 
                                 </tr>
                                 @endforeach
+
+                                @else
+                                <tr>
+                                    <td colspan="2" style="text-align: center" class="text-nowrap">لا يوجد خدمات</td>
+
+                                </tr>
+                                @endif
+
 
 
 

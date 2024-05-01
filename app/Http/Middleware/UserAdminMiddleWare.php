@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class MiddlewareIfUser
+class UserAdminMiddleWare
 {
     /**
      * Handle an incoming request.
@@ -16,12 +16,12 @@ class MiddlewareIfUser
      */
     public function handle(Request $request, Closure $next)
     {
+          if(auth()->user()->position == 'userAdmin'){
 
-            if(auth()->user()->position == 'customer' or auth()->user()->position == 'userAdmin'){
-
-                return $next($request);
-            }else{
-            return redirect('404');
-            }
+           return $next($request);
+          }else{
+          return redirect('404');
+          }
+      
     }
 }

@@ -74,9 +74,10 @@ class CustomerController extends Controller
                                    $createNewCustomer= User::create( $newCustomer );
                                    if($createNewCustomer){
 
-                                                session()->flash('success','Customer Add Successfully');
+                                            session()->flash('success','Customer Add Successfully');
                                             return redirect()->back();
                                    }
+            return $request->all();
                                 }
                                     
                            
