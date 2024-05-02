@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->enum('status',['0','1']);
             $table->foreignId('product_category_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

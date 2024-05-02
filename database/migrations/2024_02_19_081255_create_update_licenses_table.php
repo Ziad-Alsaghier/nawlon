@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('update_licenses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('car_id')->constrained();
-            $table->foreignId('license_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('car_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('license_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->date('ex_date');
             $table->timestamps();
         });

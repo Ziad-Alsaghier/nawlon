@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('divides', function (Blueprint $table) {
             $table->id();
                 $table->string('name');
-                 $table->foreignId('user_id')->constrained();
+                 $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

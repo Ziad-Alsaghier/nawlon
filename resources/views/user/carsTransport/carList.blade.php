@@ -512,7 +512,7 @@ $user = 'Minue';
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-dob">رقم السيارة </label>
-                                        <input type="number" name="car_number" class="form-control flatpickr-validation"
+                                        <input type="text" name="car_number" class="form-control flatpickr-validation"
                                             id="basic-default-dob" />
                                         @error('car_number')
                                         <span>{{ $message }}</span>

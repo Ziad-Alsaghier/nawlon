@@ -35,7 +35,6 @@ class CreateCountryStateCityTable extends Migration
             $table->foreign('country_id')->references('id')->on('countries')
                 ->onUpdate('cascade')->onDelete('cascade');
         });
-
         Schema::create('cities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('state_id');

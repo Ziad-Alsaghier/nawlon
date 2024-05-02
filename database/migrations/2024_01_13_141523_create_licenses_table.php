@@ -23,7 +23,7 @@ return new class extends Migration
             references('id')->onDelete('cascade')
             ->onUpdate('cascade'); // Foreign Conect With car
             $table->string('image');
-             $table->foreignId('user_id')->constrained();
+             $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

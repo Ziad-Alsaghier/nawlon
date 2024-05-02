@@ -258,8 +258,8 @@ $user = 'Minue';
                                 </tr>
                             </thead>
                             <tbody>
-                                @if($maintanences->sevicesMaintanenc)
-                                @foreach($maintanences->sevicesMaintanenc as $service)
+                                @if($maintanences->srevicesMaintanenc)
+                                @foreach($maintanences->srevicesMaintanenc as $service)
 
                                 <tr>
                                     <td class="text-nowrap">{{$service->servicesTitle }}</td>

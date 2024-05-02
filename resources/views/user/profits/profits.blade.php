@@ -161,7 +161,7 @@ $user='Minue';
                     </td>
                     <td>
                         <strong>
-                            {{ $totalNawlonPrice }}
+                            {{ $totalNawlonPrice ?? 'لن يتم القيام بأي ناولون'}}
                         </strong>
                     </td>
 

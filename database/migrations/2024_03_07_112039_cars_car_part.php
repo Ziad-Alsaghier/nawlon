@@ -16,8 +16,8 @@ return new class extends Migration
         //this Pivot table Cause Can choose More car Part From Car
          Schema::create('cars_car_part', function (Blueprint $table) {
          $table->id();
-         $table->foreignId('car_id')->constrained();
-         $table->foreignId('car_part_id')->constrained();
+         $table->foreignId('car_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+         $table->foreignId('car_part_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
          $table->timestamps();
          });
     }

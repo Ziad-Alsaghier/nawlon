@@ -23,8 +23,8 @@ class violationController extends Controller
              'user_id',
     ];
         public function index (){
-
-            $cars = Car::where('user_id',auth()->user()->id)->withTrached()->orderBy('cars_name', 'ASC')->get();
+                // withTrashed() Where We Get Car With deleted_at
+            $cars = Car::where('user_id',auth()->user()->id)->where('deleted_at',Null)->orderBy('cars_name', 'ASC')->get();
             $drivers = Driver::orderBy('driv_name', 'ASC')->get();
  
         return view('user.violation.violationAdd',compact('cars','drivers'));

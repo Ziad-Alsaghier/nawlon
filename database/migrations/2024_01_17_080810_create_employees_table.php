@@ -23,8 +23,8 @@ return new class extends Migration
               $table->string('image_procedures');
               $table->string('salary');
                $table->enum('status', ['1', '0']);
-              $table->foreignId('divide_id')->constrained();
-               $table->foreignId('user_id')->constrained();
+              $table->foreignId('divide_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+               $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

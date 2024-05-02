@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_category_id')->constrained();
-            $table->foreignId('car_part_id')->constrained();
-            $table->foreignId('supplier_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_category_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('car_part_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('supplier_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->date('date');
             $table->integer('totalPrice');
             $table->integer('car_part_price');

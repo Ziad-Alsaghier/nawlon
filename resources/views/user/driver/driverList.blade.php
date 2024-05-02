@@ -360,7 +360,7 @@ $user = 'Minue';
     <div class="modal-dialog" role="document">
 
 
-    <div class="modal-content">
+        <div class="modal-content">
 
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -371,7 +371,7 @@ $user = 'Minue';
                     <div class="col-md">
 
                         <div class="card">
-                            <h5 class="card-header">اضافة السيارة </h5>
+                            <h5 class="card-header">اضافة سائق </h5>
                             <div class="card-body">
                                 <form class="browser-default-validation" action="{{ route('addDriver') }}" method="POST"
                                     enctype="multipart/form-data">
@@ -486,7 +486,7 @@ $user = 'Minue';
                 </div>
             </div>
         </div>
-</div>
+    </div>
     {{-- End Model With Eit Car --}}
     @section('script')
     <script>

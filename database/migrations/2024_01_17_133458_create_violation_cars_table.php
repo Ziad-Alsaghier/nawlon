@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('violation_cars', function (Blueprint $table) {
             $table->id();
                $table->string('violations');
-               $table->foreignId('car_id')->constrained();
+               $table->foreignId('car_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
                $table->string('type');
                $table->string('violation_number');
                $table->string('violation_price');
                $table->string('violation_date');
-                $table->foreignId('user_id')->constrained();
+                $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

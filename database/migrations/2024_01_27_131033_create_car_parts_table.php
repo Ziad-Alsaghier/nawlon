@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('car_parts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-             $table->foreignId('product_category_id')->constrained();
+             $table->foreignId('product_category_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
              $table->foreignId('user_id')->constrained();
              $table->string('coverPhoto')->nullable();
              $table->string('image')->nullable();

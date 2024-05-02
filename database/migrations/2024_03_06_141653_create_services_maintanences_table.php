@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('services_maintanences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('maintenance_id');
+            $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('maintenance_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->longText('servicesTitle');
             $table->longText('servicesPrice');
             $table->timestamps();

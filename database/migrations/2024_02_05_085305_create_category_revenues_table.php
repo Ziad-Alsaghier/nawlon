@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('category_revenues', function (Blueprint $table) {
             $table->id();
               $table->string('name');
-              $table->string('user_id');
+              $table->string('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

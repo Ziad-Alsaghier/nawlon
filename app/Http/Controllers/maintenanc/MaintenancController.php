@@ -167,6 +167,7 @@ class MaintenancController extends Controller
         $maintanences = Maintenance::where('user_id', auth()->user()->id)->where('id', $id)
             ->with('car')
             ->with('car_parts')
+            ->with('srevicesMaintanenc')
             ->first();
         return view('user.maintenance.maintenanceInfo', compact('maintanences'));
     }

@@ -17,11 +17,11 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->float('maintenances_price');
             $table->float('totalServicesPrice');
             $table->longText('description');
-            $table->foreignId('car_id')->constrained();
+            $table->foreignId('car_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

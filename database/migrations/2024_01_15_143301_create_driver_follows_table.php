@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('address');
             $table->integer('phone');
              $table->enum('status', ['1', '0']);
-             $table->foreignId('user_id')->constrained();
+             $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

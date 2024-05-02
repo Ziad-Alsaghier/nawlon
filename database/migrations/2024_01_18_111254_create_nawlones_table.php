@@ -33,8 +33,8 @@ return new class extends Migration
                         $table->integer('returnedCustody')->nullable();
                         $table->integer('returnedSolar')->nullable();
 
-                          $table->foreignId('user_id')->constrained();
-                          $table->foreignId('driver_id')->constrained();
+                          $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+                          $table->foreignId('driver_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

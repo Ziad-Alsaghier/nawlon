@@ -18,8 +18,8 @@ return new class extends Migration
                  $table->string('name');
                  $table->integer('total_price');
                  $table->date('date');
-                 $table->foreignId('user_id');
-                 $table->foreignId('category_revenue_id')->constrained();
+                 $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
+                 $table->foreignId('category_revenue_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

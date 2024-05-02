@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('role_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->enum('role_name',['cars','nawlon','employee','maintanence','carPart','expense','revenue','setting']);
             $table->timestamps();
         });
