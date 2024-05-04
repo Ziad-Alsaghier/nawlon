@@ -111,11 +111,7 @@ $user = 'Minue';
 
 <!-- Bootstrap Table with Header - Dark -->
 
-<div id="contain">
-    <button class="btn btn-primary mb-2" data-bs-target="#basicModal" data-bs-toggle="modal"
-        href="javascript:void(0);"><i class="bx bx-plus me-1"></i>
-        اضافة سيارة</button>
-</div>
+
 <div class="card">
     <h5 class="card-header">جميع السيارات</h5>
     <div class="table-responsive text-nowrap">
