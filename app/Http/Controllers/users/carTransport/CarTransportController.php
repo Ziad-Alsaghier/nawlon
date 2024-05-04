@@ -20,6 +20,7 @@ class CarTransportController extends Controller
                 'brand',
                 'category_id',
                 'car_number',
+                'car_text',
                 'image',
                 'user_id',
                 'status',
@@ -58,7 +59,8 @@ class CarTransportController extends Controller
                         'car_type' => 'required',
                         'brand' => 'required',
                         'category_id' => 'required',
-                        'car_number' => 'required',
+                        'car_number' => 'required|max:8',
+                        'car_text' => 'required|max:6',
                         'image' => 'required',
                 ], [
                         'car_name' => ' اسم السيارة فارغ !',
@@ -147,7 +149,7 @@ class CarTransportController extends Controller
         public function updateCar(Request $request)
         {
                 $request->car_id;
-                $requestUpdateCar = $request->only('cars_name', 'car_type', 'brand', 'car_number', 'image');
+                $requestUpdateCar = $request->only('cars_name', 'car_type','car_text', 'brand', 'car_number', 'image');
                 $requestUpdatecategory = $request->only('category');
 
 

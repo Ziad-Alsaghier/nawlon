@@ -173,7 +173,7 @@ $user = 'Minue';
                         {{ $car->brand }}
                     </td>
                     <td>
-                        {{ $car->car_number }}
+                        {{ $car->car_number . ' ' }} ({{ $car->car_text }})
 
                     </td>
 
@@ -397,14 +397,27 @@ $user = 'Minue';
                                                                 name="brand" placeholder="تعديل  موديل السيارة">
 
                                                         </div>
-                                                        <div class="mb-3 " id="inputMonthly">
-                                                            <label class="form-label" for="bs-validation-email">
-                                                                موديل السيارة
-                                                            </label>
-                                                            <input type="text" value="{{ $car->car_number }}"
-                                                                id="bs-validation-email" class="form-control"
-                                                                name="car_number" placeholder="تعديل رقم السيارة">
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-6" id="inputMonthly">
+                                                                <label class="form-label" for="bs-validation-email">
+                                                                    رقم السيارة
+                                                                </label>
+                                                                <input type="text" value="{{ $car->car_number }}"
+                                                                    id="bs-validation-email" class="form-control"
+                                                                    name="car_number" placeholder="تعديل رقم السيارة">
 
+                                                            </div>
+                                                            <div class="col-md-6 mb-6">
+                                                                <label class="form-label" for="basic-default-dob"> حروف
+                                                                    السيارة </label>
+                                                                <input type="text" value="{{ $car->car_text }}"
+                                                                    name="car_text"
+                                                                    class="form-control flatpickr-validation"
+                                                                    id="basic-default-dob" />
+                                                                @error('car_text')
+                                                                <span>{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
                                                         </div>
 
                                                         <div class="mb-3">
@@ -413,6 +426,9 @@ $user = 'Minue';
                                                             </label>
                                                             <input type="file" name="image" value="{{ $car->image }}"
                                                                 class="form-control" id="basic-default-upload-file">
+
+                                                            <img src="../public/images/cars/{{ $car->image }}"
+                                                                width="40%" alt="">
                                                         </div>
 
                                                         <div class="row">
@@ -510,13 +526,23 @@ $user = 'Minue';
                                         <span>{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basic-default-dob">رقم السيارة </label>
-                                        <input type="text" name="car_number" class="form-control flatpickr-validation"
-                                            id="basic-default-dob" />
-                                        @error('car_number')
-                                        <span>{{ $message }}</span>
-                                        @enderror
+                                    <div class="row">
+                                        <div class="col-md-6 mb-6">
+                                            <label class="form-label" for="basic-default-dob">رقم السيارة </label>
+                                            <input type="text" name="car_number"
+                                                class="form-control flatpickr-validation" id="basic-default-dob" />
+                                            @error('car_number')
+                                            <span>{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6 mb-6">
+                                            <label class="form-label" for="basic-default-dob"> حروف السيارة </label>
+                                            <input type="text" name="car_text" class="form-control flatpickr-validation"
+                                                id="basic-default-dob" />
+                                            @error('car_text')
+                                            <span>{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="basic-default-upload-file">اضافة صورة

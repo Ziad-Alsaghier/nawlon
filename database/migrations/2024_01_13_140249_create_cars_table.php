@@ -19,14 +19,15 @@ return new class extends Migration
                  $table->string('brand');
                  $table->string('image');
                  $table->string('car_type');
-                 $table->integer('car_number');
+                 $table->integer('car_numbcer');
+                 $table->string('car_text');
             $table->enum('status', ['0','1','2']);
                  $table->foreignId('category_id')->
                  constrained()
                  ->onUpdate('cascade')->
                  onDelete('cascade'); // Foreign Conect With Category
 
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
 
             $table->softDeletes();
             $table->timestamps();

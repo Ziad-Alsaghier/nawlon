@@ -485,7 +485,7 @@ $user = 'Minue';
 
         {{-- <input type="hidden" name="user_id"> --}}
 
-        <button class="btn btn-primary mt-4" id="send_maintenice" type="submit">تاكيد</button>
+        <button class="btn btn-primary mt-4" id="send_maintenice">تاكيد</button>
 </form>
 
 

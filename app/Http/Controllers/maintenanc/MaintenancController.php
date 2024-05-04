@@ -51,13 +51,13 @@ class MaintenancController extends Controller
          $car = $request->only('car,','user_id', 'category','totalServicesPrice','maintenances_price', 'description');
         $car['user_id'] = auth()->user()->id;
         $car['car_id'] = $request->car;
+        
         $Maintanenc =new  Maintenance;
             $Maintanenc->user_id = $car['user_id'] ;
             $Maintanenc->maintenances_price =$car['maintenances_price'] ;
             $Maintanenc->description =$car['description'] ;
             $Maintanenc->car_id = $car['car_id'];
             $Maintanenc->totalServicesPrice = $car['totalServicesPrice'];
-        $Maintanenc->save();
             if($Maintanenc){
             for ($i = 0; $i < count($spareParts); $i++) {
                 // Get The Car Part
@@ -75,6 +75,7 @@ class MaintenancController extends Controller
                         غير متوفرة']);
 
                         }
+                            $Maintanenc->save();
 
                         $updateCountCarPart = $totalQuantityCarPart - $requestCount;
 
@@ -112,7 +113,7 @@ class MaintenancController extends Controller
                       // Services Maintanecne For Services
                     }
                    }
-           return session()->flash('success', 'تم تسجيل الصيانة بنجاح');
+           return response()->json('success','Maintanence Add Successfully');
             }
          
             
@@ -132,28 +133,14 @@ class MaintenancController extends Controller
     {
 
 
-
+     
 
         // if Parent Maintanence Exists
-        $checkMaintanence = Maintenance::where(
-            'id',
-            $id
-        )->With('car_parts')->first();
+        $checkMaintanence = Maintenance::where( 'id',$id )->delete();
+      
         if ($checkMaintanence) {
-
-            $deleteMaint =
-                DB::table('maintenance_car_parts')->where(
-                    'maintenance_id',
-                    $id
-                )->delete();
-            if ($deleteMaint) {
-                $deleteMaintenance = Maintenance::where('id', $id)->first();
-
-                if ($deleteMaintenance) {
-                    session()->flash('success', 'تم الغاء الصيانة ');
-                    return redirect()->back();
-                }
-            }
+               session()->flash('success', 'تم الغاء الصيانة ');
+               return redirect()->back();
         }
         // delete Paten Maintanence
         // Delete Parent Maintanence 

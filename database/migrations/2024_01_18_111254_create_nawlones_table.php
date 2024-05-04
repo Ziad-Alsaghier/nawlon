@@ -21,12 +21,12 @@ return new class extends Migration
                         $table->integer('custody'); // 3ohda M3 Elswa2
                         $table->enum('status',['0','1']); 
                         $table->integer('solar'); // 
-                        $table->foreignId('car_id')->constrained();
-                        $table->foreignId('down_location_id')->nullable()->constrained()->references('id')->on('down_locations')->
+                        $table->foreignId('car_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+                        $table->foreignId('down_location_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->references('id')->on('down_locations')->
                             onDelete('cascade')->onUpdate('cascade');
                         // Can Be Null And Debend NameLocation
                         $table->string('location_name');// Debend Location Name Where (Location_id) Embty
-                        $table->foreignId('location_tatek_id')->nullable()->constrained()->references('id')->on('location_tateks');
+                        $table->foreignId('location_tatek_id')->nullable()->constrained()->onDelete('cascade')->onUpdate('cascade')->references('id')->on('location_tateks');
                         // Can Be Null And Debend Name Location
                         $table->string('location_tatek_name'); // Debend Name Tatek Location Where (location_tatek_id) Embty 
                         $table->string('tatek_location');

@@ -19,6 +19,7 @@ class Car extends Model
                 'category_id',
                 'user_id',
                 'status',
+                'car_text',
 
         ];
 
