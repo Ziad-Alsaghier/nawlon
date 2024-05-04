@@ -176,7 +176,38 @@ $user='Minue';
         </div>
     </div>
 </div>
-<!-- /Browser Default -->
-<!--/ Bootstrap Table with Header Dark -->
 
-@endsection
+
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">اضافة مورد جديد</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <!-- Start body Model With Inputs -->
+                    <div class="col-md">
+
+                        <div class="card">
+                            <h5 class="card-header">
+                            </h5>
+                            <div class="card-body">
+
+                            </div>
+                        </div>
+                        <!-- /End body Model With Inputs -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- End Modal Add New Supplier --}}
+    <!-- /Browser Default -->
+    <!--/ Bootstrap Table with Header Dark -->
+
+    @endsection

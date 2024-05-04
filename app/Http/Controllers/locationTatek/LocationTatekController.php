@@ -10,6 +10,7 @@ class LocationTatekController extends Controller
 {
     protected $dataRequest = [
         'name',
+        'address',
         'user_id',
     ];
     // This First Controller With Tatek Location

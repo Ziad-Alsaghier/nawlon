@@ -111,7 +111,19 @@ $user = 'Minue';
     .myTable tr td {
         max-width: 100px;
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
 </style>
+
 
 
 <!-- Bootstrap Table with Header - Dark -->
@@ -414,8 +426,7 @@ $user = 'Minue';
                                             <input type="number" id="basic-default-number" name="salary"
                                                 class="form-control" placeholder="اكت المرتب الخاص بك"
                                                 aria-describedby="salary" />
-                                            <span class="input-group-text cursor-pointer" id="basic-default-number"><i
-                                                    class="bx bx-hide"></i></span>
+
 
                                         </div>
                                         @error('salary')

@@ -116,7 +116,7 @@ $user='Minue';
 
 <small class="text-light fw-semibold">Transparent Modal</small>
 <div class="mt-3">
-    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modals-transparent">
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#basicModal">
         اضافة مكان التحميل
     </button>
     <div class="card">
@@ -127,6 +127,7 @@ $user='Minue';
                     <tr>
                         <th>#</th>
                         <th>المكان</th>
+                        <th>تفاصيل المكان</th>
                         <th>تعديلات</th>
                     </tr>
                 </thead>
@@ -145,6 +146,13 @@ $user='Minue';
 
                             <strong>
                                 {{$location->name }}
+                            </strong>
+                        </td>
+                        <td>
+
+
+                            <strong>
+                                {{$location->address }}
                             </strong>
                         </td>
 
@@ -222,28 +230,39 @@ $user='Minue';
 
 
 
-        <!-- Modal template -->
-        <div class="modal modal-transparent fade" id="modals-transparent" tabindex="-1">
-            <div class="modal-dialog">
+
+        {{-- Start modale With add New Location --}}
+<div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">اضافة مكان التحميل</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
                     <div class="modal-body">
-                        <a href="javascript:void(0);" class="btn-close text-white" data-bs-dismiss="modal"
-                            aria-label="Close"></a>
-
-                        <form class="browser-default-validation" action="{{route('locationAdd')}}" method="POST"
-                            enctype="multipart/form-data" method="POST" enctype="multipart/form-data">
-                            <div class="input-group input-group-lg mb-3">
-                                <input type="text" class="form-control bg-white border-0"
-                                    placeholder="اكتب اسم المكان الجديد" aria-describedby="subscribe" name="name" />
-                                <button class="btn btn-primary" type="submit" id="subscribe">اضافة</button>
+                        <div class="row">
+                            <!-- Start body Model With Inputs -->
+                            <div class="col-md">
+                                <form class="browser-default-validation" action="{{route('locationAdd')}}" method="POST"
+                                    enctype="multipart/form-data" method="POST" enctype="multipart/form-data">
+                                    <div class="input-group input-group-lg mb-3">
+                                        <input type="text" class="form-control bg-white border-0"
+                                            placeholder="اكتب اسم المكان الجديد" aria-describedby="subscribe"
+                                            name="name" />
+                                    </div>
+                                    <div class="input-group input-group-lg mb-3">
+                                        <textarea type="text" class="form-control bg-white border-0"
+                                            placeholder="اكتب تفاصيل المكان" aria-describedby="subscribe"
+                                            name="address"></textarea>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit" id="subscribe">اضافة</button>
+                                </form>
+                                <!-- /End body Model With Inputs -->
                             </div>
-                        </form>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-
-        </div>
-    </div>
 </div>
-@endsection
+            {{-- End modale With add New Location --}}
+            @endsection

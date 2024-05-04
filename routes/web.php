@@ -115,6 +115,7 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
         Route::get('Users/carInfo/{id}','carInfo')->name('carInfo');
         Route::get('Users/updateStatus/{id}','updateStatus')->name('updateStatus');
         Route::get('Users/storeCar','storeCar')->name('storeCar');
+        Route::get('Users/restoreCar/{id}','restoreCar')->name('restoreCar');
         Route::get('Users/softDelete/{id}','softDelete')->name('softDelete');
         Route::get('Users/filterCar','filterCar')->name('filterCar');
         });

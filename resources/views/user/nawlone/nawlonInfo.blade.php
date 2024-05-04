@@ -25,22 +25,21 @@ $user = 'Minue';
     rel="stylesheet" />
 
 <!-- Icons -->
-<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
-<link rel="stylesheet" href="../assets/vendor/fonts/fontawesome.css" />
-<link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
+<link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
+<link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
 
 <!-- Core CSS -->
-<link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" />
-<link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" />
-<link rel="stylesheet" href="../assets/css/demo.css" />
+<link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" />
+<link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" />
+<link rel="stylesheet" href="../../assets/css/demo.css" />
 
 <!-- Vendors CSS -->
-<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/select2/select2.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/tagify/tagify.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
-<link rel="stylesheet" href="../ assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/tagify/tagify.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/bootstrap-select/bootstrap-select.css" />
+<link rel="stylesheet" href="../../ assets/vendor/libs/typeahead-js/typeahead.css" />
 <style>
 
 </style>
@@ -72,7 +71,7 @@ $user = 'Minue';
 @endsection
 @section('page-style')
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -82,51 +81,51 @@ $user = 'Minue';
     rel="stylesheet" />
 
 <!-- Icons -->
-<link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
-<link rel="stylesheet" href="../assets/vendor/fonts/fontawesome.css" />
-<link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
+<link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
+<link rel="stylesheet" href="../../assets/vendor/fonts/fontawesome.css" />
+<link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
 
 <!-- Core CSS -->
-<link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" />
-<link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" />
-<link rel="stylesheet" href="../assets/css/demo.css" />
+<link rel="stylesheet" href="../../assets/vendor/css/rtl/core.css" />
+<link rel="stylesheet" href="../../assets/vendor/css/rtl/theme-default.css" />
+<link rel="stylesheet" href="../../assets/css/demo.css" />
 
 <!-- Vendors CSS -->
-<link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
-<link rel="stylesheet" href="../assets/vendor/libs/flatpickr/flatpickr.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/typeahead-js/typeahead.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+<link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
 
 @endsection
 @section('vendor-script')
 <!-- Helpers -->
-<script src="../assets/vendor/js/helpers.js"></script>
+<script src="../../assets/vendor/js/helpers.js"></script>
 
 <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
 <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-<script src="../assets/js/config.js"></script>
-<script src="../assets/vendor/libs/jquery/jquery.js"></script>
-<script src="../assets/vendor/libs/popper/popper.js"></script>
-<script src="../assets/vendor/js/bootstrap.js"></script>
-<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-<script src="../assets/vendor/libs/hammer/hammer.js"></script>
-<script src="../assets/vendor/libs/i18n/i18n.js"></script>
-<script src="../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-<script src="../assets/vendor/js/menu.js"></script>
+<script src="../../assets/js/config.js"></script>
+<script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../../assets/vendor/libs/popper/popper.js"></script>
+<script src="../../assets/vendor/js/bootstrap.js"></script>
+<script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../../assets/vendor/libs/hammer/hammer.js"></script>
+<script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+<script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+<script src="../../assets/vendor/js/menu.js"></script>
 <!-- endbuild -->
 
 <!-- Vendors JS -->
-<script src="../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+<script src="../../assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
 <!-- Flat Picker -->
-<script src="../assets/vendor/libs/moment/moment.js"></script>
-<script src="../assets/vendor/libs/flatpickr/flatpickr.js"></script>
+<script src="../../assets/vendor/libs/moment/moment.js"></script>
+<script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
 
 <!-- Main JS -->
-<script src="../assets/js/main.js"></script>
+<script src="../../assets/js/main.js"></script>
 
 <!-- Page JS -->
-<script src="../assets/js/tables-datatables-advanced.js"></script>
+<script src="../../assets/js/tables-datatables-advanced.js"></script>
 @endsection
 @section('content')
 @include('success')
@@ -147,8 +146,8 @@ $user = 'Minue';
                             <div class="mb-xl-0 mb-4">
                                 <div class="d-flex svg-illustration mb-3 gap-2">
 
-                                    <img src="../public/images/customer/{{ auth()->user()->logoImage }}" width="250px"
-                                        alt="">
+                                    <img src="../../public/images/customer/{{ auth()->user()->logoImage }}"
+                                        width="250px" alt="">
                                 </div>
 
 
@@ -157,7 +156,7 @@ $user = 'Minue';
                                 <h4>الناولون رقم {{ $nawlone->id }}</h4>
                                 <div class="mb-2">
                                     <span class="me-1">تاريخ الناولون:</span>
-                                    <span class="fw-semibold">{{ $nawlone->created_at->format('Y-m-d') }}</span>
+                                    <span class="fw-semibold">{{ $nawlone->created_at }}</span>
                                 </div>
                                 <div>
 
@@ -167,7 +166,7 @@ $user = 'Minue';
                         </div>
                         <div class="col-md-12 d-flex align-items-center justify-content-center my-5 mx-5">
 
-                            <img src="../public/images/cars/{{ $nawlone->car->image }}" width="500px" alt="">
+                            <img src="../../public/images/cars/{{ $nawlone->car->image }}" width="500px" alt="">
                         </div>
                     </div>
                     <hr class="my-0" />
@@ -186,11 +185,11 @@ $user = 'Minue';
                                     <tbody>
                                         <tr>
                                             <td class="pe-3">تاريخ الطلعة من:</td>
-                                            <td>{{ $nawlone->created_at->format('Y-m-d') }}</td>
+                                            <td>{{ $nawlone->created_at }}</td>
                                         </tr>
                                         <tr>
                                             <td class="pe-3">تاريخ الانتهاء:</td>
-                                            <td>{{ $nawlone->updated_at->format('Y-m-d') }}</td>
+                                            <td>{{ $nawlone->updated_at }}</td>
                                         </tr>
 
                                     </tbody>
@@ -389,9 +388,9 @@ Dear Queen Consolidated,
 
 @section('script')
 
-<script src="../assets/js/main.js"></script>
+<script src="../../assets/js/main.js"></script>
 
-<script src="../assets/js/offcanvas-send-invoice.js"></script>
+<script src="../../assets/js/offcanvas-send-invoice.js"></script>
 
 @endsection
 @endsection

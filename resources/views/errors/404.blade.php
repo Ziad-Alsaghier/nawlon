@@ -1,12 +1,9 @@
-{{-- @extends('errors::minimal')
+@extends('errors::minimal')
 
 @section('title', __('Not Found'))
 @section('code', '404')
-@section('message', __('Not Found')) --}}
-@extends('layouts/layoutMaster')
-@php
-$user='Minue';
-@endphp
+@section('message', __('Not Found'))
+
 
 
 @section('title', 'Customer List')

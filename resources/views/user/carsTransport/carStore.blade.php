@@ -198,7 +198,7 @@ $user = 'Minue';
                                 style="position: absolute;left: -1%;background: #aaa;color: #e9ecee;padding: 10px;border-radius: 8px;margin-top: 45px;">
 
                                 <a style="font-weight: 600;" class="dropdown-item"
-                                    href="{{ route('deleteCar', ['id' => $car->id]) }}"><i
+                                    href="{{ route('restoreCar', ['id' => $car->id]) }}"><i
                                         class="bx bx-trash me-1"></i>Restore</a>
 
                                 <a style="font-weight: 600;" class="dropdown-item"

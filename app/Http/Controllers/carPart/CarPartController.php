@@ -144,7 +144,7 @@ class CarPartController extends Controller
     public function deleteCarPart($id)
     {
         $deleteCarPart = CarPart::where('id', $id)->first();
-        return $deleteCarPart->delete();
+         $deleteCarPart->delete();
 
         if ($deleteCarPart) {
             session()->flash('success', 'تما الغاء قطعة الغيار بنجاح');

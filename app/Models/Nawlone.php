@@ -44,4 +44,10 @@ class Nawlone extends Model
      public function getDateAttribute($date){
      return date('d-m-Y',strtotime($date));
      }
+     public function getCreatedAtAttribute($date){
+     return date('d-m-Y',strtotime($date));
+     }
+     public function getupdatedAtAttribute($date){
+     return date('d-m-Y',strtotime($date));
+     }
 }

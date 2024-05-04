@@ -30,7 +30,7 @@ class CarTransportController extends Controller
         public function index()
         { // Return The View Car
 
-                       if(Gate::denies('cars')){
+                       if(!Gate::denies('cars') && auth()->user()->position == 'userAdmin'){
                                  
                         $categories = Category::where('user_id', auth()->user()->user_id)->get();
                         $cars = Car::where('user_id', auth()->user()->user_id)->withTrashed()->orderBy('created_at', 'DESC')->get();
@@ -38,7 +38,8 @@ class CarTransportController extends Controller
 
                         }else{
                         $categories = Category::where('user_id', auth()->user()->id)->get();
-                        $cars = Car::where('user_id', auth()->user()->id)->withTrashed()->orderBy('created_at', 'DESC')->get();
+                        $cars = Car::where('user_id', auth()->user()->id)->where('deleted_at','=',Null)->
+                        orderBy('created_at', 'DESC')->get();
                         return view('user.carsTransport.carList', compact('cars', 'categories'));
                 }
 
@@ -110,18 +111,29 @@ class CarTransportController extends Controller
                         return redirect()->back();
                 } else {
 
-                        $deletCar = car::where('user_id',auth()->user()->id)->where('id', $id)->forceDelete();
-
+                        $deletCar = car::where('user_id',auth()->user()->id)->where('id', $id)->delete();
+                        
                         if ($deletCar) {
                                 session()->flash('success', 'تم الغاء السيارة بنجاح');
                                 return redirect()->back();
                         }
                 }
-                return $id .'<br>'.$deletCar = car::where('user_id',auth()->user()->id)->where('id', $id)->forceDelete();
-                ;
+               
+        }
+
+
+        //  This Function Can be Restore Car 
+
+        function restoreCar ($id){
+                $restoreCar = Car::where('user_id',auth()->user()->id)->where('id',$id)->restore();
+                                if($restoreCar){
+                        session()->flash('success','تم استعادة السيارة مرة اخرى');
+                        return redirect()->back();
+                                }
         }
         public function softDelete($id)
         { // Start Delete Car
+                // return $id ;
                 $carCheck = Maintenance::where('car_id',$id)->get();
                         if($carCheck){
                         session()->flash('faild','يجب مسج جميع الصيانات المرتبطة بهذه السيارة و اي شئ مرتبط بها');
@@ -132,7 +144,7 @@ class CarTransportController extends Controller
                 if ($checkData) {
                         session()->flash('faild', 'السيارة في الطريق لا يمكن مسحها');
                         return redirect()->back();
-                } else {
+                } 
 
                         $deletCar = car::where('id', $id)->forceDelete();
 
@@ -140,7 +152,6 @@ class CarTransportController extends Controller
                                 session()->flash('success', 'تم الغاء السيارة بنجاح');
                                 return redirect()->back();
                         }
-                }
         }
 
 
