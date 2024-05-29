@@ -40,6 +40,7 @@ class CarTransportController extends Controller
                         $categories = Category::where('user_id', auth()->user()->id)->get();
                         $cars = Car::where('user_id', auth()->user()->id)->where('deleted_at','=',Null)->
                         orderBy('created_at', 'DESC')->get();
+                       
                         return view('user.carsTransport.carList', compact('cars', 'categories'));
                 }
 

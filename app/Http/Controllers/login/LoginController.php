@@ -26,13 +26,16 @@ class LoginController extends Controller
                  'password'=>'required',
                  ]);
         $cradetional = $request->only($this->loginRequest);
+
+        
         $user = User::where('email', $request->email)->first();
+         
                     if(!$user){
             session()->flash('faild','Email or Password Wrong');
             return redirect()->back();
                     }else{
             if(Auth::attempt($cradetional)){
-
+                               
                         if($user->position == 'customer' or $user->position == 'userAdmin'){
                                 
                                 return redirect()->route('dashboard')->with(['success'=>'تم التسجيل بنجاح']);
@@ -41,7 +44,10 @@ class LoginController extends Controller
                                 return redirect()->route('dashboard-analytics')->with(['success'=>'تم التسجيل بنجاح']);
                         }
 
-                                };
+                                }else{
+                                        session()->flash('faild','Password Wrong');
+                                                return redirect()->back();
+                                }
                     }  
                    
          

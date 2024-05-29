@@ -15,6 +15,7 @@ class ProfileController extends Controller
             'phone',
             'parent_phone',
             'logoImage',
+            'password',
         ];
 
         public function index(){
@@ -40,6 +41,8 @@ class ProfileController extends Controller
 
             }
         }
+                $updateProfile['password'] = bcrypt($request->password);
+
         $updateImage = User::where('id', auth()->user()->id)->update($updateProfile);
 
                 if($updateImage){

@@ -45,7 +45,7 @@ class CustomerController extends Controller
                     $img_name = rand(0, 1000) . now() . $name;
                     $img_name = str_replace([' ', ':', '-'], 'X', $img_name);
                     $newCustomer['logoImage'] = $img_name;
-                    move_uploaded_file($tmp_name, 'public/images/customer/' . $img_name);
+                    move_uploaded_file($tmp_name, 'public/images/campany/' . $img_name);
                     }
                     }
 

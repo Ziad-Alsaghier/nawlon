@@ -37,6 +37,9 @@ class SuppliersController extends Controller
                     $newSupplier = Supplier::create($createNewSupplier);
                     session()->flash('success','تم اضافة مورد جديد');
                     return redirect()->back();
+                }else{
+                         session()->flash('faild','هذا المورد موجود بالفعل');
+                         return redirect()->back();
                 }
             }
 

@@ -171,10 +171,10 @@ $user='Minue';
                                 <i class="bx bx-star"></i><span class="fw-semibold mx-2">نوع المستخدم:</span>
                                 <span>{{ auth()->user()->position }}</span>
                             </li>
-                            <li class="d-flex align-items-center mb-3">
+                            {{-- <li class="d-flex align-items-center mb-3">
                                 <i class="bx bx-flag"></i><span class="fw-semibold mx-2">Country:</span>
                                 <span>USA</span>
-                            </li>
+                            </li> --}}
 
                         </ul>
                         <small class="text-muted text-uppercase">الخطة المستخدمة</small>
@@ -250,34 +250,47 @@ $user='Minue';
                                             <div class="fv-plugins-message-container invalid-feedback"></div>
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
-                                            <label class="form-label" for="phone">رقم التليفون</label>
-                                            <div class="input-group input-group-merge">
-                                                {{-- <span class="input-group-text">US (+1)</span> --}}
-                                                <input type="text" id="phone" name="phone" class="form-control"
-                                                    value="{{ auth()->user()->phone }}">
+                                        <div class="row">
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label" for="phone">رقم التليفون</label>
+                                                <div class="input-group input-group-merge">
+                                                    {{-- <span class="input-group-text">US (+1)</span> --}}
+                                                    <input type="text" id="phone" name="phone" class="form-control"
+                                                        value="{{ auth()->user()->phone }}">
+                                                </div>
+                                                <div class="mb-3 col-md-6">
+                                                    <label class="form-label validate-password" for="password">تغيير
+                                                        كلمة المرور</label>
+                                                    <div class="input-group input-group-merge">
+                                                        {{-- <span class="input-group-text">US (+1)</span> --}}
+                                                        <input type="password" id="password" name="password"
+                                                            class="form-control" value="{{ auth()->user()->password }}">
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                        </div>
-                                        <div class="mb-3 col-md-6">
-                                            <label for="parent_phone" class="form-label">رقم التليفون
-                                                الثاني</label>
-                                            <input class="form-control" type="text" id="parent_phone"
-                                                name="parent_phone" value="{{ auth()->user()->parent_phone }}">
-                                        </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label for="parent_phone" class="form-label">رقم التليفون
+                                                    الثاني</label>
+                                                <input class="form-control" type="text" id="parent_phone"
+                                                    name="parent_phone" value="{{ auth()->user()->parent_phone }}">
+                                            </div>
 
 
-                                        <div class='d-flex justify-content-center py-2' style="flex-direction: column;">
-                                            <label for="logoImage">
-                                                <img id="image-profile-prev"
-                                                    style="height: 130px; cursor: pointer; width: 200px;"
-                                                    src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
-                                            </label>
-                                            <input type="file" name="logoImage" class="form-control" id="logoImage" />
-                                        </div>
-                                        <div class="mt-2">
-                                            <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                            <button type="reset" class="btn btn-label-secondary">Cancel</button>
-                                        </div>
+                                            <div class='d-flex justify-content-center py-2'
+                                                style="flex-direction: column;">
+                                                <label for="logoImage">
+                                                    <img id="image-profile-prev"
+                                                        style="height: 130px; cursor: pointer; width: 200px;"
+                                                        src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
+                                                </label>
+                                                <input type="file" name="logoImage" class="form-control"
+                                                    id="logoImage" />
+                                            </div>
+                                            <div class="mt-2">
+                                                <button type="submit" class="btn btn-primary me-2">Save changes</button>
+                                                <button type="reset" class="btn btn-label-secondary">Cancel</button>
+                                            </div>
                                 </form>
                             </div>
 

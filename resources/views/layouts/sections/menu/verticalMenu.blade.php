@@ -43,7 +43,7 @@ $configData = Helper::appClasses();
                 <div class='d-flex justify-content-center py-2' style="flex-direction: column;">
                     <label for="profile_image">
                         <img id="image-profile-prev" style="height: 130px; cursor: pointer; width: 200px;"
-                            src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
+                            src="{{ asset('public/images/campany/' . auth()->user()->logoImage) }}" />
                     </label>
                     <input type="file" name="logoImage" class="form-control d-none" id="logoImage" />
                 </div>

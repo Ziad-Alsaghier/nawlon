@@ -149,7 +149,6 @@ $user = 'Minue';
                     <td>
                         <img src="../public/images/cars/{{ $car->image }}" width="90%" alt="">
                         <br>
-                        {{-- {{$car->image}} --}}
                     </td>
                     <td>
 
