@@ -128,7 +128,7 @@ $user='Minue';
                             <label for="profile_image">
                                 <img id="image-profile-prev" style=" cursor: pointer;"
                                     class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img"
-                                    src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
+                                    src="{{ asset('public/images/campany/' . auth()->user()->logoImage) }}" />
                             </label>
 
                         </div>
@@ -279,13 +279,24 @@ $user='Minue';
 
                                             <div class='d-flex justify-content-center py-2'
                                                 style="flex-direction: column;">
+                                                <label for="image">
+                                                    <img id="image-profile-prev"
+                                                        style="height: 130px; cursor: pointer; width: 200px;"
+                                                        src="{{ asset('public/images/customer/' . auth()->user()->image) }}" />
+                                                </label>
+                                                <input type="file" name="image" value="{{ auth()->user()->image }}"
+                                                    class="form-control" id="image" />
+                                            </div>
+
+                                            <div class='d-flex justify-content-center py-3'
+                                                style="flex-direction: column;">
                                                 <label for="logoImage">
                                                     <img id="image-profile-prev"
                                                         style="height: 130px; cursor: pointer; width: 200px;"
-                                                        src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}" />
+                                                        src="{{ asset('public/images/campany/' . auth()->user()->logoImage) }}" />
                                                 </label>
-                                                <input type="file" name="logoImage" class="form-control"
-                                                    id="logoImage" />
+                                                <input type="file" class="form-control" name="logoImage"
+                                                    value="{{ auth()->user()->logoImage }}" id="logoImage" />
                                             </div>
                                             <div class="mt-2">
                                                 <button type="submit" class="btn btn-primary me-2">Save changes</button>

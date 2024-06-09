@@ -50,6 +50,19 @@ $configData = Helper::appClasses();
 
             </form>
             @endif
+            @if (auth()->user()->position == 'superAdmin')
+            <form method="post" enctype="multipart/form-data" id="profile-setup">
+                @csrf
+                <div class='d-flex justify-content-center py-2' style="flex-direction: column;">
+                    <label for="profile_image">
+                        <img id="image-profile-prev" style="height: 130px; cursor: pointer; width: 200px;"
+                            src="{{ asset('public/images/campany/' . auth()->user()->logoImage) }}" />
+                    </label>
+                    <input type="file" name="logoImage" class="form-control d-none" id="logoImage" />
+                </div>
+
+            </form>
+            @endif
             <img class="logo-dark" src="{{ asset('assets/img/default.png') }}">
 
             <!--<span class="app-brand-logo demo">-->

@@ -37,7 +37,22 @@ class ProfileController extends Controller
                 $logoImage = rand(0, 1000) . now() . $name;
                 $logoImage = str_replace([' ', ':', '-'], 'X', $logoImage);
                 $updateProfile['logoImage'] = $logoImage;
-                move_uploaded_file($tmp_name, 'public/images/customer/' . $logoImage);
+                move_uploaded_file($tmp_name, 'public/images/campany/' . $logoImage);
+
+            }
+        }
+ $image = null;
+  extract($_FILES['image']);
+        if (!empty($name)) {
+            $extension_arr = ['png', 'jpg', 'jpeg', 'svg', 'webp'];
+            $extension = explode('.', $name);
+            $extension = end($extension);
+            $extension = strtolower($extension);
+            if (in_array($extension, $extension_arr)) {
+                $image = rand(0, 1000) . now() . $name;
+                $image = str_replace([' ', ':', '-'], 'X', $image);
+                $updateProfile['image'] = $image;
+                move_uploaded_file($tmp_name, 'public/images/customer/' . $image);
 
             }
         }

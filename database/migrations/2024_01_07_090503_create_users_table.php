@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('parent_phone');
             $table->string('identity');
             $table->enum('position', ['customer', 'superAdmin','userAdmin']);
-            $table->string('logoImage');
-            $table->string('image');
+            $table->string('logoImage')->default('default.png');
+            $table->string('image')->default('default.png');
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('package_id')
                 ->constrained()
