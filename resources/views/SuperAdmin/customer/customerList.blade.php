@@ -157,6 +157,10 @@ $superAdmin='Minue';
                             </th>
                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                 aria-label="Salary: activate to sort column ascending" style="width: 83.2375px;">
+                                Position
+                            </th>
+                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+                                aria-label="Salary: activate to sort column ascending" style="width: 83.2375px;">
                                 Package Name
                             </th>
                         </tr>
@@ -182,7 +186,10 @@ $superAdmin='Minue';
                                 {{ $users->identity }}
                             </td>
                             <td>
-                                {{ $users->package->name }}
+                                {{ $users->position }}
+                            </td>
+                            <td>
+                                {{ $users->package->name ?? 'This User Don\'t Have Package'}}
                             </td>
                         </tr>
 

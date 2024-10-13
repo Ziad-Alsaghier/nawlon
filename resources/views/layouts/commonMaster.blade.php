@@ -22,8 +22,6 @@
   <!-- laravel CRUD token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Canonical SEO -->
-
-
   <link rel="canonical" href="{{ config('variables.productPage') ? config('variables.productPage') : '' }}">
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
@@ -51,6 +49,7 @@
   <!-- Include Scripts -->
   @include('layouts/sections/scripts')
   @yield('script')
+
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </body>
 

@@ -138,65 +138,73 @@ $superAdmin='Minue';
             <label class="form-label" for="bs-validation-email">Price per Monthly</label>
             <input type="number" id="bs-validation-email" class="form-control" name="price_monthly"
               placeholder="Enter your Phone">
-            <div class="valid-feedback">Looks good!</div>
             <div class="">
               @error('price')
               <span class="span"> {{ $message }}</span>
               @enderror
             </div>
+            <div class="mb-3 " id="inputSetup_fees">
+              <label class="form-label" for="bs-validation-email">Setup Fees</label>
+              <input type="number" id="bs-validation-email" class="form-control" name="setup_fees"
+                placeholder="Enter Setup Fees">
+              <div class="">
+                @error('setup_fees')
+                <span class="span"> {{ $message }}</span>
+                @enderror
+              </div>
 
-          </div>
-          <div class="mb-3 " id="car_limitation">
-            <label class="form-label" for="bs-validation-email">Enter Car Limitation</label>
-            <input type="number" id="bs-validation-email" class="form-control" name="car_limitation"
-              placeholder="Enter Car Limitation For This Package">
-            <div class="valid-feedback">Looks good!</div>
-            <div class="">
-              @error('car_limitation')
-              <span class="span"> {{ $message }}</span>
-              @enderror
+            </div>
+            <div class="mb-3 " id="car_limitation">
+              <label class="form-label" for="bs-validation-email">Enter Car Limitation</label>
+              <input type="number" id="bs-validation-email" class="form-control" name="car_limitation"
+                placeholder="Enter Car Limitation For This Package">
+              <div class="valid-feedback">Looks good!</div>
+              <div class="">
+                @error('car_limitation')
+                <span class="span"> {{ $message }}</span>
+                @enderror
+              </div>
+
             </div>
 
-          </div>
 
 
+            <div class="mb-3" id="inputyear">
+              <label class="form-label" for="bs-validation-email">Price per year</label>
+              <input type="number" id="bs-validation-email" class="form-control" name="price_year"
+                placeholder="Enter your Phone">
+              <div class="valid-feedback">Looks good!</div>
+              <div class="">
+                @error('price')
+                <span class="span"> {{ $message }}</span>
+                @enderror
+              </div>
 
-          <div class="mb-3" id="inputyear">
-            <label class="form-label" for="bs-validation-email">Price per year</label>
-            <input type="number" id="bs-validation-email" class="form-control" name="price_year"
-              placeholder="Enter your Phone">
-            <div class="valid-feedback">Looks good!</div>
-            <div class="">
-              @error('price')
-              <span class="span"> {{ $message }}</span>
-              @enderror
             </div>
-
-          </div>
-          <br>
-          <br>
+            <br>
+            <br>
 
 
 
 
-          <label class="switch switch-info">
-            <input type="checkbox" name="type" value="paid" class="switch-input" checked="">
-            <span class="switch-toggle-slider">
-              <span class="switch-on">
-                Paid <i class="bx bx-check"></i>
+            <label class="switch switch-info">
+              <input type="checkbox" name="type" value="paid" class="switch-input" checked="">
+              <span class="switch-toggle-slider">
+                <span class="switch-on">
+                  Paid <i class="bx bx-check"></i>
+                </span>
+                <span class="switch-off">
+                  Free <i class="bx bx-x"></i>
+                </span>
               </span>
-              <span class="switch-off">
-                Free <i class="bx bx-x"></i>
-              </span>
-            </span>
-            <span class="switch-label">Free & Paid</span>
-          </label>
+              <span class="switch-label">Free & Paid</span>
+            </label>
 
-          <div class="mb-3">
-            <input type="submit" value="Submit" class="btn btn-primary my-3">
-            <div class="valid-feedback">Looks good!</div>
-            <div class="invalid-feedback">Please enter a valid email</div>
-          </div>
+            <div class="mb-3">
+              <input type="submit" value="Submit" class="btn btn-primary my-3">
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Please enter a valid email</div>
+            </div>
 
         </form>
       </div>

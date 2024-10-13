@@ -42,10 +42,7 @@ class LoginController extends Controller
                                 if(empty($user)){
                                     // if User Dont Have Any Token
                         return response()->json(['faild'=>'You Not Authantecated',419]);
-
                         }else {
-
-                                   
                             // If User Have token Deleted This Token
                             $deleteToken = $user->tokens()->delete();
                             if($deleteToken){

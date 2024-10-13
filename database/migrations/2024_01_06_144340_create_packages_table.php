@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');  
             $table->float('price_monthly');
             $table->float('price_year');
+            $table->float('setup_fees');
             $table->integer('car_limitation');
             $table->enum('type',['free','paid']);  
           

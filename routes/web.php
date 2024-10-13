@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\ProfitsController;
 use App\Models\Expense;
 use App\Models\Category;
 use App\Models\UpdateLicense;
-
 use App\Models\CategoryExpense;
 use App\Models\CategoryRevenues;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfitsController;
+
 use App\Http\Controllers\frontendController;
 use App\Http\Controllers\login\LoginController;
 use App\Http\Controllers\taxes\TaxesController;
@@ -18,6 +18,7 @@ use App\Http\Controllers\license\LicenceController;
 use App\Http\Controllers\nawlone\NawloneController;
 use App\Http\Controllers\package\PackageController;
 use App\Http\Controllers\users\dashboardController;
+use App\Http\Controllers\Affiliate\SignUpController;
 use App\Http\Controllers\expenses\ExpenseController;
 use App\Http\Controllers\revenues\RevenueController;
 use App\Http\Controllers\employee\EmployeeController;
@@ -31,16 +32,22 @@ use App\Http\Controllers\violation\violationController;
 use App\Http\Controllers\laravel_example\UserManagement;
 use App\Http\Controllers\license\UpdateLicenseController;
 use App\Http\Controllers\maintenanc\MaintenancController;
+use App\Http\Controllers\supAdmin\UserSupAdminController;
+use App\Http\Controllers\Affiliate\UserAffiliateController;
 use App\Http\Controllers\StoreNawlon\StoreNawlonController;
 use App\Http\Controllers\expenses\CategoryExpenseController;
 use App\Http\Controllers\downLocation\downLocationController;
-use App\Http\Controllers\locationTatek\LocationTatekController;
 use App\Http\Controllers\reportNawlon\ReportNawlonController;
+use App\Http\Controllers\locationTatek\LocationTatekController;
+use App\Http\Controllers\SuperAdmin\ProfileAffiliateController;
+use App\Http\Controllers\SuperAdmin\affiliate\AffiliateController;
 use App\Http\Controllers\productCategory\productCategoryController;
-use App\Http\Controllers\supAdmin\UserSupAdminController;
 use App\Http\Controllers\users\carTransport\CarTransportController;
 use App\Http\Controllers\users\driverFollow\DriverFollowController;
+use App\Http\Controllers\Affiliate\AffiliateAcountProcessController;
+use App\Http\Controllers\affiliate\HelpSystmController;
 use App\Http\Controllers\users\carTransport\CategoryTransportController;
+use App\Http\Controllers\SuperAdmin\affiliate\UserAccountProcessController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +95,23 @@ Route::get('customer/customersAdd','index')->name('customer');
 Route::post('customer/customersInserted','addCustomer')->name('newCustomer');
 Route::get('customer/customerList','getDataCustomer')->name('customerList');
 });
+     Route::controller(AffiliateController::class)->prefix('Affiliate')->group(function () {
+     Route::get('/new-affiliate','index')->name('add-affiliate');
+     Route::post('/paroccess-affiliate','stor_affiliate')->name('proccess_new_affiliate');
+     Route::get('/list_affiliate','list_affiliate')->name('list_affiliate');
+
+     });
+     Route::controller(ProfileAffiliateController::class)->prefix('Affiliate')->group(function () {
+  
+     Route::get('/profile_affiliate/{id}','index')->name('profile_affiliate');
+     Route::get('/status_update/{id}/{type}','statusUpdate')->name('status_update');
+
+     });
+     Route::controller(UserAccountProcessController::class)->prefix('Affiliate')->group(function () {
+  
+     Route::get('/accept_money/{id}/{account_id}/{type}/{process_type}','accept_money')->name('accept_money');
+
+     });
 
 });
 // End Admin
@@ -325,8 +349,35 @@ Route::get('customer/customerList','getDataCustomer')->name('customerList');
                 Route::get('delete_role_user/{id}','deleteRole')->name('deleteRole');
                 Route::get('delete_user/{id}','deleteUserAdmin')->name('deleteUserAdmin');
         });
+   
                         
         });
 
 
  // End User
+
+         // This Is Affiliate of Admin
+Route::middleware('auth.affiliate')->group(function () {
+         Route::controller(UserAffiliateController::class)->prefix('Affiliate')->group(function () {
+         Route::get('/dashboard', 'index')->name('affiliate-dashboard');
+         Route::get('/SignUp', 'affiliate_signUp')->name('affiliate_signUp');
+         }); // Dashboard Detailes 
+
+        Route::controller(SignUpController::class)->prefix('SignUp')->group(function () {
+                Route::get('/new', 'index')->name('new-signUp');
+                Route::post('/process_signUp', 'store_signUp')->name('newSignUp');
+        });
+        // Get Price Of Package Per Month and Per Year For Campany
+        Route::controller(PackageController::class)->prefix('Package')->group(function () {
+                Route::get('/Price', 'packagePrice')->name('package-price');
+        });
+        Route::controller(AffiliateAcountProcessController::class)->prefix('Payout')->group(function () {
+                Route::get('/payout', 'index')->name('payout-affiliate');
+                Route::post('/payout_account', 'withdraw_mony')->name('payout-account');
+        });
+        Route::controller(HelpSystmController::class)->prefix('Nawlon-Help')->group(function () {
+                Route::get('/affiliate-help', 'index')->name('affiliate-help');
+                Route::get('/video/{type}', 'help_video')->name('help-video');
+        });
+
+}); // New Route Affiliate ......

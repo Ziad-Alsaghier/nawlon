@@ -305,7 +305,7 @@ $user='Minue';
                     <div class="col-md">
 
                         <div class="card">
-                            <h5 class="card-header">اضافة السيارة </h5>
+                            <h5 class="card-header">اضافة تباع </h5>
                             <div class="card-body">
                                 <form class="browser-default-validation" action="{{ route('addDriverFollow') }}"
                                     method="POST" enctype="multipart/form-data">
@@ -391,7 +391,7 @@ $user='Minue';
                 </div>
             </div>
         </div>
-</div>
+    </div>
     {{-- End Model With Eit Car --}}
     <!--/ Bootstrap Table with Header Dark -->
     @endsection

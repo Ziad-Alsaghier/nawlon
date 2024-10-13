@@ -14,6 +14,7 @@ class Package extends Model
             'price_monthly',
             'car_limitation',
             'price_year',
+            'setup_fees',
             'user_id',
     ];
 

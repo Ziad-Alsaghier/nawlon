@@ -34,7 +34,11 @@ class LoginController extends Controller
             session()->flash('faild','Email or Password Wrong');
             return redirect()->back();
                     }else{
-            if(Auth::attempt($cradetional)){
+                                if($user->status == 'pending'){
+                                        session()->flash('faild','Account Is Pending');
+                                                return redirect()->back();
+                                }
+            if(Auth::attempt($cradetional) && $user->status == 'accepted'){
                                
                         if($user->position == 'customer' or $user->position == 'userAdmin'){
                                 
@@ -42,10 +46,13 @@ class LoginController extends Controller
                         }elseif($user->position == 'superAdmin'){
                                 
                                 return redirect()->route('dashboard-analytics')->with(['success'=>'تم التسجيل بنجاح']);
+                        }elseif($user->position == 'affiliate'){
+                                
+                                return redirect()->route('affiliate-dashboard')->with(['success'=>'تم التسجيل بنجاح']);
                         }
 
                                 }else{
-                                        session()->flash('faild','Password Wrong');
+                                        session()->flash('faild','Account Faild Or Pending ');
                                                 return redirect()->back();
                                 }
                     }  

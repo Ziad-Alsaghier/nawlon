@@ -402,7 +402,12 @@ $containerNav = $containerNav ?? 'container-fluid';
         <li class="nav-item navbar-dropdown dropdown-user dropdown">
           <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
             <div class="avatar avatar-online">
+              @if(auth()->user()->position == 'affiliate')
+
+              <img src="{{auth()->user()->getImageUrl() }}" alt class="rounded-circle">
+              @else
               <img src="{{ asset('public/images/customer/' . auth()->user()->image) }}" alt class="rounded-circle">
+              @endif
             </div>
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -413,13 +418,13 @@ $containerNav = $containerNav ?? 'container-fluid';
                 <div class="d-flex">
                   <div class="flex-shrink-0 me-3">
                     <div class="avatar avatar-online">
-                      <img src="{{ asset('public/images/customer/' . auth()->user()->logoImage) }}">
+                      <img src="{{ asset('public/images/customer/' . auth()->user()->image) }}">
                     </div>
                   </div>
                   <div class="flex-grow-1">
                     <span class="fw-semibold d-block">
                       @if (Auth::check())
-                      Ziad
+                      {{auth()->user()->name}}
                       @else
                       Welcome Super Admin
                       @endif
@@ -438,33 +443,96 @@ $containerNav = $containerNav ?? 'container-fluid';
               </a>
             </li>
             @endif
+            @if(auth()->user()->position == 'superAdmin')
+            <a class="dropdown-item" href="{{ route('profileUser') }}">
 
+              <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                  <div class="avatar avatar-online">
+                    <img src="{{ asset('public/images/customer/' . auth()->user()->image) }}">
+                  </div>
+                </div>
+                <div class="flex-grow-1">
+                  <span class="fw-semibold d-block">
+                    @if (Auth::check())
+                    {{auth()->user()->name}}
+                    @else
+                    Welcome Super Admin
+                    @endif
+                  </span>
+                  <small class="text-muted">{{ auth()->user()->position }}</small>
+                </div>
+              </div>
+            </a>
 
-
-            <li>
-              <div class="dropdown-divider"></div>
-            </li>
-            @if (Auth::check())
-            <li>
-              <a class="dropdown-item" href="{{route('login.destroy')}} ">
-                <i class='bx bx-power-off me-2'></i>
-                <span class="align-middle">Logout</span>
-              </a>
-            </li>
-            <form method="POST" id="logout-form" action="">
-              @csrf
-            </form>
-            @else
-            <li>
-              {{-- <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
-                <i class='bx bx-log-in me-2'></i>
-                <span class="align-middle">Login</span>
-              </a> --}}
-            </li>
-            @endif
-          </ul>
         </li>
-        <!--/ User -->
+
+        <li>
+          <a class="dropdown-item" href="">
+            <i class="fa-solid fa-user"></i>
+            <span class="align-middle">Billing</span>
+          </a>
+        </li>
+        @endif
+        @if(auth()->user()->position == 'affiliate')
+
+        <a class="dropdown-item" href="{{ route('profileUser') }}">
+
+          <div class="d-flex">
+            <div class="flex-shrink-0 me-3">
+              <div class="avatar avatar-online">
+                <img src="{{auth()->user()->getImageUrl() }}">
+              </div>
+            </div>
+            <div class="flex-grow-1">
+              <span class="fw-semibold d-block">
+                @if (Auth::check())
+                {{auth()->user()->name}}
+                @else
+                Welcome Super Admin
+                @endif
+              </span>
+              <small class="text-muted">{{ auth()->user()->position }}</small>
+            </div>
+          </div>
+        </a>
+
+        </li>
+
+        <li>
+          <a class="dropdown-item" href="">
+            <i class="fa-solid fa-user"></i>
+            <span class="align-middle">Billing</span>
+          </a>
+        </li>
+        @endif
+
+
+
+        <li>
+          <div class="dropdown-divider"></div>
+        </li>
+        @if (Auth::check())
+        <li>
+          <a class="dropdown-item" href="{{route('login.destroy')}} ">
+            <i class='bx bx-power-off me-2'></i>
+            <span class="align-middle">Logout</span>
+          </a>
+        </li>
+        <form method="POST" id="logout-form" action="">
+          @csrf
+        </form>
+        @else
+        <li>
+          {{-- <a class="dropdown-item" href="{{ Route::has('login') ? route('login') : 'javascript:void(0)' }}">
+            <i class='bx bx-log-in me-2'></i>
+            <span class="align-middle">Login</span>
+          </a> --}}
+        </li>
+        @endif
+      </ul>
+      </li>
+      <!--/ User -->
       </ul>
     </div>
 

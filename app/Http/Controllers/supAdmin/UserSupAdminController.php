@@ -21,6 +21,7 @@ class UserSupAdminController extends Controller
         'role_empoloyee',
         'user_id',
         'image',
+        'status',
         'package_id',
     ];
 
@@ -76,6 +77,7 @@ class UserSupAdminController extends Controller
         $addNewUserAdmin['package_id'] = auth()->user()->package->id;
         $addNewUserAdmin['password'] = bcrypt($request->password);
         $addNewUserAdmin['user_id'] = auth()->user()->id; 
+        $addNewUserAdmin['status'] = 'accepted'; 
             // Create New User Admin
         $newUserAdmin = User::where('user_id', auth()->user()->id)->create($addNewUserAdmin);
         $subAdmin_id = $newUserAdmin->id;

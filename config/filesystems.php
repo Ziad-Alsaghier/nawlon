@@ -33,11 +33,18 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
+            'throw'=> false,
         ],
 
         'teachers' => [
             'driver' => 'local',
-            'root' => base_path().'public/images/teachers',
+            'root' => storage_path().'public/images/teachers',
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'public' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

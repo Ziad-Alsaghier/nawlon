@@ -128,7 +128,7 @@ $user='Minue';
                             <label for="profile_image">
                                 <img id="image-profile-prev" style=" cursor: pointer;"
                                     class="d-block h-auto ms-0 ms-sm-4 rounded-3 user-profile-img"
-                                    src="{{ asset('public/images/campany/' . auth()->user()->logoImage) }}" />
+                                    src="{{ asset('public/images/customer/' . auth()->user()->image) }}" />
                             </label>
 
                         </div>
@@ -325,7 +325,7 @@ $user='Minue';
 <div class="content-backdrop fade"></div>
 </div>
 @section('script')
-<script src="../assets/vendor/libs/jquery/jquery.js"></script>
+{{-- <script src="../assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../assets/vendor/libs/popper/popper.js"></script>
 <script src="../assets/vendor/js/bootstrap.js"></script>
 <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
@@ -334,7 +334,7 @@ $user='Minue';
 
 <script src="../assets/vendor/libs/i18n/i18n.js"></script>
 <script src="../assets/vendor/libs/typeahead-js/typeahead.js"></script>
-
+--}}
 
 
 @endsection

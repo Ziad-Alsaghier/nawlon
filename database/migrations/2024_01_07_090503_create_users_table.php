@@ -23,14 +23,15 @@ return new class extends Migration
             $table->string('parent_phone');
             $table->string('identity');
             $table->enum('position', ['customer', 'superAdmin','userAdmin']);
+            $table->enum('STATUS', ['accepted','pending','rejected']);
             $table->string('logoImage')->default('default.png');
             $table->string('image')->default('default.png');
             $table->foreignId('user_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('package_id')
+            $table->foreignId('package_id')->nullable()
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
+            $table->float('commission');
             $table->timestamps();
         });
     }

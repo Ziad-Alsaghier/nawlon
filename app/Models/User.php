@@ -26,8 +26,10 @@ class User extends Authenticatable
         'parent_phone',
         'position',
         'identity',
+        'status',
         'package_id',
         'logoImage',
+        'commission',
         'image',
     ];
 
@@ -61,6 +63,32 @@ class User extends Authenticatable
     public function roles(){
         return  $this->hasMany(RoleUser::class);
       }
+
+      public function user_account(){
+        return $this->hasOne(userAccount::class);
+      }
+      public function campanies_pending(){
+        return $this->hasMany(User::class,'user_id')
+        ->where('position','customer')
+        ->where('status','pending');
+      }
+      public function customer_accepted(){
+        return $this->hasMany(User::class,'user_id')
+        ->where('position','customer')
+        ->where('status','accepted');
+      }
+      public function customers(){
+    return $this->hasMany(User::class, 'user_id');
+      }
+      
+
+      public function getImageUrl (){
+        if($this->image){
+            return url('storage/app/public/'.$this->image);
+        }
+        return 'C:\xampp\tmp'.$this->name;
+      }
+      
              
     
 }

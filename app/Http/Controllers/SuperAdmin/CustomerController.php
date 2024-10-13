@@ -71,6 +71,7 @@ class CustomerController extends Controller
                                 }else{
                                     $newCustomer['package_id']=$request->package;
                                 $newCustomer['password']=bcrypt($request->password);
+                                $newCustomer['status']='accepted';
                                    $createNewCustomer= User::create( $newCustomer );
                                    if($createNewCustomer){
 

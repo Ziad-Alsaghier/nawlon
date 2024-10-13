@@ -19,7 +19,7 @@ return new class extends Migration
                  $table->string('brand');
                  $table->string('image');
                  $table->string('car_type');
-                 $table->integer('car_numbcer');
+                 $table->integer('car_number');
                  $table->string('car_text');
             $table->enum('status', ['0','1','2']);
                  $table->foreignId('category_id')->
